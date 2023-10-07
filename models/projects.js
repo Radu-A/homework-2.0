@@ -1,24 +1,61 @@
 const pool = require("../utils/pgsql_db");
+const projectQueries = require("../queries/projectsQueries");
 
-const getAllProjects = async (order) => {
-  let result, query;
+const getAllProjects = async (order, bootcamp) => {
+  let data, orderQuery, bootcampQuery;
+  // orderQuery
   if (order === "date") {
-    query = "ORDER BY date";
+    orderQuery = " ORDER BY p.date";
   } else if (order === "curse") {
-    query = "ORDER BY curse";
+    orderQuery = " ORDER BY u.curse";
+  } else if (order === "bootcamp") {
+    orderQuery = " ORDER BY u.bootcamp";
+  } else {
+    orderQuery = "";
   }
+  // bootcampQuery
+  if (bootcamp === "cyber") {
+    
+  }
+
   try {
-    const data = await pool.query(`SELECT * FROM projects ${query}`);
-    result = data.rows;
-    console.log(result);
+    const result = await pool.query(projectQueries.getAllProjects + orderQuery);
+    data = result.rows;
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
-  return result;
+  return data;
 };
 
-const getProjectById = async () => {};
+const getProjectById = async (project_id) => {
+  let data;
+  try {
+    const result = await pool.query(projectQueries.getProjectById, [
+      project_id,
+    ]);
+    data = result.rows;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
+};
+
+const getProjectByUser = async (user_id) => {
+  let data;
+  try {
+    const result = await pool.query(projectQueries.getProjectByUser, [user_id]);
+    data = result.rows;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
+};
 
 const getProjectsByUser = async () => {};
 
-getAllProjects('curse');
+getAllProjects();
+// getProjectById(4);
+// getProjectByUser(3);

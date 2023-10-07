@@ -57,7 +57,7 @@ INSERT INTO users(
 			-- 5
 			('saana.toivonen@example.com', 'saana.toivonen@example.com',
 			'https://randomuser.me/api/portraits/women/77.jpg', 
-			'Saana', 'Toivonen', 'Cyber Security', '22-09', 'https://github.com/Saana'),
+			'Saana', 'Toivonen', 'Cybersecurity', '22-09', 'https://github.com/Saana'),
 			-- 6
 			('debra.rodriquez@example.com', 'debra.rodriquez@example.com',
 			'https://randomuser.me/api/portraits/women/35.jpg', 
@@ -69,7 +69,7 @@ INSERT INTO users(
 			-- 8
 			('sandrine.toivonen@example.com', 'sandrine.toivonen@example.com',
 			'https://randomuser.me/api/portraits/women/50.jpg', 
-			'Sandrine', 'Lambert', 'Data-Science', '23-01', 'https://github.com/Sandrine'),
+			'Sandrine', 'Lambert', 'Data Science', '23-01', 'https://github.com/Sandrine'),
 			-- 9
 			('michal.toivonen@example.com', 'michal.toivonen@example.com',
 			'https://randomuser.me/api/portraits/women/77.jpg', 
