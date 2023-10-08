@@ -22,6 +22,45 @@ const projectQueries = {
     VALUES (
         $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16
     )`,
+  updateProject: `
+    UPDATE projects
+    SET title = $1,
+        date = $2,
+        type = $3,
+        description = $4,
+        achievement_one = $5,
+        achievement_two = $6,
+        achievement_three = $7,
+        finished = $8,
+        pending_one = $9,
+        pending_two = $10,
+        pending_three = $11,
+        img_small = $12,
+        img_big = $13,
+        github = $14,
+        site = $15
+    WHERE project_id = $16`,
+  updateProject2: `
+    UPDATE projects
+    SET title = 'Probando updateProject',
+        date = 'Probando updateProject',
+        type = 'Probando updateProject',
+        description = 'Probando updateProject',
+        achievement_one = 'Probando updateProject',
+        achievement_two = 'Probando updateProject',
+        achievement_three = 'Probando updateProject',
+        finished = 'false',
+        pending_one = 'Probando updateProject',
+        pending_two = 'Probando updateProject',
+        pending_three = 'Probando updateProject',
+        img_small = 'Probando updateProject',
+        img_big = 'Probando updateProject',
+        github = 'Probando updateProject',
+        site = 'Probando updateProject'
+    WHERE project_id = 14`,
+    deleteProject: `
+    DELETE FROM projects
+    WHERE project_id = $1`
 };
 
 module.exports = projectQueries;
