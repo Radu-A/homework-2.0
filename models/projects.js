@@ -1,8 +1,68 @@
 const pool = require("../utils/pgsql_db");
 const projectQueries = require("../queries/projectsQueries");
 
-const getAllProjects = async (order, bootcamp) => {
-  let data, orderQuery, bootcampQuery;
+const getAllProjects = async (bootcamp, state, deployed, order) => {
+  let data,
+    isBootcamp,
+    bootcampQuery,
+    isState,
+    stateQuery,
+    deployedQuery,
+    orderQuery;
+  // bootcampQuery
+  if (bootcamp === "cyber") {
+    bootcampQuery = " WHERE u.bootcamp = 'Cybersecurity'";
+    isBootcamp = true;
+  } else if (bootcamp === "data") {
+    bootcampQuery = " WHERE u.bootcamp = 'Data Science'";
+    isBootcamp = true;
+  } else if (bootcamp === "full") {
+    bootcampQuery = " WHERE u.bootcamp = 'Full-Stack'";
+  } else if (bootcamp === "ux") {
+    bootcampQuery = " WHERE u.bootcamp = 'UX/UI'";
+  } else {
+    bootcampQuery = "";
+  }
+  // stateQuery
+  if (!isBootcamp) {
+    if (state === true) {
+      stateQuery = " WHERE p.finished = 'true'";
+      isState = true;
+    } else if (state === false) {
+      stateQuery = " WHERE p.finished = 'false'";
+      isState = true;
+    } else {
+      stateQuery = "";
+    }
+  } else {
+    if (state === true) {
+      stateQuery = " AND p.finished = 'true'";
+      isState = true;
+    } else if (state === false) {
+      stateQuery = " AND p.finished = 'false'";
+      isState = true;
+    } else {
+      stateQuery = "";
+    }
+  }
+  // deployedQuery
+  if (!isBootcamp || !isState) {
+    if (deployed === true) {
+      deployedQuery = " WHERE p.site IS NOT NULL";
+    } else if (deployed === false) {
+      deployedQuery = " WHERE p.SITE IS NULL";
+    } else {
+      deployedQuery = "";
+    }
+  } else {
+    if (deployed === true) {
+      deployedQuery = " AND p.site IS NOT NULL";
+    } else if (state === false) {
+      deployedQuery = " AND p.site IS NULL";
+    } else {
+      deployedQuery = "";
+    }
+  }
   // orderQuery
   if (order === "date") {
     orderQuery = " ORDER BY p.date";
@@ -13,13 +73,15 @@ const getAllProjects = async (order, bootcamp) => {
   } else {
     orderQuery = "";
   }
-  // bootcampQuery
-  if (bootcamp === "cyber") {
-    
-  }
 
   try {
-    const result = await pool.query(projectQueries.getAllProjects + orderQuery);
+    const result = await pool.query(
+      projectQueries.getAllProjects +
+        bootcampQuery +
+        stateQuery +
+        deployedQuery +
+        orderQuery
+    );
     data = result.rows;
     console.log(data);
   } catch (error) {
@@ -42,7 +104,7 @@ const getProjectById = async (project_id) => {
   return data;
 };
 
-const getProjectByUser = async (user_id) => {
+const getProjectstByUser = async (user_id) => {
   let data;
   try {
     const result = await pool.query(projectQueries.getProjectByUser, [user_id]);
@@ -54,8 +116,82 @@ const getProjectByUser = async (user_id) => {
   return data;
 };
 
-const getProjectsByUser = async () => {};
+const createProject = async (project) => {
+  let result;
+  const {
+    user_id,
+    title,
+    date,
+    type,
+    description,
+    achievement_one,
+    achievement_two,
+    achievement_three,
+    finished,
+    pending_one,
+    pending_two,
+    pending_three,
+    img_small,
+    img_big,
+    github,
+    site,
+  } = project;
+  try {
+    result = pool.query(projectQueries.createProject, [
+      user_id,
+      title,
+      date,
+      type,
+      description,
+      achievement_one,
+      achievement_two,
+      achievement_three,
+      finished,
+      pending_one,
+      pending_two,
+      pending_three,
+      img_small,
+      img_big,
+      github,
+      site,
+    ]);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+  return result;
+};
+const updateProject = async (project) => {};
+const deleteProject = async (project) => {};
 
-getAllProjects();
+const newProject = {
+  user_id: 5,
+  title: "Network Atack",
+  date: "2023-06-01",
+  type: "Network Security",
+  description:
+    "Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.",
+  achievement_one:
+    "Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.",
+  achievement_two:
+    "Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus. Suspendisse sagittis magna dictum, malesuada lorem ac, euismod elit.",
+  achievement_three:
+    "Aliquam sagittis mollis leo. Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.",
+  finished: "false",
+  pending_one:
+    "Morbi vitae eleifend lectus, vel rhoncus tortor. Curabitur posuere urna aliquet leo maximus porttitor. Suspendisse potenti.",
+  pending_two:
+    "Vivamus aliquam at augue in commodo. Nullam porttitor at mi at vestibulum. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.",
+  pending_three:
+    "Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.",
+  img_small: null,
+  img_big:
+    "https://www.itarian.com/images/what-is-network-vulnerability-assessment.png",
+  github: "https://github.com/Radu-A/web-personal",
+  site: null,
+};
+
+// getAllProjects("data", false, true, 'date');
 // getProjectById(4);
-// getProjectByUser(3);
+// getProjectstByUser(3);
+createProject(newProject);
