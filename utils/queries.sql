@@ -276,24 +276,6 @@ INSERT INTO public.projects(
 			'https://github.com/JuditRoca/Hundir-la-flota', null
 			);
 
-UPDATE projects
-    SET title = 'nuevo',
-        date = 'hg',
-        type = 'mn',
-        description = 'mn',
-        achievement_one = 'mn',
-        achievement_two = 'mn',
-        achievement_three = 'mn',
-        finished = 'true',
-        pending_one = 'mn',
-        pending_two = 'mn',
-        pending_three = 'mn',
-        img_small = 'mn',
-        img_big = 'mn',
-        github = 'mn',
-        site = 'mn'
-    WHERE project_id = 14;
-
 const nowDate = new Date();
 let date = ''
 if (nowDate.getMonth()+1 < 10) {

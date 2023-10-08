@@ -181,17 +181,18 @@ const createProject = async (project) => {
       github,
       site,
     ]);
-    console.log(result);
+    console.log(`Project "${project_id}" created`);
   } catch (error) {
     console.log(error);
   } finally {
+    // close database connection
     client.release();
   }
   return result;
 };
 
 const updateProject = async (project) => {
-  let result;
+  let client, result;
   const {
     project_id,
     title,
@@ -211,7 +212,9 @@ const updateProject = async (project) => {
     site,
   } = project;
   try {
-    result = await pool.query(projectQueries.updateProject, [
+    // establish with connection database
+    client = await pool.connect()
+    result = await client.query(projectQueries.updateProject, [
       title,
       date,
       type,
@@ -234,37 +237,9 @@ const updateProject = async (project) => {
     });
   } catch (error) {
     console.log(error);
-  }
-  return result;
-};
-
-const updateProject2 = async (project) => {
-  let result;
-  const {
-    project_id,
-    title,
-    date,
-    type,
-    description,
-    achievement_one,
-    achievement_two,
-    achievement_three,
-    finished,
-    pending_one,
-    pending_two,
-    pending_three,
-    img_small,
-    img_big,
-    github,
-    site,
-  } = project;
-  try {
-    result = await pool.query(projectQueries.updateProject2);
-    console.log({
-      message: `Project with id ${project_id} updated.`,
-    });
-  } catch (error) {
-    console.log(error);
+  } finally {
+    // close database connection
+    client.release()
   }
   return result;
 };
@@ -285,32 +260,32 @@ const deleteProject = async (project_id) => {
   return result;
 };
 
-// const newProject = {
-//   user_id: 5,
-//   title: "Network Atack",
-//   date: "2023-06-01",
-//   type: "Network Security",
-//   description:
-//     "Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.",
-//   achievement_one:
-//     "Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.",
-//   achievement_two:
-//     "Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus. Suspendisse sagittis magna dictum, malesuada lorem ac, euismod elit.",
-//   achievement_three:
-//     "Aliquam sagittis mollis leo. Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.",
-//   finished: "false",
-//   pending_one:
-//     "Morbi vitae eleifend lectus, vel rhoncus tortor. Curabitur posuere urna aliquet leo maximus porttitor. Suspendisse potenti.",
-//   pending_two:
-//     "Vivamus aliquam at augue in commodo. Nullam porttitor at mi at vestibulum. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.",
-//   pending_three:
-//     "Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.",
-//   img_small: null,
-//   img_big:
-//     "https://www.itarian.com/images/what-is-network-vulnerability-assessment.png",
-//   github: "https://github.com/Radu-A/web-personal",
-//   site: null,
-// };
+const newProject = {
+  user_id: 5,
+  title: "Network Atack",
+  date: "2023-06-01",
+  type: "Network Security",
+  description:
+    "Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.",
+  achievement_one:
+    "Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.",
+  achievement_two:
+    "Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus. Suspendisse sagittis magna dictum, malesuada lorem ac, euismod elit.",
+  achievement_three:
+    "Aliquam sagittis mollis leo. Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.",
+  finished: "false",
+  pending_one:
+    "Morbi vitae eleifend lectus, vel rhoncus tortor. Curabitur posuere urna aliquet leo maximus porttitor. Suspendisse potenti.",
+  pending_two:
+    "Vivamus aliquam at augue in commodo. Nullam porttitor at mi at vestibulum. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.",
+  pending_three:
+    "Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.",
+  img_small: null,
+  img_big:
+    "https://www.itarian.com/images/what-is-network-vulnerability-assessment.png",
+  github: "https://github.com/Radu-A/web-personal",
+  site: null,
+};
 
 const projectToUpdate = {
   project_id: 14,
@@ -344,5 +319,5 @@ const projectToUpdate = {
 // getProjectById(4);
 // getProjectstByUser(3);
 // createProject(newProject);
-// updateProject2(projectToUpdate);
-deleteProject(14);
+// updateProject(projectToUpdate);
+// deleteProject(14);
