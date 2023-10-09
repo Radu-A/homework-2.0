@@ -1,3 +1,17 @@
+const cyberTypes = ["Network Security", "Cloud Security", "Physical Security"];
+
+const dataTypes = [
+  "Data Analisys",
+  "Data Visualization",
+  "Machine Learning",
+  "Predictive Model",
+  "Programming",
+];
+
+const fullTypes = ["Front-End", "Back-End", "Full-Stack"];
+
+const uxTypes = ["Portfolio", "Research", "App Design"];
+
 const queries = {
   usersTable: `
       CREATE TABLE users (
@@ -175,7 +189,7 @@ const queries = {
             'https://github.com/Radu-A/homework/raw/develop/server/assets/screenshot-desktop.jpg',
             'https://github.com/Radu-A/homework', 'https://homework-lg52.onrender.com/'
             ),
-            (5, 'Form Web', '2023-05-01', 'Vulnerability',
+            (5, 'Form Web', '2023-05-01', 'Cloud Security',
             'Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -189,7 +203,7 @@ const queries = {
             'Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.',
             null, 'https://www.itarian.com/images/what-is-network-vulnerability-assessment.png', 
             'https://github.com/Radu-A/web-personal', null),
-            (6, 'Portfolio', '2022-04-01', 'Business Goals',
+            (6, 'Portfolio', '2022-04-01', 'Portfolio',
             'Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed. Nulla tincidunt eleifend nisi, id ultricies tortor. Mauris vel maximus sem. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
             'Nunc lacinia dui sed ex molestie commodo. Nulla eu tellus justo. Etiam scelerisque nunc vitae velit ultrices, quis semper arcu tincidunt. Sed luctus dictum est maximus auctor.',
@@ -231,7 +245,7 @@ const queries = {
             'Aenean rutrum mauris nulla, sit amet finibus diam sagittis a. Nunc at est id nisl imperdiet pulvinar. Donec pulvinar sit amet turpis ac posuere.',
             null, 'https://github.com/maestre7/DataSciToolbox/raw/dev/documentation/logo_dstb.png',  
             'https://github.com/JuditRoca/DataSciToolbox', null),
-            (9, 'Portfolio', '2023-03-19', 'Experience Map',
+            (9, 'Bussines Web', '2023-03-19', 'Research',
             'Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -245,7 +259,7 @@ const queries = {
             'Aenean rutrum mauris nulla, sit amet finibus diam sagittis a. Nunc at est id nisl imperdiet pulvinar. Donec pulvinar sit amet turpis ac posuere.',
             null, 'https://assets.toptal.io/images?url=https%3A%2F%2Fuploads.toptal.io%2Fblog%2Fimage%2F124169%2Ftoptal-blog-image-1505220368042-4f0d14501d63f647f7d55881746d1418.png', 
             'https://github.com/Radu-A/web-personal', null),
-            (4, 'Hundir la flota', '2023-04-25', 'Data Science',
+            (4, 'Hundir la flota', '2023-04-25', 'Programming',
             'Este proyecto contiene el código del primer juego que desarrollé en Python. Se trata de una versión simplificada del clásico juego de mesa Hundir la Flota. El objetivo del juego es hundir todos los barcos del oponente antes de que él hunda los tuyos.',
             -- achievements
             'Funciones.py: En este archivo se encuentran las funciones necesarias para el funcionamiento del juego. Estas funciones incluyen, por ejemplo, la generación de coordenadas aleatorias para ubicar los barcos, los cálculos de disparos y la manipulación de los tableros.',
@@ -259,7 +273,7 @@ const queries = {
             null, 'https://github.com/JuditRoca/Hundir-la-flota/raw/master/src/HUNDIR%20LA%20FLOTA.png',
             'https://github.com/JuditRoca/Hundir-la-flota', null
             ),
-            (4, 'Carnic Impact', '2023-07-25', 'Data Science',
+            (4, 'Carnic Impact', '2023-07-25', 'Data Analysis',
             'Este estudio analiza la relación entre la población bovina, las emisiones de la industria cárnica y la agricultura. Mediante técnicas estadísticas y visualización de datos, se busca comprender el impacto ambiental de estas actividades y contrastar las emisiones generadas por la industria cárnica con las asociadas a la agricultura. El objetivo es destacar la importancia de considerar alternativas sostenibles en la producción y consumo de alimentos',
             -- achievements
             'En el notebook "bovine", se lleva a cabo el procesamiento de los datos relacionados con la población bovina. Aquí se realizan las tareas de limpieza y transformación de los datos, así como la generación de gráficos descriptivos. Este notebook se enfoca específicamente en analizar la población bovina y su relación con las emisiones.',
@@ -273,8 +287,8 @@ const queries = {
             null, 'https://github.com/JuditRoca/Hundir-la-flota/raw/master/src/HUNDIR%20LA%20FLOTA.png',
             'https://github.com/JuditRoca/Hundir-la-flota', null
             )`,
-    dropUsersTable: `DROP TABLE users`,
-    dropProjectsTable: `DROP TABLE projects`,
+  dropUsersTable: `DROP TABLE users`,
+  dropProjectsTable: `DROP TABLE projects`,
 };
 
 module.exports = queries;
