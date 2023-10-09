@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "runall": "nodemon app.js && cd client/ && npm run dev"
   },
   "author": "Radu-A",
   "license": "ISC",
