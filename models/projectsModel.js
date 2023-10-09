@@ -1,18 +1,23 @@
 const pool = require("../utils/pgsql_db");
 const projectQueries = require("../queries/projectsQueries");
+const newProject = require("../utils/newProject");
+const projectToUpdate = require("../utils/projectToUpdate");
 
-const getAllProjects = async (bootcamp, state, deployed, order) => {
+const getAllProjects = async (bootcamp, finished, deployed, order) => {
+  console.log("Before if/else");
+  console.log(bootcamp);
   // declare variables
   let client,
     data,
     isBootcamp,
     bootcampQuery,
-    isState,
-    stateQuery,
+    isFinished,
+    finishedQuery,
     deployedQuery,
     orderQuery;
   // bootcampQuery
   if (bootcamp === "cyber") {
+    console.log(`bootcamp === "cyber"`);
     bootcampQuery = " WHERE u.bootcamp = 'Cybersecurity'";
     isBootcamp = true;
   } else if (bootcamp === "data") {
@@ -20,46 +25,50 @@ const getAllProjects = async (bootcamp, state, deployed, order) => {
     isBootcamp = true;
   } else if (bootcamp === "full") {
     bootcampQuery = " WHERE u.bootcamp = 'Full-Stack'";
+    isBootcamp = true;
   } else if (bootcamp === "ux") {
     bootcampQuery = " WHERE u.bootcamp = 'UX/UI'";
+    isBootcamp = true;
   } else {
+    console.log(`else`);
+    console.log(bootcamp);
     bootcampQuery = "";
   }
   // stateQuery
   if (!isBootcamp) {
-    if (state === true) {
-      stateQuery = " WHERE p.finished = 'true'";
-      isState = true;
-    } else if (state === false) {
-      stateQuery = " WHERE p.finished = 'false'";
-      isState = true;
+    if (finished === true) {
+      finishedQuery = " WHERE p.finished = 'true'";
+      isFinished = true;
+    } else if (finished === false) {
+      finishedQuery = " WHERE p.finished = 'false'";
+      isFinished = true;
     } else {
-      stateQuery = "";
+      finishedQuery = "";
     }
   } else {
-    if (state === true) {
-      stateQuery = " AND p.finished = 'true'";
-      isState = true;
-    } else if (state === false) {
-      stateQuery = " AND p.finished = 'false'";
-      isState = true;
+    if (finished === "true") {
+      finishedQuery = " AND p.finished = 'true'";
+      isFinished = true;
+    } else if (finished === "false") {
+      finishedQuery = " AND p.finished = 'false'";
+      isFinished = true;
     } else {
-      stateQuery = "";
+      finishedQuery = "";
     }
   }
   // deployedQuery
-  if (!isBootcamp || !isState) {
-    if (deployed === true) {
+  if (!isBootcamp && !isFinished) {
+    if (deployed === "true") {
       deployedQuery = " WHERE p.site IS NOT NULL";
-    } else if (deployed === false) {
-      deployedQuery = " WHERE p.SITE IS NULL";
+    } else if (deployed === "false") {
+      deployedQuery = " WHERE p.site IS NULL";
     } else {
       deployedQuery = "";
     }
   } else {
-    if (deployed === true) {
+    if (deployed === "true") {
       deployedQuery = " AND p.site IS NOT NULL";
-    } else if (state === false) {
+    } else if (finished === "false") {
       deployedQuery = " AND p.site IS NULL";
     } else {
       deployedQuery = "";
@@ -76,6 +85,19 @@ const getAllProjects = async (bootcamp, state, deployed, order) => {
     orderQuery = "";
   }
 
+  console.log(
+    projectQueries.getAllProjects +
+      bootcampQuery +
+      finishedQuery +
+      deployedQuery +
+      orderQuery
+  );
+
+  console.log("Before try/catch");
+  console.log(bootcamp, finished, deployed, order);
+  console.log("bootcampQuery:");
+  console.log(bootcampQuery);
+
   try {
     // establish connection with database
     client = await pool.connect();
@@ -83,13 +105,25 @@ const getAllProjects = async (bootcamp, state, deployed, order) => {
     const result = await client.query(
       projectQueries.getAllProjects +
         bootcampQuery +
-        stateQuery +
+        finishedQuery +
         deployedQuery +
         orderQuery
     );
     // extract data from "rows" property of "results" object
     data = result.rows;
     console.log(data);
+
+    console.log(
+      projectQueries.getAllProjects +
+        bootcampQuery +
+        finishedQuery +
+        deployedQuery +
+        orderQuery
+    );
+
+    console.log(bootcamp, finished, deployed, order);
+    console.log("bootcampQuery:");
+    console.log(bootcampQuery);
   } catch (error) {
     console.log(error);
   } finally {
@@ -181,7 +215,7 @@ const createProject = async (project) => {
       github,
       site,
     ]);
-    console.log(`Project "${project_id}" created`);
+    console.log(`Project "${title}" created`);
   } catch (error) {
     console.log(error);
   } finally {
@@ -213,7 +247,7 @@ const updateProject = async (project) => {
   } = project;
   try {
     // establish with connection database
-    client = await pool.connect()
+    client = await pool.connect();
     result = await client.query(projectQueries.updateProject, [
       title,
       date,
@@ -239,7 +273,7 @@ const updateProject = async (project) => {
     console.log(error);
   } finally {
     // close database connection
-    client.release()
+    client.release();
   }
   return result;
 };
@@ -260,64 +294,19 @@ const deleteProject = async (project_id) => {
   return result;
 };
 
-const newProject = {
-  user_id: 5,
-  title: "Network Atack",
-  date: "2023-06-01",
-  type: "Network Security",
-  description:
-    "Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.",
-  achievement_one:
-    "Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.",
-  achievement_two:
-    "Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus. Suspendisse sagittis magna dictum, malesuada lorem ac, euismod elit.",
-  achievement_three:
-    "Aliquam sagittis mollis leo. Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.",
-  finished: "false",
-  pending_one:
-    "Morbi vitae eleifend lectus, vel rhoncus tortor. Curabitur posuere urna aliquet leo maximus porttitor. Suspendisse potenti.",
-  pending_two:
-    "Vivamus aliquam at augue in commodo. Nullam porttitor at mi at vestibulum. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.",
-  pending_three:
-    "Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.",
-  img_small: null,
-  img_big:
-    "https://www.itarian.com/images/what-is-network-vulnerability-assessment.png",
-  github: "https://github.com/Radu-A/web-personal",
-  site: null,
-};
-
-const projectToUpdate = {
-  project_id: 14,
-  title: "Víctor Atack",
-  date: "2023-06-01",
-  type: "Network Security",
-  description:
-    "Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.",
-  achievement_one:
-    "Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.",
-  achievement_two:
-    "Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus. Suspendisse sagittis magna dictum, malesuada lorem ac, euismod elit.",
-  achievement_three:
-    "Aliquam sagittis mollis leo. Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.",
-  finished: "false",
-  pending_one:
-    "Morbi vitae eleifend lectus, vel rhoncus tortor. Curabitur posuere urna aliquet leo maximus porttitor. Suspendisse potenti.",
-  pending_two:
-    "Vivamus aliquam at augue in commodo. Nullam porttitor at mi at vestibulum. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.",
-  pending_three:
-    "Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.",
-  img_small: null,
-  img_big:
-    "https://www.itarian.com/images/what-is-network-vulnerability-assessment.png",
-  github: "https://github.com/Radu-A/web-personal",
-  site: null,
-};
-
-// getAllProjects("data", false, true, 'date');
+// getAllProjects("cyber", true, true, 'date');
 // getAllProjects();
 // getProjectById(4);
 // getProjectstByUser(3);
 // createProject(newProject);
 // updateProject(projectToUpdate);
-// deleteProject(14);
+// deleteProject(17);
+
+module.exports = {
+  getAllProjects,
+  getProjectById,
+  getProjectstByUser,
+  createProject,
+  updateProject,
+  deleteProject,
+};

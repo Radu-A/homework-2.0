@@ -53,6 +53,24 @@ const insertProjects = async () => {
   }
 };
 
+const nowDate = new Date();
+let date = "";
+if (nowDate.getMonth() + 1 < 10) {
+  date =
+    nowDate.getFullYear() +
+    "-0" +
+    (nowDate.getMonth() + 1) +
+    "-" +
+    nowDate.getDate();
+} else {
+  date =
+    nowDate.getFullYear() +
+    "-" +
+    (nowDate.getMonth() + 1) +
+    "-" +
+    nowDate.getDate();
+}
+
 const feedDataBase = async () => {
   await createUsersTable();
   await createProyectsTable();
