@@ -1,22 +1,13 @@
 @import '../utils/mixins.scss', '../utils/variables.scss';
 
 header {
+    box-sizing: border-box;
     padding: 0.6rem 1.5rem;
-    height: 3rem;
     background-color: $light-blue;
 
     nav {
         @include flex-row;
         justify-content: space-between;
-
-        
-        .mobile-menu-list {
-            position: absolute;
-            top: 3rem;
-            right: 9rem;
-            @include flex-column;
-            background-color: $light-blue;
-        }
 
         .logo-article {
             @include flex-row;
@@ -72,6 +63,17 @@ header {
                     border-radius: 25px;
                     border: 3px solid white;
                 }
+            }
+        }
+
+        .dropdown-menu-article {
+            position: absolute;
+            top: 69px;
+            right: 0px;
+
+            .dropdown-menu-item {
+                font-family: $amatic;
+                font-size: 2rem;
             }
         }
 

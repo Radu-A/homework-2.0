@@ -2,6 +2,7 @@ import homeworkIcon from "../../assets/icons/homework-icon.png";
 import { useMediaQuery } from "react-responsive";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import UserMenu from "./UserMenu/UserMenu";
+import DropdownMenu from "./DropdownMenu/DropdownMenu";
 
 const Navbar = () => {
   const isDesktop = useMediaQuery({
@@ -29,6 +30,7 @@ const Navbar = () => {
         {isDesktop && <DesktopMenu />}
         <UserMenu />
       </article>
+      <DropdownMenu />
     </nav>
   );
 };
