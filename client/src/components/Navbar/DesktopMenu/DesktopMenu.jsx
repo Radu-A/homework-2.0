@@ -1,15 +1,18 @@
 import React from "react";
 
 const DesktopMenu = () => {
-
   return (
-    <article className="desktop-menu-article">
-      <ul className="desktop-menu-list">
-        <li className="desktop-menu-item"></li>
-        <li className="desktop-menu-item"></li>
-        <li className="desktop-menu-item"></li>
-      </ul>
-    </article>
+    <ul className="desktop-menu-list">
+      <li className="desktop-menu-item">
+        <a href="" className="desktop-menu-link">COMMUNITY</a>
+      </li>
+      <li className="desktop-menu-item">
+        <a href="" className="desktop-menu-link">DASHBOARD</a>
+      </li>
+      <li className="desktop-menu-item">
+        <a href="" className="desktop-menu-link">PROFILE</a>
+      </li>
+    </ul>
   );
 };
 

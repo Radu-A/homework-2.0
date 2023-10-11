@@ -1,1 +1,80 @@
 @import '../utils/mixins.scss', '../utils/variables.scss';
+
+header {
+    padding: 0.6rem 1.5rem;
+    height: 3rem;
+    background-color: $light-blue;
+
+    nav {
+        @include flex-row;
+        justify-content: space-between;
+
+        
+        .mobile-menu-list {
+            position: absolute;
+            top: 3rem;
+            right: 9rem;
+            @include flex-column;
+            background-color: $light-blue;
+        }
+
+        .logo-article {
+            @include flex-row;
+            gap: 1rem;
+            
+            h2 {
+                font-family: $amatic;
+                font-size: 2.5rem;
+                font-weight: 500;
+            }
+
+            img {
+                height: 2rem;
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.9rem;
+                font-weight: 900;
+                color: $dark-red;
+            }
+
+        }
+
+        .navbar-menu-article {
+            @include flex-row;
+            gap: 1rem;
+
+            .desktop-menu-list {
+                @include flex-row;
+                gap: 1rem;
+                font-size: 2rem;
+                font-weight: 500;
+                font-family: $amatic;
+            }
+
+            .user-menu-list {
+                @include flex-row;
+                gap:0.5rem;
+
+                li:first-child, li:nth-child(2) {
+                    width: 1.2rem;
+                }
+
+                img {
+                    width: 100%;
+                }
+
+                .avatar-item {
+                    margin-left: 5px;
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 25px;
+                    border: 3px solid white;
+                }
+            }
+        }
+
+    }
+
+}

@@ -1,24 +1,34 @@
 import homeworkIcon from "../../assets/icons/homework-icon.png";
 import { useMediaQuery } from "react-responsive";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
-import MobileMenu from "./MobileMenu/MobileMenu";
+import UserMenu from "./UserMenu/UserMenu";
 
 const Navbar = () => {
   const isDesktop = useMediaQuery({
-    query: "(min-width: 700px)",
+    query: "(min-width: 825px)",
   });
 
   return (
     <nav>
       <article className="logo-article">
-        <h2>HOMEWORK</h2>
+        <a href="" className="homework-logo-link">
+          <h2>HOMEWORK</h2>
+        </a>
         <img src={homeworkIcon} alt="homework icon" />
-        <div className="red-text-div">
-          <p>THE BRIDGE</p>
-          <p>STUDENTS PROJECTS</p>
-        </div>
+
+        {isDesktop && (
+          <>
+            <div className="red-text-div">
+              <p>THE BRIDGE</p>
+              <p>STUDENTS PROJECTS</p>
+            </div>
+          </>
+        )}
       </article>
-      {isDesktop ? <DesktopMenu /> : <MobileMenu />}
+      <article className="navbar-menu-article">
+        {isDesktop && <DesktopMenu />}
+        <UserMenu />
+      </article>
     </nav>
   );
 };
