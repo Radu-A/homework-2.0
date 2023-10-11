@@ -1,8 +1,8 @@
 import React from "react";
 
-const DropdownMenu = () => {
+const DropdownMenu = ({ dropdownMenuClass }) => {
   return (
-    <article className="dropdown-menu-article">
+    <article className={dropdownMenuClass}>
       <ul className="dropdown-menu-list">
         <li className="dropdown-menu-item">
           <a href="" className="dropdown-menu-link">
@@ -20,9 +20,11 @@ const DropdownMenu = () => {
           </a>
         </li>
       </ul>
-      <a href="" className="signout-link">
-        Sign Out
-      </a>
+      <div className="signout-div">
+        <a href="" className="signout-link">
+          Sign Out
+        </a>
+      </div>
     </article>
   );
 };

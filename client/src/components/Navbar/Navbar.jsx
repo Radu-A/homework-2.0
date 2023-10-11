@@ -1,13 +1,17 @@
-import homeworkIcon from "../../assets/icons/homework-icon.png";
+import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import homeworkIcon from "../../assets/icons/homework-icon.png";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
-import UserMenu from "./UserMenu/UserMenu";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
+import SessionMenu from "./SessionMenu/SessionMenu";
 
 const Navbar = () => {
   const isDesktop = useMediaQuery({
     query: "(min-width: 825px)",
   });
+  const [dropdownMenuClass, setDropdownMenuClass] = useState(
+    "dropdown-menu-article"
+  );
 
   return (
     <nav>
@@ -28,9 +32,9 @@ const Navbar = () => {
       </article>
       <article className="navbar-menu-article">
         {isDesktop && <DesktopMenu />}
-        <UserMenu />
+        <SessionMenu dropdownMenuClass={dropdownMenuClass} setDropdownMenuClass={setDropdownMenuClass}/>
       </article>
-      <DropdownMenu />
+      <DropdownMenu dropdownMenuClass={dropdownMenuClass}/>
     </nav>
   );
 };

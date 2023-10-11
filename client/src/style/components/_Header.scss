@@ -44,7 +44,7 @@ header {
                 font-family: $amatic;
             }
 
-            .user-menu-list {
+            .session-menu-list {
                 @include flex-row;
                 gap:0.5rem;
 
@@ -54,29 +54,58 @@ header {
 
                 img {
                     width: 100%;
+                    opacity: 0.7;
                 }
 
                 .avatar-item {
                     margin-left: 5px;
-                    width: 2rem;
+                    width: 2.2rem;
                     height: 2rem;
                     border-radius: 25px;
-                    border: 3px solid white;
+                }
+
+                .avatar-link {
+                    width: 100%;
+
+                    img {
+                    border-radius: 25px;
+                    }
                 }
             }
         }
 
         .dropdown-menu-article {
             position: absolute;
+            padding-top: 0.5rem;
             top: 69px;
-            right: 0px;
+            right: -160px;
+            background-color: $light-blue;
+            transition: 0.4s;
 
             .dropdown-menu-item {
+                padding: 0 1.5rem;
+                height: 3rem;
                 font-family: $amatic;
                 font-size: 2rem;
             }
+
+            .signout-div {
+                box-sizing: border-box;
+                padding: 0.5rem 1.5rem;
+                width: 100%;
+                border-top: 1px solid white;
+            }
+
+            .signout-link {
+                text-align: right;
+                font-size: 0.9rem;
+            }
         }
 
+        .dropdown-menu-article-active {
+            right: 0px;
+
+        }
     }
 
 }
