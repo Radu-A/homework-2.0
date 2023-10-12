@@ -39,3 +39,48 @@ aside {
         }
     }
 }
+
+.project-card-article {
+    display: grid;
+    grid-template-columns: 150px 300px 150px;
+    grid-template-rows: 50px 100px 50px;
+    width: fit-content;
+    border: 1px solid $light-gray;
+    border-radius: 5px;
+
+    .project-card-user-info {
+        grid-column: 1;
+        grid-row: 1/4;
+        border-right:  1px solid $light-gray;;
+        img {
+            border-radius: 30px;
+            width: 4rem;
+        }
+    }
+    .project-card-heading {
+        grid-column: 2;
+        grid-row: 1;
+        @include flex-row;
+
+    }
+    .project-card-description {
+        grid-column: 2;
+        grid-row: 2;
+
+    }
+    .project-card-actions {
+        grid-column: 2;
+        grid-row: 3;
+        @include flex-row;
+        gap: 1rem;
+
+        div {
+            @include flex-row;
+        }
+    }
+    .project-card-screenshot {
+        grid-column: 3;
+        grid-row: 1/4;
+        height: 200px;
+    }
+}

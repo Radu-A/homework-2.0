@@ -2,23 +2,23 @@ import likeIcon from "../../../assets/icons/like-icon.svg";
 import commentIcon from "../../../assets/icons/comment-icon.svg";
 import saveIcon from "../../../assets/icons/save-icon.svg";
 
-const ProjectCard = () => {
+const ProjectCard = ({ project }) => {
   return (
     <article className="project-card-article">
       <div className="project-card-user-info">
-        <img src="" alt="" className="project-card-user-photo" />
-        <h4 className="project-card-firstname"></h4>
-        <h4 className="project-card-lastname"></h4>
-        <p className="project-card-bootcamp"></p>
-        <p className="project-card-curse"></p>
+        <img src={project.photo} alt="" className="project-card-user-photo" />
+        <h4 className="project-card-firstname">{project.firstname}</h4>
+        <h4 className="project-card-lastname">{project.lastname}</h4>
+        <p className="project-card-bootcamp">{project.bootcamp}</p>
+        <p className="project-card-curse">{project.curse}</p>
       </div>
       <div className="project-card-heading">
-        <h2 className="project-card-title"></h2>
-        <p className="project-card-type"></p>
-        <p className="project-card-data"></p>
+        <h2 className="project-card-title">{project.title}</h2>
+        <p className="project-card-type">{project.type}</p>
+        <p className="project-card-data">{project.data}</p>
       </div>
       <div className="project-card-description">
-        <p></p>
+        <p>{project.description}</p>
       </div>
       <div className="project-card-actions">
         <div className="like-div">
@@ -34,7 +34,7 @@ const ProjectCard = () => {
           <p>Save</p>
         </div>
       </div>
-      <img src="" alt="" className="project-card-screenshot" />
+      <img src={project.img_small} alt="" className="project-card-screenshot" />
     </article>
   );
 };

@@ -1,10 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import Aside from "../../components/Aside/Aside";
 import ProjectList from "../../components/ProjectList/ProjectList";
 
 const Home = () => {
-  useEffect(() => {}, []);
+  const [projectList, setProjectList] = useState([]);
+
+  useEffect(() => {
+    const tryFetch = async () => {
+      const result = await fetch("http://localhost:3000/api/projects");
+      const data = await result.json();
+      setProjectList(data);
+    };
+    tryFetch();
+  }, []);
 
   return (
     <main className="home-main">
@@ -13,7 +22,7 @@ const Home = () => {
       </section>
       <SearchForm />
       <Aside />
-      <ProjectList />
+      <ProjectList projectList={projectList} />
     </main>
   );
 };
