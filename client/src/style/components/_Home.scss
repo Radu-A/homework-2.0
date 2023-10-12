@@ -1,1 +1,16 @@
 @import '../utils/mixins.scss', '../utils/variables.scss';
+
+aside {
+    @include flex-column;
+
+    .filter-article {
+        @include flex-column;
+        align-items: flex-start;
+        width: 250px;
+
+        form {
+            @include flex-column;
+            align-items: flex-start;
+        }
+    }
+}

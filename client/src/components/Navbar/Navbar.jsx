@@ -32,9 +32,12 @@ const Navbar = () => {
       </article>
       <article className="navbar-menu-article">
         {isDesktop && <DesktopMenu />}
-        <SessionMenu dropdownMenuClass={dropdownMenuClass} setDropdownMenuClass={setDropdownMenuClass}/>
+        <SessionMenu
+          dropdownMenuClass={dropdownMenuClass}
+          setDropdownMenuClass={setDropdownMenuClass}
+        />
       </article>
-      <DropdownMenu dropdownMenuClass={dropdownMenuClass}/>
+      {!isDesktop && <DropdownMenu dropdownMenuClass={dropdownMenuClass} />}
     </nav>
   );
 };
