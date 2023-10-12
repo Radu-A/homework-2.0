@@ -1,7 +1,11 @@
 import Home from "../../views/Home/Home";
 
 const Main = () => {
-  return <Home />;
+  return (
+    <>
+      <Home />
+    </>
+  );
 };
 
 export default Main;

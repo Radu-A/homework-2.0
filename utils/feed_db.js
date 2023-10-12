@@ -1,11 +1,11 @@
 const pool = require("../utils/pgsql_db");
-const queries = require("./queries_db");
+const feedQueries = require("./feedQueries_db");
 
 const createUsersTable = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(queries.usersTable);
+    result = await client.query(feedQueries.usersTable);
     console.log(result);
   } catch (error) {
     console.log(error);
@@ -18,7 +18,7 @@ const createProyectsTable = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(queries.projectsTable);
+    result = await client.query(feedQueries.projectsTable);
     console.log(result);
   } catch (error) {
     console.log(error);
@@ -31,7 +31,7 @@ const insertUsers = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(queries.inserUsers);
+    result = await client.query(feedQueries.inserUsers);
     console.log(result);
   } catch (error) {
     console.log(error);
@@ -44,7 +44,7 @@ const insertProjects = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(queries.insertProjects);
+    result = await client.query(feedQueries.insertProjects);
     console.log(result);
   } catch (error) {
     console.log(error);

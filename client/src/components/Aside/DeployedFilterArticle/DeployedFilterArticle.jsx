@@ -12,7 +12,7 @@ const DeployedFilterArticle = () => {
             id=""
             className="filter-form"
             value="true"
-          />
+          />Yes
         </label>
         <label htmlFor="false">
           <input
@@ -21,7 +21,7 @@ const DeployedFilterArticle = () => {
             id=""
             className="filter-form"
             value="false"
-          />
+          />Not
         </label>
       </form>
     </article>

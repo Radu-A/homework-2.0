@@ -12,7 +12,7 @@ const fullTypes = ["Front-End", "Back-End", "Full-Stack"];
 
 const uxTypes = ["Portfolio", "Research", "App Design"];
 
-const queries = {
+const feedQueries = {
   usersTable: `
       CREATE TABLE users (
           user_id serial NOT NULL PRIMARY KEY, 
@@ -291,4 +291,4 @@ const queries = {
   dropProjectsTable: `DROP TABLE projects`,
 };
 
-module.exports = queries;
+module.exports = feedQueries;

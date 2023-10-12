@@ -1,7 +1,9 @@
-import React from "react";
 
 const ProjectList = () => {
-  return <div>ProjectList</div>;
+  return (
+    <section className="project-list-section">
+    </section>
+  );
 };
 
 export default ProjectList;

@@ -8,6 +8,10 @@
 body {
     font-family: $montserrat;
 
+    p, label {
+        color: $dark-gray;
+    }
+
     ul {
         list-style: none;
     }

@@ -10,7 +10,8 @@ const BootcampFilterArticle = () => {
             id=""
             className="filter-form"
             value="cyber"
-          />Cybersecurity
+          />
+          Cybersecurity
         </label>
         <label htmlFor="data">
           <input
@@ -20,7 +21,8 @@ const BootcampFilterArticle = () => {
             className="filter-form"
             value="data"
           />
-        </label>Data Science
+          Data Science
+        </label>
         <label htmlFor="full">
           <input
             type="radio"
@@ -29,7 +31,8 @@ const BootcampFilterArticle = () => {
             className="filter-form"
             value="full"
           />
-        </label>Full-Stack
+          Full-Stack
+        </label>
         <label htmlFor="ux">
           <input
             type="radio"
@@ -37,7 +40,8 @@ const BootcampFilterArticle = () => {
             id=""
             className="filter-form"
             value="ux"
-          />UX/UI
+          />
+          UX/UI
         </label>
       </form>
     </article>
