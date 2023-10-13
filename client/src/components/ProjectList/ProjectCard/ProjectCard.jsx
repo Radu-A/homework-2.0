@@ -2,20 +2,50 @@ import likeIcon from "../../../assets/icons/like-icon.svg";
 import commentIcon from "../../../assets/icons/comment-icon.svg";
 import saveIcon from "../../../assets/icons/save-icon.svg";
 
+import cardCyber from "../../../assets/images/card-cyber-security.svg";
+import cardData from "../../../assets/images/card-data-science.svg";
+import cardFull from "../../../assets/images/card-full-stack.svg";
+import cardUX from "../../../assets/images/card-ux-ui.svg";
+
 const ProjectCard = ({ project }) => {
+  let screenshot = "";
+
+  if (project.img_small) {
+    screenshot = project.img_small;
+  } else {
+    switch (project.bootcamp) {
+      case "Cybersecurity":
+        screenshot = cardCyber;
+        break;
+      case "Data Science":
+        screenshot = cardData;
+        break;
+      case "Full-Stack":
+        screenshot = cardFull;
+        break;
+      case "UX/UI":
+        screenshot = cardUX;
+        break;
+    }
+  }
+
   return (
     <article className="project-card-article">
       <div className="project-card-user-info">
         <img src={project.photo} alt="" className="project-card-user-photo" />
-        <h4 className="project-card-firstname">{project.firstname}</h4>
-        <h4 className="project-card-lastname">{project.lastname}</h4>
-        <p className="project-card-bootcamp">{project.bootcamp}</p>
-        <p className="project-card-curse">{project.curse}</p>
+        <div className="project-card-name-div">
+          <h4 className="project-card-firstname">{project.firstname}</h4>
+          <h4 className="project-card-lastname">{project.lastname}</h4>
+        </div>
+        <div className="project-card-bootcamp-div">
+          <p className="project-card-bootcamp">{project.bootcamp}</p>
+          <p className="project-card-curse">{project.curse}</p>
+        </div>
       </div>
       <div className="project-card-heading">
         <h2 className="project-card-title">{project.title}</h2>
         <p className="project-card-type">{project.type}</p>
-        <p className="project-card-data">{project.data}</p>
+        <p className="project-card-data">{project.date}</p>
       </div>
       <div className="project-card-description">
         <p>{project.description}</p>
@@ -34,7 +64,7 @@ const ProjectCard = ({ project }) => {
           <p>Save</p>
         </div>
       </div>
-      <img src={project.img_small} alt="" className="project-card-screenshot" />
+      <img src={screenshot} alt="" className="project-card-screenshot" />
     </article>
   );
 };

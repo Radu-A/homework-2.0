@@ -274,7 +274,7 @@ const feedQueries = {
             'https://github.com/JuditRoca/Hundir-la-flota', null
             ),
             (4, 'Carnic Impact', '2023-07-25', 'Data Analysis',
-            'Este estudio analiza la relación entre la población bovina, las emisiones de la industria cárnica y la agricultura. Mediante técnicas estadísticas y visualización de datos, se busca comprender el impacto ambiental de estas actividades y contrastar las emisiones generadas por la industria cárnica con las asociadas a la agricultura. El objetivo es destacar la importancia de considerar alternativas sostenibles en la producción y consumo de alimentos',
+            'Mediante técnicas estadísticas y visualización de datos, se busca comprender el impacto ambiental de estas actividades y contrastar las emisiones generadas por la industria cárnica con las asociadas a la agricultura. El objetivo es destacar la importancia de considerar alternativas sostenibles.',
             -- achievements
             'En el notebook "bovine", se lleva a cabo el procesamiento de los datos relacionados con la población bovina. Aquí se realizan las tareas de limpieza y transformación de los datos, así como la generación de gráficos descriptivos. Este notebook se enfoca específicamente en analizar la población bovina y su relación con las emisiones.',
             'En el notebook "emisiones_car_agri", se realiza el procesamiento de los datos relacionados con las emisiones de la industria cárnica y la agricultura. Aquí se llevan a cabo las tareas de limpieza de los data frames correspondientes a las emisiones, así como la generación de gráficos para visualizar los resultados. Este notebook se centra en el análisis de las emisiones de estos sectores específicos.',

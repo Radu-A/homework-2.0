@@ -1,11 +1,11 @@
 const pool = require("../utils/pgsql_db");
-const queries = require("./queries_db");
+const feedQueries = require("./feedQueries_db");
 
 const dropUsersTable = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(queries.dropUsersTable);
+    result = await client.query(feedQueries.dropUsersTable);
     console.log(result);
   } catch (error) {
     console.log(error);
@@ -19,7 +19,7 @@ const dropProjectsTable = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(queries.dropProjectsTable);
+    result = await client.query(feedQueries.dropProjectsTable);
     console.log(result);
   } catch (error) {
     console.log(error);
