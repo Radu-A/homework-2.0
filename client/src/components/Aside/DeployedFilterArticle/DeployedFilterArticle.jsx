@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SearchProjectsContext } from "../../../context/searchProjectsContext";
 
 const DeployedFilterArticle = () => {
+  const { updateDeployedFilter } = useContext(SearchProjectsContext);
+  const handleChange = (event) => {
+    updateDeployedFilter(event.target.value);
+  };
   return (
     <article className="filter-article">
       <h3 className="filter-heading">Deployed</h3>
@@ -12,7 +17,9 @@ const DeployedFilterArticle = () => {
             id=""
             className="filter-form"
             value="true"
-          />Yes
+            onChange={handleChange}
+          />
+          Yes
         </label>
         <label htmlFor="false">
           <input
@@ -21,7 +28,9 @@ const DeployedFilterArticle = () => {
             id=""
             className="filter-form"
             value="false"
-          />Not
+            onChange={handleChange}
+          />
+          Not
         </label>
       </form>
     </article>

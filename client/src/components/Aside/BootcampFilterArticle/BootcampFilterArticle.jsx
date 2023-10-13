@@ -1,4 +1,15 @@
+import { useContext, useState } from "react";
+import { SearchProjectsContext } from "../../../context/searchProjectsContext";
+
 const BootcampFilterArticle = () => {
+  const [option, setOption] = useState("");
+  const { updateBootcampFilter } = useContext(SearchProjectsContext);
+
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    updateBootcampFilter(event.target.value)
+  };
+
   return (
     <article className="filter-article">
       <h3 className="filter-heading">Bootcamp</h3>
@@ -10,6 +21,7 @@ const BootcampFilterArticle = () => {
             id=""
             className="filter-form"
             value="cyber"
+            onChange={handleChange}
           />
           Cybersecurity
         </label>
@@ -20,6 +32,7 @@ const BootcampFilterArticle = () => {
             id=""
             className="filter-form"
             value="data"
+            onChange={handleChange}
           />
           Data Science
         </label>
@@ -30,6 +43,7 @@ const BootcampFilterArticle = () => {
             id=""
             className="filter-form"
             value="full"
+            onChange={handleChange}
           />
           Full-Stack
         </label>
@@ -40,6 +54,7 @@ const BootcampFilterArticle = () => {
             id=""
             className="filter-form"
             value="ux"
+            onChange={handleChange}
           />
           UX/UI
         </label>

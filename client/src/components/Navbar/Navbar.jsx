@@ -14,31 +14,34 @@ const Navbar = () => {
   );
 
   return (
-    <nav>
-      <article className="logo-article">
-        <a href="" className="homework-logo-link">
-          <h2>HOMEWORK</h2>
-        </a>
-        <img src={homeworkIcon} alt="homework icon" />
+    <>
+      <nav>
+        <article className="logo-article">
+          <a href="" className="homework-logo-link">
+            <h2>HOMEWORK</h2>
+          </a>
+          <img src={homeworkIcon} alt="homework icon" />
 
-        {isDesktop && (
-          <>
-            <div className="red-text-div">
-              <p>THE BRIDGE</p>
-              <p>STUDENTS PROJECTS</p>
-            </div>
-          </>
-        )}
-      </article>
-      <article className="navbar-menu-article">
-        {isDesktop && <DesktopMenu />}
-        <SessionMenu
-          dropdownMenuClass={dropdownMenuClass}
-          setDropdownMenuClass={setDropdownMenuClass}
-        />
-      </article>
+          {isDesktop && (
+            <>
+              <div className="red-text-div">
+                <p>THE BRIDGE</p>
+                <p>STUDENTS PROJECTS</p>
+              </div>
+            </>
+          )}
+        </article>
+        <article className="navbar-menu-article">
+          {isDesktop && <DesktopMenu />}
+          <SessionMenu
+            dropdownMenuClass={dropdownMenuClass}
+            setDropdownMenuClass={setDropdownMenuClass}
+          />
+        </article>
+      </nav>
+
       {!isDesktop && <DropdownMenu dropdownMenuClass={dropdownMenuClass} />}
-    </nav>
+    </>
   );
 };
 

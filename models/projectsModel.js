@@ -69,7 +69,7 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   } else {
     if (deployed === "true") {
       deployedQuery = " AND p.site IS NOT NULL";
-    } else if (finished === "false") {
+    } else if (deployed === "false") {
       deployedQuery = " AND p.site IS NULL";
     } else {
       deployedQuery = "";
