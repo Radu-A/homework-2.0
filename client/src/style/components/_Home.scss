@@ -2,15 +2,52 @@
 
 .home-main {
     display: grid;
-    grid-template-columns: 300px 700px;
-    grid-template-rows: 150px auto;
+    grid-template-columns: 682px;
+    grid-template-rows: 130px auto;
+    justify-content: center;
+    column-gap: 1rem;
 }
 
 .home-header-section {
+    @include flex-column;
+    align-items: flex-start;
 
     h1 {
         font-family: $amatic;
         font-size: 3.5rem;
+    }
+}
+
+.search-form-section {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1.83rem;
+
+    .search-form {
+        @include flex-row;
+        gap: 1rem;
+    }
+
+    .search-form-div {
+        @include flex-row;
+        justify-content: space-between;
+        gap:0.5rem;
+        width: 350px;
+        padding: 0.2rem 0.7rem;
+        border: 1px solid $light-gray;
+        border-radius: 5px;
+
+        .search-form-input {
+            width: 85%;
+            border: none;
+        }
+    }
+
+    .search-form-select {
+        height: 32px;
+        padding: 0 0.5rem;
+        border: 1px solid $light-gray;
+        border-radius: 5px;
     }
 }
 
@@ -44,14 +81,19 @@ aside {
     }
 }
 
+.project-list-section {
+    @include flex-column;
+}
+
 .project-card-article {
     display: grid;
     grid-template-columns: 130px 400px 150px;
     grid-template-rows: 60px 110px 40px;
-    width: fit-content;
+    margin-bottom: 1rem;
     padding: 1rem 0;
     border: 1px solid $light-gray;
     border-radius: 5px;
+    box-sizing: border-box;
 
     .project-card-user-info {
         grid-column: 1;
@@ -120,5 +162,22 @@ aside {
         grid-row: 1/4;
         height: 90%;
         margin: 0 auto;
+    }
+}
+
+@media (min-width: 970px) {
+    .home-main {
+        display: grid;
+        grid-template-columns: 220px 682px;
+        grid-template-rows: 130px auto;
+        justify-content: center
+    }
+
+    .home-header-section {
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+        h1 {
+            text-align: left;
+        }
     }
 }

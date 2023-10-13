@@ -1,10 +1,22 @@
-import React from "react";
+import searhIcon from "../../assets/icons/search-icon.svg";
 
 const SearchForm = () => {
   return (
-    <section className="search-form-article">
+    <section className="search-form-section">
       <form action="" className="search-form">
-        <input type="text" name="" id="" className="search-form-input" />
+        <div className="search-form-div">
+          {/* <label htmlFor="project"> */}
+          
+            <input
+              type="text"
+              name="project"
+              id=""
+              className="search-form-input"
+              placeholder="Search by title, bootcamp, type..."
+            />
+          {/* </label> */}
+          <img src={searhIcon} alt="" />
+        </div>
         <select name="" id="" className="search-form-select">
           <option value="">Order By</option>
           <option value="date">Date</option>

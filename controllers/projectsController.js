@@ -6,7 +6,8 @@ const getAllProjects = async (req, res) => {
       req.query.bootcamp,
       req.query.state,
       req.query.deployed,
-      req.query.order
+      req.query.order,
+      req.query.page
     );
     res.status(200).json(data);
   } catch (error) {

@@ -3,7 +3,7 @@ const projectQueries = require("../queries/projectsQueries");
 const newProject = require("../utils/newProject");
 const projectToUpdate = require("../utils/projectToUpdate");
 
-const getAllProjects = async (bootcamp, finished, deployed, order) => {
+const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   console.log("Before if/else");
   console.log(bootcamp);
   // declare variables
@@ -14,7 +14,8 @@ const getAllProjects = async (bootcamp, finished, deployed, order) => {
     isFinished,
     finishedQuery,
     deployedQuery,
-    orderQuery;
+    orderQuery,
+    limitQuery;
   // bootcampQuery
   if (bootcamp === "cyber") {
     console.log(`bootcamp === "cyber"`);
@@ -82,7 +83,11 @@ const getAllProjects = async (bootcamp, finished, deployed, order) => {
   } else if (order === "bootcamp") {
     orderQuery = " ORDER BY u.bootcamp";
   } else {
-    orderQuery = "";
+    orderQuery = " ORDER BY p.date";
+  }
+  // limitQuery
+  if (page === 1 || !page) {
+    limitQuery = " LIMIT 5 OFFSET 0";
   }
 
   console.log(
@@ -90,7 +95,8 @@ const getAllProjects = async (bootcamp, finished, deployed, order) => {
       bootcampQuery +
       finishedQuery +
       deployedQuery +
-      orderQuery
+      orderQuery +
+      limitQuery
   );
 
   console.log("Before try/catch");
@@ -107,7 +113,8 @@ const getAllProjects = async (bootcamp, finished, deployed, order) => {
         bootcampQuery +
         finishedQuery +
         deployedQuery +
-        orderQuery
+        orderQuery +
+        limitQuery
     );
     // extract data from "rows" property of "results" object
     data = result.rows;
