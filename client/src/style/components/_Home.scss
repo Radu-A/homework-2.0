@@ -171,21 +171,32 @@ aside {
     display: flex;
     justify-content: space-between;
 
+    .pagination-info-article {
+        @include flex-column;
+        justify-content: flex-end;
+    }
+
     .pagination-article {
         display: flex;
 
         div {
             @include flex-column;
-            height: 2rem;
-            width: 2rem;
+            height: 1.8rem;
+            width: 1.8rem;
             border: 1px solid $light-gray;
             border-right: none;
+            color: $dark-gray;
         }
         div:hover {
             cursor: pointer;
         }
+
         .previous-link {
-            
+            border-radius: 5px 0 0px 5px;
+        }
+        .next-link {
+            border: 1px solid $light-gray;
+            border-radius: 0 5px 5px 0;
         }
     }
 }

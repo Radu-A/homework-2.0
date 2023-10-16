@@ -43,18 +43,15 @@ const Home = () => {
       const result = await fetch(
         `http://localhost:3000/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${pageFilter}`
       );
-      console.log(
-        `http://localhost:3000/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${pageFilter}`
-      );
       const data = await result.json();
       setProjectList(data);
     };
     tryFetch();
-  }, [bootcampFilter, finishedFilter, deployedFilter]);
+  }, [bootcampFilter, finishedFilter, deployedFilter, pageFilter]);
 
   useEffect(() => {
     const tryFetch = async () => {
-      const result = await fetch("http://localhost:3000/api/projects?");
+      const result = await fetch("http://localhost:3000/api/projects");
       const data = await result.json();
       setProjectList(data);
     };

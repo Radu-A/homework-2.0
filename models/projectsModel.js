@@ -77,20 +77,19 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   }
   // orderQuery
   if (order === "date") {
-    orderQuery = " ORDER BY p.date";
+    orderQuery = " ORDER BY p.date DESC";
   } else if (order === "curse") {
     orderQuery = " ORDER BY u.curse";
   } else if (order === "bootcamp") {
     orderQuery = " ORDER BY u.bootcamp";
   } else {
-    orderQuery = " ORDER BY p.date";
+    orderQuery = " ORDER BY p.date DESC";
   }
   // limitQuery
   console.log("page en projectsModel");
   console.log(page);
-  const limit = page * 5;
-  const offset = limit - 5;
-  limitQuery = ` LIMIT ${limit} OFFSET ${offset}`;
+  const offset = ( page - 1 )* 5;
+  limitQuery = ` LIMIT 5 OFFSET ${offset}`;
 
   console.log("Este es el reultado de la query");
   console.log(
