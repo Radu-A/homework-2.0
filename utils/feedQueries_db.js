@@ -171,7 +171,7 @@ const feedQueries = {
             'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus maximus pharetra lectus vitae vehicula. Nam nec massa egestas, tristique quam sit amet, maximus lacus.',
             'In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque.',
             'Nunc bibendum faucibus sem vitae aliquet. Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.',
-            'https://i.ibb.co/6t0DC7r/biografia-small.jpg', 'https://i.ibb.co/VCb0P9G/biografia-big.jpg',
+            'https://github.com/Radu-A/personal-web/blob/master/assets/screenshots/screenshot-mobile-index.jpg?raw=true', 'https://github.com/Radu-A/personal-web/blob/master/assets/screenshots/screenshot-desktop-biography.jpg?raw=true',
             'https://github.com/Radu-A/web-personal', 'https://web-personal-omega.vercel.app/https://web-personal-omega.vercel.app/'),
             (3, 'Homework', '2023-07-22', 'Full-Stack',
             'A place where the students of The Bridge can share their projects. Develop an entire web aplication with PostgreSQL, Node and React. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.',

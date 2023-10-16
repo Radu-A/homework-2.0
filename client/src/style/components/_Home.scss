@@ -165,6 +165,31 @@ aside {
     }
 }
 
+.pagination-section {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    justify-content: space-between;
+
+    .pagination-article {
+        display: flex;
+
+        div {
+            @include flex-column;
+            height: 2rem;
+            width: 2rem;
+            border: 1px solid $light-gray;
+            border-right: none;
+        }
+        div:hover {
+            cursor: pointer;
+        }
+        .previous-link {
+            
+        }
+    }
+}
+
 @media (min-width: 970px) {
     .home-main {
         display: grid;

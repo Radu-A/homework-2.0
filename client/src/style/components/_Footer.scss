@@ -1,1 +1,39 @@
 @import '../utils/mixins.scss', '../utils/variables.scss';
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    min-height: 70px;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid $light-gray;
+}
+
+.bridge-logo-img {
+    height: 2rem;
+}
+
+.license-div {
+    @include flex-column;
+    align-items: flex-end;
+}
+
+.license-paragraph {
+    font-size: 0.8rem;
+
+    a {
+        font-weight: 600;
+        color: $red-two;
+    }
+    a:hover {
+        color: inherit;
+    }
+
+    img {
+        height: 22px;
+        margin-left: 3px;
+        vertical-align: text-bottom;
+    }
+}
