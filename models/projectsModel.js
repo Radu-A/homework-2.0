@@ -3,6 +3,18 @@ const projectQueries = require("../queries/projectsQueries");
 const newProject = require("../utils/newProject");
 const projectToUpdate = require("../utils/projectToUpdate");
 
+const getProjectsNumber = async () => {
+  let client, data;
+  try {
+    client = await pool.connect();
+    const result = await client.query(projectQueries.getProjectsNumber);
+    [data] = result.rows;
+  } catch (error) {
+    console.log(error);
+  }
+  return data;
+};
+
 const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   console.log("Before if/else");
   console.log(bootcamp);
@@ -31,8 +43,6 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     bootcampQuery = " WHERE u.bootcamp = 'UX/UI'";
     isBootcamp = true;
   } else {
-    console.log(`else`);
-    console.log(bootcamp);
     bootcampQuery = "";
   }
   // stateQuery
@@ -86,9 +96,7 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     orderQuery = " ORDER BY p.date DESC";
   }
   // limitQuery
-  console.log("page en projectsModel");
-  console.log(page);
-  const offset = ( page - 1 )* 5;
+  const offset = (page - 1) * 5;
   limitQuery = ` LIMIT 5 OFFSET ${offset}`;
 
   console.log("Este es el reultado de la query");
@@ -100,11 +108,6 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
       orderQuery +
       limitQuery
   );
-
-  console.log("Before try/catch");
-  console.log(bootcamp, finished, deployed, order);
-  console.log("bootcampQuery:");
-  console.log(bootcampQuery);
 
   try {
     // establish connection with database
@@ -312,6 +315,7 @@ const deleteProject = async (project_id) => {
 // deleteProject(17);
 
 module.exports = {
+  getProjectsNumber,
   getAllProjects,
   getProjectById,
   getProjectstByUser,

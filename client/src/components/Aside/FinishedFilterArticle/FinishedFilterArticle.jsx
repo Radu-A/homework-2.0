@@ -5,7 +5,7 @@ const FinishedFilterArticle = () => {
   const { updateFinishedFilter } = useContext(SearchProjectsContext);
 
   const handleChange = (event) => {
-    updateFinishedFilter(event.target.value)
+    updateFinishedFilter(event.target.value);
   };
   return (
     <article className="filter-article">
@@ -32,6 +32,17 @@ const FinishedFilterArticle = () => {
             onChange={handleChange}
           />
           Not
+        </label>
+        <label htmlFor="true">
+          <input
+            type="radio"
+            name="finished"
+            id=""
+            className="filter-form"
+            value="all"
+            onChange={handleChange}
+          />
+          All
         </label>
       </form>
     </article>

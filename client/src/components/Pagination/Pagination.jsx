@@ -1,12 +1,23 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { SearchProjectsContext } from "../../context/searchProjectsContext";
+import PreviousLink from "./PreviousLink/PreviousLink";
+import NextLink from "./NextLink/NextLink";
 
 const Pagination = () => {
   const { updatePageFilter } = useContext(SearchProjectsContext);
+  const numberOfPagesRef = useRef(1);
   const [pageNumber, setPageNumber] = useState(1);
 
-  const chevronLeft = "<";
-  const chevronRight = ">";
+  useEffect(() => {
+    const tryFetch = async () => {
+      const result = await fetch("http://localhost:3000/api/projects/number");
+      const data = await result.json();
+      console.log(data.count);
+      // setNumberOfPages(data.count / 5);
+      numberOfPagesRef.current = data.count / 5
+    };
+    tryFetch();
+  }, []);
 
   const handleClick = (event) => {
     console.log(event.target.id);
@@ -21,19 +32,8 @@ const Pagination = () => {
         </p>
       </article>
       <article className="pagination-article">
-        <div className="previous-link">
-          <p>{chevronLeft}</p>
-        </div>
-        <div className="page-link-1" id="1" onClick={handleClick}>
-          1
-        </div>
-        <div className="page-link-2" id="2" onClick={handleClick}>
-          2
-        </div>
-        <div className="page-link-3" id="3" onClick={handleClick}>
-          3
-        </div>
-        <div className="next-link">{chevronRight}</div>
+        <PreviousLink />
+        <NextLink />
       </article>
     </section>
   );

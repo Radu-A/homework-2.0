@@ -6,7 +6,6 @@ const BootcampFilterArticle = () => {
   const { updateBootcampFilter } = useContext(SearchProjectsContext);
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     updateBootcampFilter(event.target.value)
   };
 
@@ -57,6 +56,17 @@ const BootcampFilterArticle = () => {
             onChange={handleChange}
           />
           UX/UI
+        </label>
+        <label htmlFor="true">
+          <input
+            type="radio"
+            name="bootcamp"
+            id=""
+            className="filter-form"
+            value="all"
+            onChange={handleChange}
+          />
+          All
         </label>
       </form>
     </article>

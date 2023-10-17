@@ -1,5 +1,17 @@
 const projectsModel = require("../models/projectsModel");
 
+const getProjectsNumber = async (req, res) => {
+  try {
+    const data = await projectsModel.getProjectsNumber();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(404).json({
+      message: error,
+    });
+    console.log(error);
+  }
+};
+
 const getAllProjects = async (req, res) => {
   try {
     const data = await projectsModel.getAllProjects(
@@ -9,10 +21,10 @@ const getAllProjects = async (req, res) => {
       req.query.order,
       req.query.page
     );
-    console.log('Esto es deployed en el controller')
-    console.log(req.query.deployed)
-    console.log('Esto es finished en el controller')
-    console.log(req.query.finished)
+    console.log("Esto es deployed en el controller");
+    console.log(req.query.deployed);
+    console.log("Esto es finished en el controller");
+    console.log(req.query.finished);
     res.status(200).json(data);
   } catch (error) {
     res.status(404).json({
@@ -23,5 +35,6 @@ const getAllProjects = async (req, res) => {
 };
 
 module.exports = {
+  getProjectsNumber,
   getAllProjects,
 };

@@ -1,5 +1,5 @@
 // import "./App.css";
-import style from "./style/style.scss";
+import "./style/style.scss";
 import Footer from "./structure/Footer/Footer";
 import Header from "./structure/Header/Header";
 import Main from "./structure/Main/Main";

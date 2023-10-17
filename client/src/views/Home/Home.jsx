@@ -49,14 +49,14 @@ const Home = () => {
     tryFetch();
   }, [bootcampFilter, finishedFilter, deployedFilter, pageFilter]);
 
-  useEffect(() => {
-    const tryFetch = async () => {
-      const result = await fetch("http://localhost:3000/api/projects");
-      const data = await result.json();
-      setProjectList(data);
-    };
-    tryFetch();
-  }, []);
+  // useEffect(() => {
+  //   const tryFetch = async () => {
+  //     const result = await fetch("http://localhost:3000/api/projects?");
+  //     const data = await result.json();
+  //     setProjectList(data);
+  //   };
+  //   tryFetch();
+  // }, []);
 
   return (
     <main className="home-main">

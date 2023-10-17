@@ -32,6 +32,17 @@ const DeployedFilterArticle = () => {
           />
           Not
         </label>
+        <label htmlFor="true">
+          <input
+            type="radio"
+            name="deployed"
+            id=""
+            className="filter-form"
+            value="all"
+            onChange={handleChange}
+          />
+          All
+        </label>
       </form>
     </article>
   );
