@@ -11,6 +11,8 @@ const getProjectsNumber = async () => {
     [data] = result.rows;
   } catch (error) {
     console.log(error);
+  } finally {
+    client.release();
   }
   return data;
 };

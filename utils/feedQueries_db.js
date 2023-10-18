@@ -84,9 +84,9 @@ const feedQueries = {
             'https://randomuser.me/api/portraits/women/50.jpg', 
             'Sandrine', 'Lambert', 'Data Science', '23-01', 'https://github.com/Sandrine'),
             -- 9
-            ('michal.toivonen@example.com', 'michal.toivonen@example.com',
-            'https://randomuser.me/api/portraits/women/77.jpg', 
-            'Michal', 'Toivonen', 'UX/UI', '23-01', 'https://github.com/Michal')`,
+            ('michal.shutter@example.com', 'michal.shutter@example.com',
+            'https://randomuser.me/api/portraits/men/36.jpg', 
+            'Michal', 'Shutter', 'UX/UI', '23-01', 'https://github.com/Michal')`,
   insertProjects: `
         INSERT INTO public.projects(
             user_id, title, date, type, description, achievement_one, achievement_two, achievement_three, finished, pending_one, pending_two, pending_three, img_small, img_big, github, site)
