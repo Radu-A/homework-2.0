@@ -98,8 +98,12 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     orderQuery = " ORDER BY p.date DESC";
   }
   // limitQuery
-  const offset = (page - 1) * 5;
-  limitQuery = ` LIMIT 5 OFFSET ${offset}`;
+  if (page) {
+    const offset = (page - 1) * 5;
+    limitQuery = ` LIMIT 5 OFFSET ${offset}`;
+  } else {
+    limitQuery = ''
+  }
 
   console.log("Este es el reultado de la query");
   console.log(
@@ -132,7 +136,8 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
         bootcampQuery +
         finishedQuery +
         deployedQuery +
-        orderQuery
+        orderQuery +
+        limitQuery
     );
 
     console.log(bootcamp, finished, deployed, order);

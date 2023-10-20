@@ -7,6 +7,8 @@ const UserInfoSection = ({projectDetails}) => {
       <article className="user-info-name">
         <h4>{projectDetails.firstname}</h4>
         <h4>{projectDetails.lastname}</h4>
+        <p>{projectDetails.bootcamp}</p>
+        <p>{projectDetails.curse}</p>
       </article>
     </section>
   );
