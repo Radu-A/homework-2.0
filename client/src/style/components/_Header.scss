@@ -73,6 +73,21 @@ header {
                     }
                 }
             }
+
+            .log-button {
+                width: 4.5rem;
+                height: 2.5rem;
+                border: 1px solid $medium-blue;
+                border-radius: 5px;
+                background-color: $light-purple;
+                color: $medium-blue;
+                font-family: inherit;
+                font-weight: 700;
+            }
+
+            .log-button:hover {
+                cursor: pointer;
+            }
         }
 
         
