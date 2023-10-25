@@ -3,12 +3,12 @@ import React from "react";
 const ProjectInfoSection = ({projectDetails}) => {
   return (
     <section className="project-info-section">
-      <h2>{projectDetails.title}</h2>
+      <h1>{projectDetails.title}</h1>
       <div>
         <p>{projectDetails.type}</p>
         <p>{projectDetails.date}</p>
       </div>
-      <p>{projectDetails.description}</p>
+      <p className="project-description-paragraph">{projectDetails.description}</p>
     </section>
     );
 };

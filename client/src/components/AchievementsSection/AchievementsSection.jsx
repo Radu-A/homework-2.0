@@ -5,9 +5,18 @@ const AchievementsSection = ({ projectDetails }) => {
     <section className="achievements-section">
       <h3>{"\u{1F680}"}Achievements</h3>
       {/* <h3>{"\u{1F947}"}Achievements</h3> */}
-      <p>1 {projectDetails.achievement_one}</p>
-      <p>2 {projectDetails.achievement_two}</p>
-      <p>3 {projectDetails.achievement_three}</p>
+      <article className="pending-article">
+        <h4>1</h4>
+        <p>{projectDetails.achievement_one}</p>
+      </article>
+      <article className="pending-article">
+        <h4>2</h4>
+        <p>{projectDetails.achievement_two}</p>
+      </article>
+      <article className="pending-article">
+        <h4>3</h4>
+        <p>{projectDetails.achievement_three}</p>
+      </article>
     </section>
   );
 };

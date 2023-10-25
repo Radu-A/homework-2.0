@@ -1,8 +1,16 @@
+import { useContext } from "react";
+import { SearchProjectsContext } from "../../../context/searchProjectsContext";
 
-const PageDiv = () => {
+const PageDiv = ({ pageNumber }) => {
+  const { updatePageFilter } = useContext(SearchProjectsContext);
+
+  const handleClick = (event) => {
+    updatePageFilter(event.target.id);
+  };
+
   return (
-    <div className="page-link-1" id="1" onClick={handleClick}>
-      1
+    <div className="page-link-1" id={pageNumber} onClick={handleClick}>
+      {pageNumber}
     </div>
   );
 };

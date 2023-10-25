@@ -1,12 +1,11 @@
 import { useContext, useState, useEffect, useRef } from "react";
-import { SearchProjectsContext } from "../../context/searchProjectsContext";
 import PreviousLink from "./PreviousLink/PreviousLink";
 import NextLink from "./NextLink/NextLink";
+import PageDiv from "./PageDiv/PageDiv";
 
 const Pagination = () => {
-  const { updatePageFilter } = useContext(SearchProjectsContext);
   const numberOfPagesRef = useRef(1);
-  const [pageNumber, setPageNumber] = useState(1);
+  // const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const tryFetch = async () => {
@@ -14,15 +13,10 @@ const Pagination = () => {
       const data = await result.json();
       console.log(data.count);
       // setNumberOfPages(data.count / 5);
-      numberOfPagesRef.current = data.count / 5
+      numberOfPagesRef.current = data.count / 5;
     };
     tryFetch();
   }, []);
-
-  const handleClick = (event) => {
-    console.log(event.target.id);
-    updatePageFilter(event.target.id);
-  };
 
   return (
     <section className="pagination-section">
@@ -33,6 +27,9 @@ const Pagination = () => {
       </article>
       <article className="pagination-article">
         <PreviousLink />
+        <PageDiv pageNumber={1}/>
+        <PageDiv pageNumber={2}/>
+        <PageDiv pageNumber={3}/>
         <NextLink />
       </article>
     </section>

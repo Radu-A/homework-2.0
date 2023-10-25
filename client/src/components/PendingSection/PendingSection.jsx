@@ -1,13 +1,23 @@
 import React from "react";
 
-const PendingSection = ({projectDetails}) => {
+const PendingSection = ({ projectDetails }) => {
   return (
     <section className="pending-section">
       <h3>{"\u{1F4CC}"}Pending</h3>
       {/* <h3>{"\u{1F551}"}Pending</h3> */}
-      <p>1 {projectDetails.pending_one}</p>
-      <p>2 {projectDetails.pending_two}</p>
-      <p>3 {projectDetails.pending_three}</p>
+
+      <article className="pending-article">
+        <h4>1</h4>
+        <p>{projectDetails.pending_one}</p>
+      </article>
+      <article className="pending-article">
+        <h4>2</h4>
+        <p>{projectDetails.pending_two}</p>
+      </article>
+      <article className="pending-article">
+        <h4>3</h4>
+        <p>{projectDetails.pending_three}</p>
+      </article>
     </section>
   );
 };
