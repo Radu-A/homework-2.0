@@ -19,7 +19,7 @@ const Navbar = () => {
   const [dropdownMenuClass, setDropdownMenuClass] = useState(
     "dropdown-menu-article"
   );
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <>

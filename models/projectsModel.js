@@ -193,7 +193,7 @@ const getProjectstByUser = async (user_id) => {
 };
 
 const createProject = async (project) => {
-  let client, result;
+  let client, data;
   const {
     user_id,
     title,
@@ -216,7 +216,7 @@ const createProject = async (project) => {
     // establish connetion with database
     client = await pool.connect();
     // launch the query
-    result = await client.query(projectQueries.createProject, [
+    data = await client.query(projectQueries.createProject, [
       user_id,
       title,
       date,
@@ -241,11 +241,11 @@ const createProject = async (project) => {
     // close database connection
     client.release();
   }
-  return result;
+  return data;
 };
 
 const updateProject = async (project) => {
-  let client, result;
+  let client, data;
   const {
     project_id,
     title,
@@ -267,7 +267,7 @@ const updateProject = async (project) => {
   try {
     // establish with connection database
     client = await pool.connect();
-    result = await client.query(projectQueries.updateProject, [
+    data = await client.query(projectQueries.updateProject, [
       title,
       date,
       type,
@@ -294,7 +294,7 @@ const updateProject = async (project) => {
     // close database connection
     client.release();
   }
-  return result;
+  return data;
 };
 
 const deleteProject = async (project_id) => {

@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const projectsRouter = require("./routes/projectsRoutes");
+const usersRouter = require("./routes/usersRoutes");
 
 // initialize express
 const app = express();
@@ -17,3 +18,4 @@ app.use(express.json());
 
 // routes
 app.use("/api/projects", projectsRouter);
+app.use("/api/users", usersRouter);

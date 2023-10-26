@@ -1,7 +1,12 @@
+import { useContext } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import messageIcon from "../../../assets/icons/message-circle.svg";
 import alertIcon from "../../../assets/icons/bell.svg";
 
 const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
+  const { isAuthenticated, user } = useAuth0();
+  console.log(user.sub);
+
   const handleClick = (event) => {
     event.preventDefault();
     if (dropdownMenuClass === "dropdown-menu-article") {
@@ -25,13 +30,15 @@ const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
         </a>
       </li>
       <li className="avatar-item">
-        <a href="" className="avatar-link" onClick={handleClick}>
-          <img
-            src="https://randomuser.me/api/portraits/women/35.jpg"
-            alt=""
-            className="avatar-img"
-          />
-        </a>
+        {isAuthenticated && (
+          <a href="" className="avatar-link" onClick={handleClick}>
+            <img
+              src={user.picture}
+              alt=""
+              className="avatar-img"
+            />
+          </a>
+        )}
       </li>
     </ul>
   );

@@ -15,8 +15,9 @@ const uxTypes = ["Portfolio", "Research", "App Design"];
 const feedQueries = {
   usersTable: `
       CREATE TABLE users (
-          user_id varchar(100) NOT NULL PRIMARY KEY, 
+          user_id serial NOT NULL PRIMARY KEY, 
           email varchar(45) NOT NULL UNIQUE,
+          password varchar(100) NOT NULL,
           photo varchar(100),
           firstname varchar(45), 
           lastname varchar(100),
@@ -27,7 +28,7 @@ const feedQueries = {
   projectsTable: `
       CREATE TABLE projects (
           project_id serial NOT NULL PRIMARY KEY,
-          user_id varchar(100),
+          user_id int,
           title varchar(100) NOT NULL,
           date varchar(45) NOT NULL,
           type varchar(45) NOT NULL,
@@ -48,10 +49,10 @@ const feedQueries = {
       )`,
   inserUsers: `
         INSERT INTO users(
-        user_id, email, photo, firstname, lastname, bootcamp, curse, github)
+        email, password, photo, firstname, lastname, bootcamp, curse, github)
         VALUES 	
             -- 1
-            ('auth0|64de6eb7bbb0077ec394963e', 'becabecks3@gmail.com',
+            ('becabecks3@gmail.com', 'becabecks3@gmail.com',
             'https://avatars.githubusercontent.com/u/101715001?v=4',
             'Rebeca', 'Arrogante', 'Full-Stack', '23-04', 'https://github.com/becabecks3'),
             -- 2
@@ -59,11 +60,11 @@ const feedQueries = {
             'https://avatars.githubusercontent.com/u/130933779?v=4',
             'Santiago', 'Vedia', 'Full-Stack', '23-04', 'https://github.com/santivediap'),
             -- 3
-            ('github|75849528', 'elcastravete@gmail.com',
+            ('elcastravete@gmail.com', 'elcastravete@gmail.com',
             'https://avatars.githubusercontent.com/u/75849528?v=4',
             'Victor', 'Outeiro', 'Full-Stack', '23-04', 'https://github.com/Radu-A'),
             -- 4
-            ('google-oauth2|100918985305882154445', 'judith@gmail.com',
+            ('judith@gmail.com', 'judith@gmail.com',
             'https://avatars.githubusercontent.com/u/130986127?v=4',
             'Judith', 'Roca', 'Data Science', '23-04', 'https://github.com/JuditRoca'),
             -- 5
@@ -89,7 +90,7 @@ const feedQueries = {
   insertProjects: `
         INSERT INTO public.projects(
             user_id, title, date, type, description, achievement_one, achievement_two, achievement_three, finished, pending_one, pending_two, pending_three, img_small, img_big, github, site)
-            VALUES ('auth0|64de6eb7bbb0077ec394963e', 'Gigs4You', '2023-06-25', 'Full-Stack',
+            VALUES (1, 'Gigs4You', '2023-06-25', 'Full-Stack',
             'Proyecto final donde se une lo aprendido tanto en Front como en Back. Gigs4You es una apliación web para buscar eventos musicales, tanto por género como por geolocalización.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -106,7 +107,7 @@ const feedQueries = {
             'https://github.com/becabecks3/Final-Project-Full-Stack',
             'https://github.com/becabecks3/Final-Project-Full-Stack'
             ),
-            ('auth0|64de6eb7bbb0077ec394963e', 'Quizz-Project', '2023-05-15', 'Front-End',
+            (1, 'Quizz-Project', '2023-05-15', 'Front-End',
             'This project aims to put into practice knowledge of HTML, CSS, and JavaScript. The JavaScript part, in particular, focuses on form validation, DOM manipulation, and executing user interactions.',
             -- achievements
             'Nullam hendrerit augue mollis sapien pretium, sit amet congue enim porttitor. Ut quis commodo est, in vestibulum ex. Aenean lobortis rutrum tellus sed porta. Vivamus nec iaculis orci, sed efficitur arcu.',
@@ -123,7 +124,7 @@ const feedQueries = {
             'https://github.com/becabecks3/Quizz-Project',
             'https://github.com/becabecks3/Quizz-Project'
             ),
-            ('santivediap@gmail.com', 'Findjobs', '2023-05-16', 'Back-End',
+            (2, 'Findjobs', '2023-05-16', 'Back-End',
             'Esta es una aplicación web creada para aquellos que quieren encontrar su primer empleo en el mundo de la tecnología. Permite a los usuarios buscar a través de scrapin de dos páginas externas varios resultados acorde con su búsqueda con puesto de trabajo y provincia.',
             -- achievements
             'Operaciones CRUD en bases de datos SQL (información de usuarios y ofertas guardadas por usuario) y bases de datos NoSQL para las ofertas de empleo administradas por el administrador.',
@@ -140,7 +141,7 @@ const feedQueries = {
             'https://github.com/santivediap/backend-proyect-findjobs',
             'https://github.com/santivediap/backend-proyect-findjobs'
             ),
-            ('santivediap@gmail.com', 'Lodeur', '2023-07-22', 'Full-Stack',
+            (2, 'Lodeur', '2023-07-22', 'Full-Stack',
             'Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed. Nulla tincidunt eleifend nisi, id ultricies tortor. Mauris vel maximus sem. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -157,7 +158,7 @@ const feedQueries = {
             'https://github.com/santivediap/Lodeur-ProyectoFinal',
             'https://lodeur.onrender.com/'
             ),
-            ('github|75849528', 'Personal Web', '2023-03-23', 'Front-End',
+            (3, 'Personal Web', '2023-03-23', 'Front-End',
             --description
             'Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed. Nulla tincidunt eleifend nisi, id ultricies tortor. Mauris vel maximus sem. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
@@ -172,7 +173,7 @@ const feedQueries = {
             'Nunc bibendum faucibus sem vitae aliquet. Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.',
             'https://github.com/Radu-A/personal-web/blob/master/assets/screenshots/screenshot-mobile-index.jpg?raw=true', 'https://github.com/Radu-A/personal-web/blob/master/assets/screenshots/screenshot-desktop-biography.jpg?raw=true',
             'https://github.com/Radu-A/web-personal', 'https://web-personal-omega.vercel.app/https://web-personal-omega.vercel.app/'),
-            ('github|75849528', 'Homework', '2023-07-22', 'Full-Stack',
+            (3, 'Homework', '2023-07-22', 'Full-Stack',
             'A place where the students of The Bridge can share their projects. Develop an entire web aplication with PostgreSQL, Node and React. In hac habitasse platea dictumst. Ut ullamcorper est in felis aliquam scelerisque. Nunc bibendum faucibus sem vitae aliquet.',
             -- achievements
             'Construct the CRUD with Node and PostgreSQL. Routing with Node and Express',
@@ -188,7 +189,7 @@ const feedQueries = {
             'https://github.com/Radu-A/homework/raw/develop/server/assets/screenshot-desktop.jpg',
             'https://github.com/Radu-A/homework', 'https://homework-lg52.onrender.com/'
             ),
-            ('saana.toivonen@example.com', 'Form Web', '2023-05-01', 'Cloud Security',
+            (5, 'Form Web', '2023-05-01', 'Cloud Security',
             'Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -202,7 +203,7 @@ const feedQueries = {
             'Vivamus ac lectus nunc. Fusce ac leo id enim sagittis aliquam id at neque.',
             null, 'https://www.itarian.com/images/what-is-network-vulnerability-assessment.png', 
             'https://github.com/Radu-A/web-personal', null),
-            ('debra.rodriquez@example.com', 'Portfolio', '2022-04-01', 'Portfolio',
+            (6, 'Portfolio', '2022-04-01', 'Portfolio',
             'Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu. Pellentesque porta quis libero elementum porta. Nunc interdum eros neque, non feugiat ex consectetur sed. Nulla tincidunt eleifend nisi, id ultricies tortor. Mauris vel maximus sem. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
             'Nunc lacinia dui sed ex molestie commodo. Nulla eu tellus justo. Etiam scelerisque nunc vitae velit ultrices, quis semper arcu tincidunt. Sed luctus dictum est maximus auctor.',
@@ -216,7 +217,7 @@ const feedQueries = {
             'Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.', 
             null, 'https://assets.toptal.io/images?url=https%3A%2F%2Fuploads.toptal.io%2Fblog%2Fimage%2F124166%2Ftoptal-blog-image-1505220208739-0a55992fcc18eedf899a09481bfc28e6.jpg', 
             'https://github.com/Radu-A/web-personal', null),
-            ('aaron.toivonen@example.com', 'Mongoose Api', '2023-03-25', 'Back-End',
+            (7, 'Mongoose Api', '2023-03-25', 'Back-End',
             'Aplicación que permite al usuario realizar métodos GET y POST que aplican cambios sobre una base de datos MongoDB. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque. Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus.',
@@ -230,7 +231,7 @@ const feedQueries = {
             'Etiam consequat leo vitae consequat tempor. Sed et nibh et metus viverra ornare. Integer vel vehicula massa.',
             null, 'https://i.ibb.co/VCb0P9G/biografia-big.jpg', 
             'https://github.com/Radu-A/ejercicio-api-mongoose', 'https://api-mongoose.onrender.com'),
-            ('sandrine.toivonen@example.com', 'Form web', '2023-04-21', 'Machine Learning',
+            (8, 'Form web', '2023-04-21', 'Machine Learning',
             'Nunc interdum eros neque, non feugiat ex consectetur sed. Nulla tincidunt eleifend nisi, id ultricies tortor. Mauris vel maximus sem. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
             'Nullam hendrerit augue mollis sapien pretium, sit amet congue enim porttitor. Ut quis commodo est, in vestibulum ex. Aenean lobortis rutrum tellus sed porta. Vivamus nec iaculis orci, sed efficitur arcu.',
@@ -244,7 +245,7 @@ const feedQueries = {
             'Aenean rutrum mauris nulla, sit amet finibus diam sagittis a. Nunc at est id nisl imperdiet pulvinar. Donec pulvinar sit amet turpis ac posuere.',
             null, 'https://github.com/maestre7/DataSciToolbox/raw/dev/documentation/logo_dstb.png',  
             'https://github.com/JuditRoca/DataSciToolbox', null),
-            ('michal.shutter@example.com', 'Bussines Web', '2023-03-19', 'Research',
+            (9, 'Bussines Web', '2023-03-19', 'Research',
             'Pellentesque semper convallis magna sit amet varius. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Etiam commodo urna fringilla tellus placerat molestie.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -258,7 +259,7 @@ const feedQueries = {
             'Aenean rutrum mauris nulla, sit amet finibus diam sagittis a. Nunc at est id nisl imperdiet pulvinar. Donec pulvinar sit amet turpis ac posuere.',
             null, 'https://assets.toptal.io/images?url=https%3A%2F%2Fuploads.toptal.io%2Fblog%2Fimage%2F124169%2Ftoptal-blog-image-1505220368042-4f0d14501d63f647f7d55881746d1418.png', 
             'https://github.com/Radu-A/web-personal', null),
-            ('google-oauth2|100918985305882154445', 'Hundir la flota', '2023-04-25', 'Programming',
+            (4, 'Hundir la flota', '2023-04-25', 'Programming',
             'Este proyecto contiene el código del primer juego que desarrollé en Python. Se trata de una versión simplificada del clásico juego de mesa Hundir la Flota. El objetivo del juego es hundir todos los barcos del oponente antes de que él hunda los tuyos.',
             -- achievements
             'Funciones.py: En este archivo se encuentran las funciones necesarias para el funcionamiento del juego. Estas funciones incluyen, por ejemplo, la generación de coordenadas aleatorias para ubicar los barcos, los cálculos de disparos y la manipulación de los tableros.',
@@ -272,7 +273,7 @@ const feedQueries = {
             null, 'https://github.com/JuditRoca/Hundir-la-flota/raw/master/src/HUNDIR%20LA%20FLOTA.png',
             'https://github.com/JuditRoca/Hundir-la-flota', null
             ),
-            ('google-oauth2|100918985305882154445', 'Carnic Impact', '2023-07-25', 'Data Analysis',
+            (4, 'Carnic Impact', '2023-07-25', 'Data Analysis',
             'Mediante técnicas estadísticas y visualización de datos, se busca comprender el impacto ambiental de estas actividades y contrastar las emisiones generadas por la industria cárnica con las asociadas a la agricultura. El objetivo es destacar la importancia de considerar alternativas sostenibles.',
             -- achievements
             'En el notebook "bovine", se lleva a cabo el procesamiento de los datos relacionados con la población bovina. Aquí se realizan las tareas de limpieza y transformación de los datos, así como la generación de gráficos descriptivos. Este notebook se enfoca específicamente en analizar la población bovina y su relación con las emisiones.',
