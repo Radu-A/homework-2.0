@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 import homeworkIcon from "../../assets/icons/homework-icon.png";
 import DesktopMenu from "./DesktopMenu/DesktopMenu";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
@@ -9,6 +10,9 @@ import LoginButton from "./LoginButton/LoginButton";
 import LogoutButton from "./LogoutButton/LogoutButton";
 
 const Navbar = () => {
+  const isTablet = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
   const isDesktop = useMediaQuery({
     query: "(min-width: 920px)",
   });
@@ -21,33 +25,37 @@ const Navbar = () => {
     <>
       <nav>
         <article className="logo-article">
-          <a href="" className="homework-logo-link">
+          <Link to="/" relative="" className="homework-logo-link">
             <h2>HOMEWORK</h2>
-          </a>
-          <img src={homeworkIcon} alt="homework icon" />
+          </Link>
+          <Link to="/" relative="" className="homework-logo-link">
+            <img src={homeworkIcon} alt="homework icon" />
+          </Link>
 
-          {isDesktop && (
+          {isTablet && (
             <>
-              <div className="red-text-div">
-                <p>THE BRIDGE</p>
-                <p>STUDENTS PROJECTS</p>
-              </div>
+              <Link to="/" relative="" className="homework-logo-link">
+                <div className="red-text-div">
+                  <p>THE BRIDGE</p>
+                  <p>STUDENTS PROJECTS</p>
+                </div>
+              </Link>
             </>
           )}
         </article>
         <article className="navbar-menu-article">
-          {isAuthenticated ?
-          <>
-          {isDesktop && <DesktopMenu />}
-          <SessionMenu
-            dropdownMenuClass={dropdownMenuClass}
-            setDropdownMenuClass={setDropdownMenuClass}
-          />
-          <LogoutButton />
-          </>
-          :
-          <LoginButton />
-          }
+          {isAuthenticated ? (
+            <>
+              {isDesktop && <DesktopMenu />}
+              <SessionMenu
+                dropdownMenuClass={dropdownMenuClass}
+                setDropdownMenuClass={setDropdownMenuClass}
+              />
+              {isDesktop && <LogoutButton />}
+            </>
+          ) : (
+            <LoginButton />
+          )}
         </article>
       </nav>
 

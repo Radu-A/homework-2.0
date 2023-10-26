@@ -1,8 +1,12 @@
-import React from "react";
-
 const AchievementsSection = ({ projectDetails }) => {
+  let className = "achievements-section";
+
+  if (projectDetails.finished) {
+    className = "achievements-section achievements-section-only";
+  }
+
   return (
-    <section className="achievements-section">
+    <section className={className}>
       <h3>{"\u{1F680}"}Achievements</h3>
       {/* <h3>{"\u{1F947}"}Achievements</h3> */}
       <article className="pending-article">

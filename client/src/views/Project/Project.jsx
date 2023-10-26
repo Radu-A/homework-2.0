@@ -1,13 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { ProjectDetailsContext } from "../../context/projectDetailsContext";
+import { useNavigate } from "react-router-dom";
+// Components
 import UserInfoSection from "../../components/UserInfoSection/UserInfoSection";
 import ProjectInfoSection from "../../components/ProjectInfoSection/ProjectInfoSection";
 import ScreenshotSection from "../../components/ScreenshotSection/ScreenshotSection";
 import AchievementsSection from "../../components/AchievementsSection/AchievementsSection";
 import PendingSection from "../../components/PendingSection/PendingSection";
-import { ProjectDetailsContext } from "../../context/projectDetailsContext";
 
 const Project = () => {
-  // const { projectDetails } = useContext(ProjectDetailsContext);
+  const { projectDetails } = useContext(ProjectDetailsContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Object.keys(projectDetails).length === 0) {
+      navigate("/");
+    }
+  }, []);
+
   const projectDetails2 = {
     photo: "https://avatars.githubusercontent.com/u/75849528?v=4",
     firstname: "Victor",
@@ -41,7 +51,7 @@ const Project = () => {
     site: "https://homework-lg52.onrender.com/",
   };
 
-  const projectDetails = {
+  const projectDetails3 = {
     photo: "https://avatars.githubusercontent.com/u/130933779?v=4",
     firstname: "Santiago",
     lastname: "Vedia",
@@ -81,7 +91,9 @@ const Project = () => {
       <ProjectInfoSection projectDetails={projectDetails} />
       <ScreenshotSection projectDetails={projectDetails} />
       <AchievementsSection projectDetails={projectDetails} />
-      <PendingSection projectDetails={projectDetails} />
+      {!projectDetails.finished && (
+        <PendingSection projectDetails={projectDetails} />
+      )}
     </main>
   );
 };

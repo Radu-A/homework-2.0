@@ -103,6 +103,7 @@
 
 }
 
+
 @media (min-width: 700px) {
     .project-main {
         grid-template-columns: repeat(8, 1fr);
@@ -178,5 +179,8 @@
 
     .pending-section {
         grid-column: 5/9;
+    }
+    .achievements-section-only {
+        grid-column: 2/8;
     }
 }

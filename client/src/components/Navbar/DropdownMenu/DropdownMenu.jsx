@@ -1,4 +1,5 @@
 import React from "react";
+import LogoutButton from "../LogoutButton/LogoutButton";
 
 const DropdownMenu = ({ dropdownMenuClass }) => {
   return (
@@ -21,9 +22,7 @@ const DropdownMenu = ({ dropdownMenuClass }) => {
         </li>
       </ul>
       <div className="signout-div">
-        <a href="" className="signout-link">
-          Sign Out
-        </a>
+        <LogoutButton />
       </div>
     </article>
   );
