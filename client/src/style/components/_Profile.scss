@@ -1,0 +1,57 @@
+@import '../utils/mixins.scss', '../utils/variables.scss';
+
+.profile-section {
+    width: 400px;
+    margin: 3rem auto;
+    padding: 3rem 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px 1px $light-gray;
+    color: $dark-blue;
+}
+
+.github-info-article {
+    @include flex-column;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    
+    img {
+        width: 200px;
+        border: 1px solid $dark-blue;
+        border-radius: 5px;
+    }
+
+    a {
+        font-size: 1.2rem;
+        font-weight: 600;
+        font-style: italic;
+    }
+}
+
+.profile-form {
+    @include flex-column;
+    gap: 1.2rem;
+
+    input {
+        width: 240px;
+        height: 1.6rem;
+        padding: 0 1rem;
+        border: 1px solid $dark-blue;
+        border-radius: 15px;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: inherit;
+    }
+
+    button {
+        width: 7rem;
+        height: 3.5rem;
+        border: 1px solid $dark-blue;
+        border-radius: 5px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $dark-blue;
+        background-color: $light-green;
+    }
+}

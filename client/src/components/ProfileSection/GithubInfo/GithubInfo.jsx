@@ -4,7 +4,7 @@ const GithubInfo = ({userData}) => {
   return (
     <article className="github-info-article">
       <img src={userData.photo} alt="" />
-      <p>{userData.github}</p>
+      <a href={userData.github} target="blank">{userData.github}</a>
     </article>
   );
 };

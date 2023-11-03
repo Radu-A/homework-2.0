@@ -19,7 +19,6 @@ const ProfileSection = () => {
       curse: "",
       github: `https://github.com/${user.nickname}`,
     }
-    console.log(userData);
   }
 
   return (
