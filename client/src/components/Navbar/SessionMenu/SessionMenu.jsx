@@ -5,7 +5,6 @@ import alertIcon from "../../../assets/icons/bell.svg";
 
 const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
   const { isAuthenticated, user } = useAuth0();
-  console.log(user.sub);
 
   const handleClick = (event) => {
     event.preventDefault();

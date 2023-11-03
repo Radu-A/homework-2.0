@@ -7,6 +7,7 @@ import ProjectList from "../../components/ProjectList/ProjectList";
 import Pagination from "../../components/Pagination/Pagination";
 
 const Home = () => {
+  const server = import.meta.env.VITE_SERVER;
   const [projectList, setProjectList] = useState([]);
   const [bootcampFilter, setBootcampFilter] = useState("");
   const [finishedFilter, setFinishedFilter] = useState("");
@@ -41,7 +42,7 @@ const Home = () => {
   useEffect(() => {
     const tryFetch = async () => {
       const result = await fetch(
-        `http://localhost:3000/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${pageFilter}`
+        `${server}/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${pageFilter}`
       );
       const data = await result.json();
       setProjectList(data);
@@ -58,10 +59,23 @@ const Home = () => {
   //   tryFetch();
   // }, []);
 
+  // speachSynthesis
+
+  const talk = () => {
+    const text =
+      "¿Por qué tienes esa cara de subnormal? Espabila un poco que pareces tonto.";
+    const message = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(message);
+  };
+
+  useEffect(() => {
+    // talk();
+  }, []);
+
   return (
     <main className="home-main">
       <section className="home-header-section">
-        <h1>COMMUNITY</h1>
+        <h1 onClick={talk}>COMMUNITY</h1>
       </section>
       <SearchProjectsContext.Provider value={searchProjectsPack}>
         <SearchForm />
