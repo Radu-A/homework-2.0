@@ -59,12 +59,13 @@ const createUser = async (user) => {
       github,
     ]);
     console.log(`User "${email}" created`);
+    return `User "${email}" created`;
   } catch (error) {
     console.log(error);
+    return error;
   } finally {
     client.release();
   }
-  return `User "${email}" created`;
 };
 
 const updateUser = async (user) => {

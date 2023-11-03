@@ -21,35 +21,40 @@ const ProfileForm = ({ userData }) => {
     searchUser();
   }, [userData]);
 
-  const saveUserData = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event.target);
-    // const formData = {
-    //   user_id: "aerozedits@gmail.com",
-    //   email: "aerozedits@gmail.com",
-    //   photo: "https://avatars.githubusercontent.com/u/118265607?v=4",
-    //   firstname: "Fernando",
-    //   lastname: "Mariño",
-    //   bootcamp: "Full-Stak",
-    //   curse: "23-04",
-    //   github: "https://github.com/aerozfx",
-    // };
-    // const server = import.meta.env.VITE_SERVER;
-    // try {
-    //   const result = await fetch(`${server}/api/users`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-type": "application/json",
-    //     },
-    //     body: JSON.stringify(),
-    //   });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
+    const { target } = event;
+    const formData = {
+      user_id: "llalalalalala",
+      email: target.email.value,
+      photo: userData.photo,
+      firstname: target.firstname.value,
+      lastname: target.lastname.value,
+      bootcamp: target.bootcamp.value,
+      curse: target.curse.value,
+      github: userData.github,
+    };
+    console.log(formData);
+
+    const server = import.meta.env.VITE_SERVER;
+    try {
+      const result = await fetch(`${server}/api/users`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await result.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <form action="" className="profile-form">
+    <form action="" className="profile-form" onSubmit={handleSubmit}>
       <input
         type="text"
         name="firstname"
@@ -85,9 +90,7 @@ const ProfileForm = ({ userData }) => {
         placeholder="Curse"
         defaultValue={userToSave.curse}
       />
-      <button type="submit" onSubmit={saveUserData}>
-        SAVE
-      </button>
+      <button>SAVE</button>
     </form>
   );
 };
