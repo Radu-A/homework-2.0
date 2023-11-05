@@ -1,3 +1,5 @@
+const bootcamps = ["Cybersecurity", 'Data Science', "Full-Stack", "UX/UI"]
+
 const cyberTypes = ["Network Security", "Cloud Security", "Physical Security"];
 
 const dataTypes = [

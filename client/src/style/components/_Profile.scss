@@ -31,7 +31,7 @@
     @include flex-column;
     gap: 1.2rem;
 
-    input {
+    input, select {
         width: 240px;
         height: 2rem;
         padding: 0 1rem;
