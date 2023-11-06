@@ -1,10 +1,14 @@
 import React from "react";
 
-const GithubInfo = ({userData}) => {
+const GithubInfo = ({ userData }) => {
   return (
     <article className="github-info-article">
-      <img src={userData.photo} alt="" />
-      <a href={userData.github} target="blank">{userData.github}</a>
+      <a href={userData.github} target="blank">
+        <img src={userData.photo} alt="" />
+      </a>
+      <a href={userData.github} target="blank">
+        {userData.github}
+      </a>
     </article>
   );
 };

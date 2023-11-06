@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ProfileSelect from "./ProfileSelect/ProfileSelect";
 
 const ProfileForm = ({ userData }) => {
   const [userToSave, setUserToSave] = useState({});
@@ -72,15 +73,6 @@ const ProfileForm = ({ userData }) => {
     }
   };
 
-  console.log(userToSave.bootcamp);
-
-  const changeSelect = () => {
-    console.log("holi");
-    // selectDefaultValue = userToSave.bootcamp;
-    setSelectDefaultValue("Full-Stack");
-    console.log(selectDefaultValue);
-  };
-
   return (
     <>
       <form action="" className="profile-form" onSubmit={handleSubmit}>
@@ -105,20 +97,17 @@ const ProfileForm = ({ userData }) => {
           placeholder="Email"
           defaultValue={userToSave.email}
         />
-        {/* <input
-        type="text"
-        name="bootcamp"
-        id="bootcamp"
-        placeholder="Bootcamp"
-        defaultValue={userToSave.bootcamp}
-      /> */}
-        <select name="bootcamp" id="bootcamp" defaultValue={selectDefaultValue}>
-          <option value="">Select your Bootcamp</option>
-          <option value="Cybersecurity">Cybersecurity</option>
-          <option value="Data Science">Data Science</option>
-          <option value="Full-Stack">Full-Stack</option>
-          <option value="UX/UI">UX/UI</option>
-        </select>
+        {selectDefaultValue ? (
+          <ProfileSelect selectDefaultValue={selectDefaultValue} />
+        ) : (
+          <select name="bootcamp" id="bootcamp">
+            <option value="">Select your Bootcamp</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Full-Stack">Full-Stack</option>
+            <option value="UX/UI">UX/UI</option>
+          </select>
+        )}
         <input
           type="text"
           name="curse"
@@ -128,7 +117,6 @@ const ProfileForm = ({ userData }) => {
         />
         <button>SAVE</button>
       </form>
-      <button onClick={changeSelect}>change select</button>
     </>
   );
 };
