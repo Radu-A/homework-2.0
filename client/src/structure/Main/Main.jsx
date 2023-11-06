@@ -3,6 +3,7 @@ import { useState } from "react";
 import Home from "../../views/Home";
 import Project from "../../views/Project";
 import Profile from "../../views/Profile";
+import Signup from "../../views/Signup/Signup";
 
 const Main = () => {
   return (
@@ -11,6 +12,7 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route path="/project" element={<Project />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </>
   );
