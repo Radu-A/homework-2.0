@@ -1,9 +1,9 @@
-import React from "react";
+import ProfileSection from "../../components/ProfileSection/ProfileSection";
 
 const Signup = () => {
   return (
     <main className="signup-main">
-      
+      <ProfileSection />
     </main>
   );
 };

@@ -77,13 +77,13 @@
     background-color: $lighter-blue;
     border: none!important;
 
-    .screenshot-big {
+    img:first-child {
         width: 95%;
         margin-bottom: 1rem;
     }
 
-    .screenshot-small {
-        width: 95%;
+    img:nth-child(2) {
+        width: 50%;
         max-width: 300px;
     }
 }
@@ -159,7 +159,7 @@
     .screenshot-section {
         grid-column: 1/9;
         @include flex-row;
-        gap: 1rem;
+        gap: 3rem;
 
         img:first-child {
             width: 60%;

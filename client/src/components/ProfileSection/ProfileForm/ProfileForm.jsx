@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 import ProfileSelect from "./ProfileSelect/ProfileSelect";
+import { useNavigate } from "react-router-dom";
 
 const ProfileForm = ({ userData }) => {
   const [userToSave, setUserToSave] = useState({});
   const [selectDefaultValue, setSelectDefaultValue] = useState("");
+
+  const navigate = useNavigate();
+  const server = import.meta.env.VITE_SERVER;
+  const client = import.meta.env.VITE_CLIENT;
   // let selectDefaultValue = "";
 
   const searchUser = async () => {
     try {
       const result = await fetch(
-        `${import.meta.env.VITE_SERVER}/api/users?user_id=${userData.user_id}`
+        `${server}/api/users?user_id=${userData.user_id}`
       );
       const [data] = await result.json();
       if (data) {
-        setUserToSave(data);
-        setSelectDefaultValue("Full-Stack");
+        console.log(window.location.href);
+        if (window.location.href === `${client}/signup`) {
+          navigate("/");
+        } else {
+          setUserToSave(data);
+          setSelectDefaultValue("Full-Stack");
+        }
       }
     } catch (error) {
       console.log(error);
