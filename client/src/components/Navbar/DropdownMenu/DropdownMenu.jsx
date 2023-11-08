@@ -1,24 +1,25 @@
 import React from "react";
 import LogoutButton from "../LogoutButton/LogoutButton";
+import { Link } from "react-router-dom";
 
 const DropdownMenu = ({ dropdownMenuClass }) => {
   return (
     <article className={dropdownMenuClass}>
       <ul className="dropdown-menu-list">
         <li className="dropdown-menu-item">
-          <a href="" className="dropdown-menu-link">
+          <Link to="/" className="dropdown-menu-link">
             Community
-          </a>
+          </Link>
         </li>
         <li className="dropdown-menu-item">
-          <a href="" className="dropdown-menu-link">
+          <Link to="/dashboard" className="dropdown-menu-link">
             Dashboard
-          </a>
+          </Link>
         </li>
         <li className="dropdown-menu-item">
-          <a href="" className="dropdown-menu-link">
+          <Link to="/profile" className="dropdown-menu-link">
             Profile
-          </a>
+          </Link>
         </li>
       </ul>
       <div className="signout-div">

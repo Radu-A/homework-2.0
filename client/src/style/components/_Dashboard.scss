@@ -1,0 +1,57 @@
+@import '../utils/mixins.scss', '../utils/variables.scss';
+
+.dashboard-main {
+    width: 682px;
+    margin: 0 auto;
+}
+
+.dashboard-header-section {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: end;
+    height: 115px;
+
+    h1 {
+        font-family: $amatic;
+        font-size: 3.5rem;
+    }
+
+    button {
+        width: 7rem;
+        height: 3.5rem;
+        margin-bottom: 1rem;
+        border: 2px solid $dark-blue;
+        border-radius: 10px;
+        font-size: 3.5rem;
+        line-height: 0;
+        font-weight: 600;
+        color: $dark-blue;
+        background-color: $light-green;
+    }
+}
+
+.dashboard-list-section {
+
+    .project-card-article {
+
+        button {
+            width: 5rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+            border: 2px solid $dark-blue;
+            border-radius: 10px;
+
+            img {
+                width: 2rem;
+            }
+        }
+
+        button:first-child {
+            background-color: $light-yellow;
+        }
+
+        button:nth-child(2) {
+            background-color: $light-red;
+        }
+    }
+}

@@ -40,14 +40,14 @@ const Home = () => {
   });
 
   useEffect(() => {
-    const tryFetch = async () => {
+    const searchProjects = async () => {
       const result = await fetch(
         `${server}/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${pageFilter}`
       );
       const data = await result.json();
       setProjectList(data);
     };
-    tryFetch();
+    searchProjects();
   }, [bootcampFilter, finishedFilter, deployedFilter, pageFilter]);
 
   // useEffect(() => {
@@ -63,7 +63,7 @@ const Home = () => {
 
   const talk = () => {
     const text =
-      "¿Por qué tienes esa cara de subnormal? Espabila un poco que pareces tonto.";
+      "¿Por qué tienes esa cara de tonto? Espabila un poco, anda.";
     const message = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(message);
   };

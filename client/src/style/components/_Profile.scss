@@ -16,7 +16,7 @@
     
     img {
         width: 200px;
-        border: 1px solid $dark-blue;
+        border: 2px solid $dark-blue;
         border-radius: 5px;
     }
 
@@ -47,8 +47,8 @@
     button {
         width: 7rem;
         height: 3.5rem;
-        border: 1px solid $dark-blue;
-        border-radius: 5px;
+        border: 2px solid $dark-blue;
+        border-radius: 10px;
         font-size: 1.5rem;
         font-weight: 600;
         color: $dark-blue;

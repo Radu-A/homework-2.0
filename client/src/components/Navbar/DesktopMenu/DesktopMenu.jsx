@@ -12,7 +12,7 @@ const DesktopMenu = () => {
         </Link>
       </li>
       <li className="desktop-menu-item">
-        <Link to="/" className="desktop-menu-link">
+        <Link to="/dashboard" className="desktop-menu-link">
           DASHBOARD
         </Link>
       </li>
