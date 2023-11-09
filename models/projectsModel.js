@@ -102,7 +102,7 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     const offset = (page - 1) * 5;
     limitQuery = ` LIMIT 5 OFFSET ${offset}`;
   } else {
-    limitQuery = ''
+    limitQuery = "";
   }
 
   console.log("Este es el reultado de la query");
@@ -129,16 +129,6 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     );
     // extract data from "rows" property of "results" object
     data = result.rows;
-    console.log(data);
-
-    console.log(
-      projectQueries.getAllProjects +
-        bootcampQuery +
-        finishedQuery +
-        deployedQuery +
-        orderQuery +
-        limitQuery
-    );
 
     console.log(bootcamp, finished, deployed, order);
     console.log("bootcampQuery:");
@@ -193,11 +183,46 @@ const getProjectstByUser = async (user_id) => {
 };
 
 const createProject = async (project) => {
+  const nowDate = new Date();
+  let date = "";
+
+  if (nowDate.getMonth() + 1 < 10) {
+    if (nowDate.getDate() < 10) {
+      date =
+        nowDate.getFullYear() +
+        "-0" +
+        (nowDate.getMonth() + 1) +
+        "-0" +
+        nowDate.getDate();
+    } else {
+      date =
+        nowDate.getFullYear() +
+        "-0" +
+        (nowDate.getMonth() + 1) +
+        "-" +
+        nowDate.getDate();
+    }
+  } else {
+    if (nowDate.getDate() < 10) {
+      date =
+        nowDate.getFullYear() +
+        "-" +
+        (nowDate.getMonth() + 1) +
+        "-0" +
+        nowDate.getDate();
+    } else {
+      date =
+        nowDate.getFullYear() +
+        "-" +
+        (nowDate.getMonth() + 1) +
+        "-" +
+        nowDate.getDate();
+    }
+  }
   let client, data;
   const {
     user_id,
     title,
-    date,
     type,
     description,
     achievement_one,
