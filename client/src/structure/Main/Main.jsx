@@ -4,6 +4,7 @@ import Project from "../../views/Project";
 import Profile from "../../views/Profile";
 import Signup from "../../views/Signup/Signup";
 import Dashboar from "../../views/Dashboar/Dashboar";
+import NewProject from "../../views/NewProject/NewProject";
 
 const Main = () => {
   return (
@@ -14,6 +15,7 @@ const Main = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/project" element={<Project />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/new" element={<NewProject />} />
       </Routes>
     </>
   );
