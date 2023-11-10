@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardList from "../../components/DashboardList/DashboardList";
+import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 
 const Dashboar = () => {
   const [projectList, setProjectList] = useState([]);
@@ -12,7 +13,7 @@ const Dashboar = () => {
       );
       const data = await result.json();
       setProjectList(data);
-      console.log(data)
+      console.log(data);
     };
 
     searchProjects();
@@ -20,11 +21,8 @@ const Dashboar = () => {
 
   return (
     <main className="dashboard-main">
-      <section className="dashboard-header-section">
-        <h1>DASHBOARD</h1>
-        <button>+</button>
-      </section>
-      <DashboardList projectList={projectList}/>
+      <DashboardHeader />
+      <DashboardList projectList={projectList} />
     </main>
   );
 };

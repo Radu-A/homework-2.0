@@ -57,5 +57,8 @@
 
     button:hover {
         cursor: pointer;
+        border-color: $light-blue;
+        color: $light-blue;
+        background-color: $dark-green;
     }
 }

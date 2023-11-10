@@ -6,6 +6,7 @@
     grid-template-rows: 130px auto;
     justify-content: center;
     column-gap: 1rem;
+    color: $dark-blue;
 }
 
 .home-header-section {
@@ -76,6 +77,7 @@ aside {
 
             input {
                 margin-right: 0.5rem;
+                color: inherit;
             }
         }
     }

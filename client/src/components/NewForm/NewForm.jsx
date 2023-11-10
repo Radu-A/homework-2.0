@@ -1,4 +1,3 @@
-import React from "react";
 import TypeSelect from "./TypeSelect/TypeSelect";
 import FinishedSelect from "./FinishedSelect/FinishedSelect";
 import Pending from "./Pending/Pending";
@@ -24,22 +23,23 @@ const saveProject = async (newProject) => {
 const NewForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
+    const target = event.target;
     const newProject = {
       user_id: "github|75849528",
-      title: "caca",
-      type: "caca",
-      description: "caca",
-      achievement_one: "caca",
-      achievement_two: "caca",
-      achievement_three: "caca",
-      finished: "true",
-      pending_one: "caca",
-      pending_two: "caca",
-      pending_three: "caca",
-      img_small: "caca",
-      img_big: "caca",
-      github: "caca",
-      site: "caca",
+      title: target.title.value,
+      type: target.type.value,
+      description: target.description.value,
+      achievement_one: target.achievement_one.value,
+      achievement_two: target.achievement_two.value,
+      achievement_three: target.achievement_three.value,
+      finished: target.finished.value,
+      pending_one: target.pending_one.value,
+      pending_two: target.pending_two.value,
+      pending_three: target.pending_three.value,
+      img_small: target.img_small.value,
+      img_big: target.img_big.value,
+      github: target.github.value,
+      site: target.site.value,
     };
     saveProject(newProject)
   };
@@ -47,7 +47,13 @@ const NewForm = () => {
   return (
     <form action="" className="newproject-form" onSubmit={handleSubmit}>
       <label htmlFor="title">Title</label>
-      <input type="text" name="title" id="title" placeholder="Title" required />
+      <input
+        type="text"
+        name="title"
+        id="title"
+        placeholder="Title"
+        required
+      />
       <TypeSelect />
       <label htmlFor="description"></label>
       <textarea
@@ -57,6 +63,9 @@ const NewForm = () => {
         rows="10"
         required
       ></textarea>
+      <Achievements />
+      <FinishedSelect />
+      <Pending />
       <label htmlFor="img_big">Desktop screenshot (url)</label>
       <input
         type="text"
@@ -72,9 +81,6 @@ const NewForm = () => {
         id="img_small"
         placeholder="Mobile screenshot"
       />
-      <Achievements />
-      <FinishedSelect />
-      <Pending />
       <label htmlFor="github">Github link</label>
       <input
         type="text"

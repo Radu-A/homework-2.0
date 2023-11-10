@@ -3,6 +3,10 @@
 .dashboard-main {
     width: 682px;
     margin: 0 auto;
+
+    button:hover {
+        cursor: pointer;
+    }
 }
 
 .dashboard-header-section {
@@ -28,6 +32,12 @@
         color: $dark-blue;
         background-color: $light-green;
     }
+
+    button:hover {
+        border-color: $light-blue;
+        color: $light-blue;
+        background-color: $dark-green;
+    }
 }
 
 .dashboard-list-section {
@@ -50,8 +60,16 @@
             background-color: $light-yellow;
         }
 
+        button:first-child:hover {
+            background-color: $dark-yellow;
+        }
+
         button:nth-child(2) {
             background-color: $light-red;
+        }
+
+        button:nth-child(2):hover {
+            background-color: $dark-red;
         }
     }
 }

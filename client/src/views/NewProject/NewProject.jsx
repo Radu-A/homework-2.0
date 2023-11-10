@@ -1,4 +1,3 @@
-import React from "react";
 import NewForm from "../../components/NewForm/NewForm";
 
 const NewProject = () => {
