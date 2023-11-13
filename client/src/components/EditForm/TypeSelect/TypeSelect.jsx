@@ -1,8 +1,8 @@
-const TypeSelect = () => {
+const TypeSelect = ({ type }) => {
   return (
     <>
       <label htmlFor="type">Select the type</label>
-      <select name="type" id="type" required>
+      <select name="type" id="type" required defaultValue={type}>
         <option value="">Type</option>
         <option value="Front-End">Front-End</option>
         <option value="Back-End">Back-End</option>

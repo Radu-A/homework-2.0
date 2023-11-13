@@ -7,7 +7,9 @@ const License = () => {
         <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" />
       </p>
       <p className="license-paragraph">
-        <a href="https://github.com/Radu-A/homework-2.0">Homework </a>
+        <a href="https://github.com/Radu-A/homework-2.0" target="blank">
+          Homework{" "}
+        </a>
         by
         <a href="https://github.com/Radu-A"> Víctor Outeiro </a>
       </p>

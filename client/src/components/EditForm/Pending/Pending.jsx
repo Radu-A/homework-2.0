@@ -1,4 +1,4 @@
-const Pending = () => {
+const Pending = ({ projectDetails }) => {
   return (
     <>
       <label htmlFor="">What you had left to do</label>
@@ -8,6 +8,7 @@ const Pending = () => {
         cols="30"
         rows="10"
         placeholder="1"
+        defaultValue={projectDetails.pending_one}
       ></textarea>
       <textarea
         name="pending_two"
@@ -15,6 +16,7 @@ const Pending = () => {
         cols="30"
         rows="10"
         placeholder="2"
+        defaultValue={projectDetails.pending_two}
       ></textarea>
       <textarea
         name="pending_three"
@@ -22,6 +24,7 @@ const Pending = () => {
         cols="30"
         rows="10"
         placeholder="3"
+        defaultValue={projectDetails.pending_three}
       ></textarea>
     </>
   );

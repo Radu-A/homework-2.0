@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import messageIcon from "../../../assets/icons/message-circle.svg";
-import alertIcon from "../../../assets/icons/bell.svg";
+import messageIcon from "../../../assets/icons/comment-blue.svg";
+import alertIcon from "../../../assets/icons/alert-blue.svg";
 
 const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
   const { isAuthenticated, user } = useAuth0();

@@ -45,7 +45,23 @@ const getProjectsByUser = async (req, res) => {
 const createProject = async (req, res) => {
   try {
     const data = await projectsModel.createProject(req.body);
-    res.status(200).json(data);
+    res.status(200).json({
+      message: `Project "${req.body.title}" created`,
+    });
+  } catch (error) {
+    res.statut(404).json({
+      message: error,
+    });
+    console.log(error);
+  }
+};
+
+const deleteProject = async (req, res) => {
+  try {
+    const data = await projectsModel.deleteProject(req.query.project_id);
+    res.status(200).json({
+      message: `Project "${req.body.title}" deleted`,
+    });
   } catch (error) {
     res.statut(404).json({
       message: error,
@@ -59,4 +75,5 @@ module.exports = {
   getAllProjects,
   getProjectsByUser,
   createProject,
+  deleteProject,
 };

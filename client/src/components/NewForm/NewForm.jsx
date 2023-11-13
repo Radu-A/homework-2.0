@@ -2,9 +2,19 @@ import TypeSelect from "./TypeSelect/TypeSelect";
 import FinishedSelect from "./FinishedSelect/FinishedSelect";
 import Pending from "./Pending/Pending";
 import Achievements from "./Achievements/Achievements";
+import { useState } from "react";
 
 const saveProject = async (newProject) => {
+  // variables
   const server = import.meta.env.VITE_SERVER;
+
+  // states
+  const [isFinished, setIsfinished] = useState(false);
+
+  const updateIsFinished = (event) => {
+    setIsfinished(event.target.value);
+    console.log(event.target.vale);
+  };
 
   try {
     const data = await fetch(`${server}/api/projects`, {
@@ -41,19 +51,13 @@ const NewForm = () => {
       github: target.github.value,
       site: target.site.value,
     };
-    saveProject(newProject)
+    saveProject(newProject);
   };
 
   return (
     <form action="" className="newproject-form" onSubmit={handleSubmit}>
       <label htmlFor="title">Title</label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        placeholder="Title"
-        required
-      />
+      <input type="text" name="title" id="title" placeholder="Title" required />
       <TypeSelect />
       <label htmlFor="description"></label>
       <textarea

@@ -8,4 +8,6 @@ projectsRouter.get("/number", projectsController.getProjectsNumber);
 
 projectsRouter.post("/", projectsController.createProject);
 
+projectsRouter.delete("/", projectsController.deleteProject);
+
 module.exports = projectsRouter;

@@ -6,17 +6,15 @@ import cardUX from "../../../assets/images/card-ux-ui.svg";
 
 // icons
 import editIcon from "../../../assets/icons/pencil.svg";
-import deleteIcon from "../../../assets/icons/x-letter.svg";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProjectDetailsContext } from "../../../context/projectDetailsContext";
+import DeleteButton from "./DeleteButton/DeleteButton";
 
 const DashboardProjectCard = ({ project }) => {
+  // variables
   const navigate = useNavigate();
   let screenshot = "";
-
-  const { updateProjectDetails } = useContext(ProjectDetailsContext);
-
   if (project.img_small) {
     screenshot = project.img_small;
   } else {
@@ -35,21 +33,27 @@ const DashboardProjectCard = ({ project }) => {
         break;
     }
   }
+  // context
+  const { updateProjectDetails } = useContext(ProjectDetailsContext);
 
+  // functions
   const handleClick = () => {
     updateProjectDetails(project);
     navigate("/project");
   };
 
+  const handleEdit = () => {
+    updateProjectDetails(project);
+    navigate("/edit");
+  };
+
   return (
     <article className="project-card-article">
       <div className="project-card-user-info">
-        <button>
+        <button onClick={handleEdit}>
           <img src={editIcon} alt="" />
         </button>
-        <button>
-          <img src={deleteIcon} alt="" />
-        </button>
+        <DeleteButton project={project} />
       </div>
       <div className="project-card-heading" onClick={handleClick}>
         <h2 className="project-card-title">{project.title}</h2>

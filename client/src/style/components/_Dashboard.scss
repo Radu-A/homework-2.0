@@ -31,12 +31,27 @@
         font-weight: 600;
         color: $dark-blue;
         background-color: $light-green;
+        transition: all 0.2s;
     }
 
     button:hover {
         border-color: $light-blue;
         color: $light-blue;
         background-color: $dark-green;
+    }
+}
+
+.empty-card-article {
+    width: 680px;
+    margin-bottom: 1rem;
+    padding: 3rem 2rem 2rem 2rem;
+    border: 1px solid $light-gray;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+
+    p {
+        text-align: center;
     }
 }
 
@@ -58,6 +73,7 @@
 
         button:first-child {
             background-color: $light-yellow;
+            transition: background-color 0.2s;
         }
 
         button:first-child:hover {
@@ -69,7 +85,7 @@
         }
 
         button:nth-child(2):hover {
-            background-color: $dark-red;
+            background-color: $medium-red;
         }
     }
 }

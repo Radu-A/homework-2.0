@@ -5,15 +5,21 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 import Aside from "../../components/Aside/Aside";
 import ProjectList from "../../components/ProjectList/ProjectList";
 import Pagination from "../../components/Pagination/Pagination";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
+  // variables
   const server = import.meta.env.VITE_SERVER;
+  const isDesktopWide = useMediaQuery({
+    query: "(min-width: 970px)",
+  });
+  // states
   const [projectList, setProjectList] = useState([]);
   const [bootcampFilter, setBootcampFilter] = useState("");
   const [finishedFilter, setFinishedFilter] = useState("");
   const [deployedFilter, setDeployedFilter] = useState("");
   const [pageFilter, setPageFilter] = useState(`page=1`);
-
+  // functions
   const updateBootcampFilter = (bootcamp) => {
     setBootcampFilter(`bootcamp=${bootcamp}&`);
   };
@@ -27,6 +33,12 @@ const Home = () => {
     setPageFilter(`page=${page}`);
   };
 
+  const talk = () => {
+    const text = "Hola, que guapo estás hoy.";
+    const message = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(message);
+  };
+  // context value
   const searchProjectsPack = {
     updateBootcampFilter,
     updateFinishedFilter,
@@ -34,10 +46,6 @@ const Home = () => {
     updatePageFilter,
     pageFilter,
   };
-
-  const isDesktopWide = useMediaQuery({
-    query: "(min-width: 970px)",
-  });
 
   useEffect(() => {
     const searchProjects = async () => {
@@ -49,28 +57,6 @@ const Home = () => {
     };
     searchProjects();
   }, [bootcampFilter, finishedFilter, deployedFilter, pageFilter]);
-
-  // useEffect(() => {
-  //   const tryFetch = async () => {
-  //     const result = await fetch("http://localhost:3000/api/projects?");
-  //     const data = await result.json();
-  //     setProjectList(data);
-  //   };
-  //   tryFetch();
-  // }, []);
-
-  // speachSynthesis
-
-  const talk = () => {
-    const text =
-      "¿Por qué tienes esa cara de tonto? Espabila un poco, anda.";
-    const message = new SpeechSynthesisUtterance(text);
-    speechSynthesis.speak(message);
-  };
-
-  useEffect(() => {
-    // talk();
-  }, []);
 
   return (
     <main className="home-main">

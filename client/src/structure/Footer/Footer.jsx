@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <a className="bridge-logo-link" href="https://www.thebridge.tech/">
+      <a className="bridge-logo-link" href="https://www.thebridge.tech/" target="blank">
         <img className="bridge-logo-img" src={theBridgeLogo} alt="" />
       </a>
       <License />
