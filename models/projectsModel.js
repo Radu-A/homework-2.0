@@ -259,14 +259,20 @@ const createProject = async (project) => {
       github,
       site,
     ]);
-    console.log(`Project "${title}" created`);
+    return {
+      created: true,
+      message: `Project "${title}" created`,
+    };
   } catch (error) {
     console.log(error);
+    return {
+      created: false,
+      message: error,
+    };
   } finally {
     // close database connection
     client.release();
   }
-  return data;
 };
 
 const updateProject = async (project) => {
@@ -311,15 +317,22 @@ const updateProject = async (project) => {
       project_id,
     ]);
     console.log({
-      message: `Project with id ${project_id} updated.`,
+      message: `Project "${title}" updated.`,
     });
+    return {
+      updated: true,
+      message: `Project "${title}" updated.`,
+    };
   } catch (error) {
     console.log(error);
+    return {
+      updated: false,
+      message: error,
+    };
   } finally {
     // close database connection
     client.release();
   }
-  return data;
 };
 
 const deleteProject = async (project_id) => {

@@ -16,18 +16,24 @@ const EditForm = () => {
   const { projectDetails } = useContext(ProjectDetailsContext);
 
   // functions
+  window.onbeforeunload = () => {
+    return "¿Seguro que quieres salir?";
+  };
+  
   const updateProject = async (project) => {
+    console.log(project);
     try {
-      const data = await fetch(
+      const response = await fetch(
         `${server}/api/projects?project_id=${project.project_id}`,
         {
           method: "PUT",
           headers: {
-            "Content-type": "appliation/json",
+            "Content-type": "application/json",
           },
           body: JSON.stringify(project),
         }
       );
+      const data = await response.json();
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -37,6 +43,7 @@ const EditForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const target = event.target;
+    console.log(target.title.value);
     const project = {
       project_id: projectDetails.project_id,
       title: target.title.value,

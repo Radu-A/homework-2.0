@@ -1,36 +1,59 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// componets
 import TypeSelect from "./TypeSelect/TypeSelect";
 import FinishedSelect from "./FinishedSelect/FinishedSelect";
 import Pending from "./Pending/Pending";
 import Achievements from "./Achievements/Achievements";
-import { useState } from "react";
 
-const saveProject = async (newProject) => {
-  // variables
-  const server = import.meta.env.VITE_SERVER;
+// mui
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
-  // states
-  const [isFinished, setIsfinished] = useState(false);
-
-  const updateIsFinished = (event) => {
-    setIsfinished(event.target.value);
-    console.log(event.target.vale);
-  };
-
-  try {
-    const data = await fetch(`${server}/api/projects`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(newProject),
-    });
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #2F4265",
+  borderRadius: "5px",
+  boxShadow: 24,
+  p: 4,
 };
 
 const NewForm = () => {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    navigate("/dashboard");
+  };
+
+  const saveProject = async (newProject) => {
+    const server = import.meta.env.VITE_SERVER;
+
+    try {
+      const response = await fetch(`${server}/api/projects`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newProject),
+      });
+      const data = await response.json();
+      if (data.created === true) {
+        handleOpen();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const target = event.target;
@@ -96,6 +119,21 @@ const NewForm = () => {
       <label htmlFor="site">Live site link</label>
       <input type="text" name="site" id="site" placeholder="Live site" />
       <button type="submit">SAVE</button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Congratulations
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Project created successfully.
+          </Typography>
+        </Box>
+      </Modal>
     </form>
   );
 };
