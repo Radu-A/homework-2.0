@@ -1,7 +1,7 @@
 const TypeSelect = () => {
   return (
     <>
-      <label htmlFor="type">Select the type</label>
+      <label htmlFor="type">Select the type *</label>
       <select name="type" id="type" required>
         <option value="">Type</option>
         <option value="Front-End">Front-End</option>

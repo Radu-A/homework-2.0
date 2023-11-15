@@ -24,5 +24,11 @@ body {
 
     main {
         min-height: 730px;
+        padding-bottom: 4rem;
+        background-color: $broken-white;
+
+        article {
+            background-color: white;
+        }
     }
 }

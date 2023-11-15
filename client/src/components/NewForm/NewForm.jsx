@@ -1,37 +1,24 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // componets
 import TypeSelect from "./TypeSelect/TypeSelect";
 import FinishedSelect from "./FinishedSelect/FinishedSelect";
 import Pending from "./Pending/Pending";
 import Achievements from "./Achievements/Achievements";
-
-// mui
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #2F4265",
-  borderRadius: "5px",
-  boxShadow: 24,
-  p: 4,
-};
+import ModalRight from "./ModalRight/ModalRight";
+import ModalWrong from "./ModalWrong/ModalWrong";
 
 const NewForm = () => {
-  const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    navigate("/dashboard");
+  // states
+  const [isFinished, setIsFinished] = useState("false");
+  const [openModalRight, setOpenModalRight] = useState(false);
+  const [openModalWrong, setOpenModalWrong] = useState(false);
+  // functions
+  const handleOpenModalRight = () => setOpenModalRight(true);
+  const handleOpenModalWrong = () => setOpenModalWrong(true);
+
+  window.onbeforeunload = () => {
+    return "¿Seguro que quieres salir?";
   };
 
   const saveProject = async (newProject) => {
@@ -46,8 +33,11 @@ const NewForm = () => {
         body: JSON.stringify(newProject),
       });
       const data = await response.json();
+      console.log(data);
       if (data.created === true) {
-        handleOpen();
+        handleOpenModalRight();
+      } else {
+        handleOpenModalWrong();
       }
     } catch (error) {
       console.log(error);
@@ -79,10 +69,10 @@ const NewForm = () => {
 
   return (
     <form action="" className="newproject-form" onSubmit={handleSubmit}>
-      <label htmlFor="title">Title</label>
+      <label htmlFor="title">Title *</label>
       <input type="text" name="title" id="title" placeholder="Title" required />
       <TypeSelect />
-      <label htmlFor="description"></label>
+      <label htmlFor="description">Description *</label>
       <textarea
         name="description"
         id="description"
@@ -91,9 +81,9 @@ const NewForm = () => {
         required
       ></textarea>
       <Achievements />
-      <FinishedSelect />
-      <Pending />
-      <label htmlFor="img_big">Desktop screenshot (url)</label>
+      <FinishedSelect setIsFinished={setIsFinished} isFinished={isFinished} />
+      {isFinished === "false" && <Pending />}
+      <label htmlFor="img_big">Desktop screenshot (url) *</label>
       <input
         type="text"
         name="img_big"
@@ -101,14 +91,14 @@ const NewForm = () => {
         placeholder="Desktop screenshot"
         required
       />
-      <label htmlFor="img_small">Desktop screenshot (url)</label>
+      <label htmlFor="img_small">Mobile screenshot (url)</label>
       <input
         type="text"
         name="img_small"
         id="img_small"
         placeholder="Mobile screenshot"
       />
-      <label htmlFor="github">Github link</label>
+      <label htmlFor="github">Github link *</label>
       <input
         type="text"
         name="github"
@@ -119,21 +109,14 @@ const NewForm = () => {
       <label htmlFor="site">Live site link</label>
       <input type="text" name="site" id="site" placeholder="Live site" />
       <button type="submit">SAVE</button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Congratulations
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Project created successfully.
-          </Typography>
-        </Box>
-      </Modal>
+      <ModalRight
+        openModalRight={openModalRight}
+        setOpenModalRight={setOpenModalRight}
+      />
+      <ModalWrong
+        openModalWrong={openModalWrong}
+        setOpenModalWrong={setOpenModalWrong}
+      />
     </form>
   );
 };

@@ -7,6 +7,7 @@ import ProjectInfoSection from "../../components/ProjectInfoSection/ProjectInfoS
 import ScreenshotSection from "../../components/ScreenshotSection/ScreenshotSection";
 import AchievementsSection from "../../components/AchievementsSection/AchievementsSection";
 import PendingSection from "../../components/PendingSection/PendingSection";
+import FeedbackSection from "../../components/FeedbackSection/FeedbackSection";
 
 const Project = () => {
   const { projectDetails } = useContext(ProjectDetailsContext);
@@ -86,14 +87,17 @@ const Project = () => {
 
   return (
     <main className="project-main">
-      <h1 className="page-name-heading">PROJECT DESCRIPTION</h1>
-      <UserInfoSection projectDetails={projectDetails} />
-      <ProjectInfoSection projectDetails={projectDetails} />
-      <ScreenshotSection projectDetails={projectDetails} />
-      <AchievementsSection projectDetails={projectDetails} />
-      {!projectDetails.finished && (
-        <PendingSection projectDetails={projectDetails} />
-      )}
+      <div className="project-div">
+        {/* <h1 className="page-name-heading">PROJECT DESCRIPTION</h1> */}
+        <UserInfoSection projectDetails={projectDetails} />
+        <ProjectInfoSection projectDetails={projectDetails} />
+        <ScreenshotSection projectDetails={projectDetails} />
+        <AchievementsSection projectDetails={projectDetails} />
+        {!projectDetails.finished && (
+          <PendingSection projectDetails={projectDetails} />
+        )}
+      </div>
+      <FeedbackSection/>
     </main>
   );
 };

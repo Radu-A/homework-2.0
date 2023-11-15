@@ -319,6 +319,8 @@ const updateProject = async (project) => {
     console.log({
       message: `Project "${title}" updated.`,
     });
+    console.log(project_id);
+    console.log(projectQueries.updateProject);
     return {
       updated: true,
       message: `Project "${title}" updated.`,

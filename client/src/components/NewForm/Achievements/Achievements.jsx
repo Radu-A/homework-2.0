@@ -2,7 +2,7 @@
 const Achievements = () => {
   return (
     <>
-      <label htmlFor="">The achievements you are proud of</label>
+      <label htmlFor="">The achievements you are proud of *</label>
       <textarea
         name="achievement_one"
         id="achievement_one"

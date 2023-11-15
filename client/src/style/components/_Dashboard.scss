@@ -89,3 +89,12 @@
         }
     }
 }
+
+.MuiPaper-root {
+    h2 {
+        color: $dark-blue;
+    }
+    button {
+        color: $medium-blue;
+    }
+}

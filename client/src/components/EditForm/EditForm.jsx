@@ -1,5 +1,5 @@
 // modules
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProjectDetailsContext } from "../../context/projectDetailsContext";
 // components
@@ -7,19 +7,28 @@ import Achievements from "./Achievements/Achievements";
 import FinishedSelect from "./FinishedSelect/FinishedSelect";
 import Pending from "./Pending/Pending";
 import TypeSelect from "./TypeSelect/TypeSelect";
+import ModalRight from "../EditForm/ModalRight/ModalRight";
+import ModalWrong from "../NewForm/ModalWrong/ModalWrong";
 
 const EditForm = () => {
   // variables
   const server = import.meta.env.VITE_SERVER;
   const navigate = useNavigate();
+  // states
+  const [isFinished, setIsFinished] = useState("false");
+  const [openModalRight, setOpenModalRight] = useState(false);
+  const [openModalWrong, setOpenModalWrong] = useState(false);
   // context
   const { projectDetails } = useContext(ProjectDetailsContext);
 
   // functions
+  const handleOpenModalRight = () => setOpenModalRight(true);
+  const handleOpenModalWrong = () => setOpenModalWrong(true);
+
   window.onbeforeunload = () => {
     return "¿Seguro que quieres salir?";
   };
-  
+
   const updateProject = async (project) => {
     console.log(project);
     try {
@@ -35,6 +44,11 @@ const EditForm = () => {
       );
       const data = await response.json();
       console.log(data);
+      if (data.updated === true) {
+        handleOpenModalRight();
+      } else {
+        handleOpenModalWrong();
+      }
     } catch (error) {
       console.log(error);
     }
@@ -44,31 +58,53 @@ const EditForm = () => {
     event.preventDefault();
     const target = event.target;
     console.log(target.title.value);
-    const project = {
-      project_id: projectDetails.project_id,
-      title: target.title.value,
-      date: projectDetails.date,
-      type: target.type.value,
-      description: target.description.value,
-      achievement_one: target.achievement_one.value,
-      achievement_two: target.achievement_two.value,
-      achievement_three: target.achievement_three.value,
-      finished: target.finished.value,
-      pending_one: target.pending_one.value,
-      pending_two: target.pending_two.value,
-      pending_three: target.pending_three.value,
-      img_small: target.img_small.value,
-      img_big: target.img_big.value,
-      github: target.github.value,
-      site: target.site.value,
-    };
+    let project;
+    if (isFinished === "false") {
+      project = {
+        project_id: projectDetails.project_id,
+        title: target.title.value,
+        date: projectDetails.date,
+        type: target.type.value,
+        description: target.description.value,
+        achievement_one: target.achievement_one.value,
+        achievement_two: target.achievement_two.value,
+        achievement_three: target.achievement_three.value,
+        finished: target.finished.value,
+        pending_one: target.pending_one.value,
+        pending_two: target.pending_two.value,
+        pending_three: target.pending_three.value,
+        img_small: target.img_small.value,
+        img_big: target.img_big.value,
+        github: target.github.value,
+        site: target.site.value,
+      };
+    } else {
+      project = {
+        project_id: projectDetails.project_id,
+        title: target.title.value,
+        date: projectDetails.date,
+        type: target.type.value,
+        description: target.description.value,
+        achievement_one: target.achievement_one.value,
+        achievement_two: target.achievement_two.value,
+        achievement_three: target.achievement_three.value,
+        finished: target.finished.value,
+        pending_one: null,
+        pending_two: null,
+        pending_three: null,
+        img_small: target.img_small.value,
+        img_big: target.img_big.value,
+        github: target.github.value,
+        site: target.site.value,
+      };
+    }
     updateProject(project);
   };
 
   // life cycle
   useEffect(() => {
     if (Object.keys(projectDetails).length === 0) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, []);
 
@@ -94,8 +130,11 @@ const EditForm = () => {
         defaultValue={projectDetails.description}
       ></textarea>
       <Achievements projectDetails={projectDetails} />
-      <FinishedSelect finished={projectDetails.finished} />
-      {!projectDetails.finished && <Pending projectDetails={projectDetails} />}
+      <FinishedSelect
+        finished={projectDetails.finished}
+        setIsFinished={setIsFinished}
+      />
+      {isFinished === "false" && <Pending projectDetails={projectDetails} />}
       <label htmlFor="img_big">Desktop screenshot (url)</label>
       <input
         type="text"
@@ -131,6 +170,14 @@ const EditForm = () => {
         defaultValue={projectDetails.site}
       />
       <button type="submit">SAVE</button>
+      <ModalRight
+        openModalRight={openModalRight}
+        setOpenModalRight={setOpenModalRight}
+      />
+      <ModalWrong
+        openModalWrong={openModalWrong}
+        setOpenModalWrong={setOpenModalWrong}
+      />
     </form>
   );
 };
