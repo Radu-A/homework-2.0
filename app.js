@@ -2,8 +2,9 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const projectsRouter = require("./routes/projectsRoutes");
 const usersRouter = require("./routes/usersRoutes");
+const projectsRouter = require("./routes/projectsRoutes");
+const commentsRouter = require("./routes/commentsRoutes");
 
 // initialize express
 const app = express();
@@ -17,5 +18,6 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.use("/api/projects", projectsRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/projects", projectsRouter);
+app.use("/api/comments", commentsRouter);

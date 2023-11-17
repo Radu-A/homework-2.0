@@ -1,4 +1,4 @@
-const bootcamps = ["Cybersecurity", 'Data Science', "Full-Stack", "UX/UI"]
+const bootcamps = ["Cybersecurity", "Data Science", "Full-Stack", "UX/UI"];
 
 const cyberTypes = ["Network Security", "Cloud Security", "Physical Security"];
 
@@ -48,7 +48,18 @@ const feedQueries = {
           FOREIGN KEY (user_id) REFERENCES users(user_id)
           ON DELETE CASCADE
       )`,
-  inserUsers: `
+  commentsTable: `
+        CREATE TABLE comments (
+            comment_id serial NOT NULL PRIMARY KEY,
+            user_id varchar(100),
+            project_id int,
+            text text NOT NULL,
+            date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(user_id),
+            FOREIGN KEY (project_id) REFERENCES projects(project_id)
+            ON DELETE CASCADE
+        )`,
+  insertUsers: `
         INSERT INTO users(
         user_id, email, photo, firstname, lastname, bootcamp, curse, github)
         VALUES 	
@@ -288,8 +299,16 @@ const feedQueries = {
             null, 'https://github.com/JuditRoca/Hundir-la-flota/raw/master/src/HUNDIR%20LA%20FLOTA.png',
             'https://github.com/JuditRoca/Hundir-la-flota', null
             )`,
+  insertComments: `
+        INSERT INTO comments(user_id, project_id, text) VALUES (
+            'github|75849528', 1, 'No hay nada que pueda comentar porque tu proyecto es una puta mierda. Intentaría ayudarte pero ni puedo, ni quiero'),
+            ('github|75849528', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae lacus ornare, porttitor urna sed, posuere ante. Mauris ipsum purus, venenatis cursus mauris at, maximus malesuada massa. Nulla tempor felis quis libero venenatis, ut consectetur mauris tristique. Fusce sodales mi at arcu tristique volutpat. Mauris fringilla neque id consequat aliquet. Nunc non gravida dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec in semper lorem. Vivamus rhoncus sodales auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.'),
+            ('auth0|64de6eb7bbb0077ec394963e', 6, 'Nullam urna magna, pellentesque nec lorem at, cursus dictum ipsum. Aliquam erat volutpat. In consequat justo eu urna convallis hendrerit. Suspendisse nec venenatis tellus. Integer egestas odio mauris, et fermentum sem porta eu. Aliquam tristique nisi fermentum consectetur volutpat. Integer accumsan mauris sit amet aliquet imperdiet. Proin finibus, lacus eu sagittis vestibulum, est ante accumsan purus, eu imperdiet ex elit sit amet ante. In et nisl ut nisl lobortis ullamcorper.'),
+            ('santivediap@gmail.com', 5, 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean quis ultrices orci, sit amet dignissim tellus. Fusce mauris augue, elementum in pulvinar vitae, dapibus vel magna. In vel pulvinar purus. Integer quis nisl massa. Nam bibendum laoreet ante, nec ultrices nulla molestie eu. Suspendisse vel eleifend libero. Donec at sapien ligula. Ut ut iaculis lorem. Curabitur sit amet mauris venenatis libero tempor aliquam a in nisl. Sed magna sem, vestibulum eget urna sodales, fermentum tempor ante. Pellentesque blandit lectus libero, sit amet posuere elit laoreet eu. Nam justo nisl, porttitor ut justo et, sagittis venenatis tortor. Phasellus vitae elit massa. Aliquam et magna tincidunt, maximus sem nec, egestas lorem. Phasellus ipsum felis, ultrices quis laoreet vel, convallis tempus lacus.'
+            )`,
   dropUsersTable: `DROP TABLE users`,
   dropProjectsTable: `DROP TABLE projects`,
+  dropCommentsTable: `DROP TABLE comments`,
 };
 
 module.exports = feedQueries;

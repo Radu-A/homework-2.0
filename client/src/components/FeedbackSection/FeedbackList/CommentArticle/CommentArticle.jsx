@@ -1,19 +1,26 @@
-const CommentArticle = () => {
+import { format, compareAsc, formatDistance } from "date-fns";
+
+const CommentArticle = ({ comment }) => {
+  const commentDate = new Date(comment.date);
+  const nowDate = new Date();
+
+  const distance = formatDistance(nowDate, commentDate);
+  console.log(distance);
+
   return (
     <article className="comment-article">
-      <img src="avatar-male.png" alt="" />
+      <img src={comment.photo} alt="" />
       <div className="comment-info">
         <p>
-          <strong>User Name</strong>Bootcamp
+          <strong>
+            {comment.firstname} {comment.lastname}{" "}
+          </strong>{" "}
+          {comment.bootcamp}
         </p>
-        <p>Time elapsed</p>
+        <p>{distance}</p>
       </div>
       <div className="comment-body">
-        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-        consectetur, adipisci velit, sed qu Ut enim ad minima veniam, quis
-        nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al
-        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-        quam nihil molestiae consequatu
+        <p>{comment.text}</p>
       </div>
     </article>
   );

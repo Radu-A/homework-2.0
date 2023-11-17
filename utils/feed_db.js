@@ -27,11 +27,24 @@ const createProyectsTable = async () => {
   }
 };
 
+const createCommentsTable = async () => {
+  let client, result;
+  try {
+    client = await pool.connect();
+    result = await client.query(feedQueries.commentsTable);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    client.release();
+  }
+};
+
 const insertUsers = async () => {
   let client, result;
   try {
     client = await pool.connect();
-    result = await client.query(feedQueries.inserUsers);
+    result = await client.query(feedQueries.insertUsers);
     console.log(result);
   } catch (error) {
     console.log(error);
@@ -45,6 +58,19 @@ const insertProjects = async () => {
   try {
     client = await pool.connect();
     result = await client.query(feedQueries.insertProjects);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    client.release();
+  }
+};
+
+const insertComments = async () => {
+  let client, result;
+  try {
+    client = await pool.connect();
+    result = await client.query(feedQueries.insertComments);
     console.log(result);
   } catch (error) {
     console.log(error);
@@ -74,8 +100,10 @@ if (nowDate.getMonth() + 1 < 10) {
 const feedDataBase = async () => {
   await createUsersTable();
   await createProyectsTable();
+  await createCommentsTable();
   await insertUsers();
   await insertProjects();
+  await insertComments();
 };
 
 feedDataBase();

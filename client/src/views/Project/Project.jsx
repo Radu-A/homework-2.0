@@ -25,7 +25,7 @@ const Project = () => {
     lastname: "Outeiro",
     bootcamp: "Full-Stack",
     curse: "23-04",
-    project_id: 19,
+    project_id: 6,
     title: "Homework",
     date: "2023-07-22",
     type: "Full-Stack",
@@ -97,7 +97,7 @@ const Project = () => {
           <PendingSection projectDetails={projectDetails} />
         )}
       </div>
-      <FeedbackSection/>
+      <FeedbackSection />
     </main>
   );
 };
