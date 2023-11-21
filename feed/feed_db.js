@@ -1,4 +1,4 @@
-const pool = require("../utils/pgsql_db");
+const pool = require("../db/pgsql_db");
 const feedQueries = require("./feedQueries_db");
 
 const createUsersTable = async () => {

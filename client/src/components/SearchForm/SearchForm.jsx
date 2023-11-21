@@ -5,16 +5,13 @@ const SearchForm = () => {
     <section className="search-form-section">
       <form action="" className="search-form">
         <div className="search-form-div">
-          {/* <label htmlFor="project"> */}
-          
-            <input
-              type="text"
-              name="project"
-              id=""
-              className="search-form-input"
-              placeholder="Search by title, bootcamp, type..."
-            />
-          {/* </label> */}
+          <input
+            type="text"
+            name="project"
+            id=""
+            className="search-form-input"
+            placeholder="Search by title, bootcamp, type..."
+          />
           <img src={searhIcon} alt="" />
         </div>
         <select name="" id="" className="search-form-select">

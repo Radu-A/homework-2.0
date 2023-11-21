@@ -9,7 +9,7 @@ import CommentArticle from "./CommentArticle/CommentArticle";
 const FeedbackList = () => {
   // variables
   const server = import.meta.env.VITE_SERVER;
-  const { projectDetails } = useContext(ProjectDetailsContext);
+  const { projectDetails, commentTrigger } = useContext(ProjectDetailsContext);
   // states
   const [commentsList, setCommentsList] = useState("");
 
@@ -20,7 +20,6 @@ const FeedbackList = () => {
       );
       const data = await result.json();
       setCommentsList(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -29,6 +28,10 @@ const FeedbackList = () => {
   useEffect(() => {
     searchComment(projectDetails.project_id);
   }, []);
+
+  useEffect(() => {
+    searchComment(projectDetails.project_id);
+  }, [commentTrigger]);
 
   return (
     <>

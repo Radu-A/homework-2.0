@@ -3,9 +3,7 @@ import { format, compareAsc, formatDistance } from "date-fns";
 const CommentArticle = ({ comment }) => {
   const commentDate = new Date(comment.date);
   const nowDate = new Date();
-
   const distance = formatDistance(nowDate, commentDate);
-  console.log(distance);
 
   return (
     <article className="comment-article">
@@ -17,7 +15,7 @@ const CommentArticle = ({ comment }) => {
           </strong>{" "}
           {comment.bootcamp}
         </p>
-        <p>{distance}</p>
+        <p>Posted {distance} ago</p>
       </div>
       <div className="comment-body">
         <p>{comment.text}</p>

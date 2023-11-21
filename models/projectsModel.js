@@ -1,4 +1,4 @@
-const pool = require("../utils/pgsql_db");
+const pool = require("../db/pgsql_db");
 const projectQueries = require("../queries/projectsQueries");
 const newProject = require("../utils/newProject");
 const projectToUpdate = require("../utils/projectToUpdate");
@@ -49,10 +49,10 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   }
   // stateQuery
   if (!isBootcamp) {
-    if (finished === true) {
+    if (finished === "true") {
       finishedQuery = " WHERE p.finished = 'true'";
       isFinished = true;
-    } else if (finished === false) {
+    } else if (finished === "false") {
       finishedQuery = " WHERE p.finished = 'false'";
       isFinished = true;
     } else {

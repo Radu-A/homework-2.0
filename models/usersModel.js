@@ -1,4 +1,4 @@
-const pool = require("../utils/pgsql_db");
+const pool = require("../db/pgsql_db");
 const usersQueries = require("../queries/usersQueries");
 const projectQueries = require("../queries/projectsQueries");
 const newUser = require("../utils/newUser");

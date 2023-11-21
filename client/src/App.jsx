@@ -9,14 +9,20 @@ import Main from "./structure/Main/Main";
 
 function App() {
   const [projectDetails, setProjectDetails] = useState({});
+  const [commentTrigger, setCommentTrigger] = useState(false);
 
   const updateProjectDetails = (project) => {
     setProjectDetails(project);
+  };
+  const updateCommentTrigger = () => {
+    setCommentTrigger(!commentTrigger);
   };
 
   const projectPack = {
     updateProjectDetails,
     projectDetails,
+    updateCommentTrigger,
+    commentTrigger,
   };
   return (
     <>
