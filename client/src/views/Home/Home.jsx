@@ -18,7 +18,9 @@ const Home = () => {
   const [bootcampFilter, setBootcampFilter] = useState("");
   const [finishedFilter, setFinishedFilter] = useState("");
   const [deployedFilter, setDeployedFilter] = useState("");
+  const [orderFilter, setOrderFilter] = useState("");
   const [pageFilter, setPageFilter] = useState(`page=1`);
+
   // functions
   const updateBootcampFilter = (bootcamp) => {
     setBootcampFilter(`bootcamp=${bootcamp}&`);
@@ -29,6 +31,9 @@ const Home = () => {
   const updateDeployedFilter = (deployed) => {
     setDeployedFilter(`deployed=${deployed}&`);
   };
+  const updateOrderFilter = (order) => {
+    setOrderFilter(`order=${order}&`);
+  };
   const updatePageFilter = (page) => {
     setPageFilter(`page=${page}`);
   };
@@ -38,11 +43,13 @@ const Home = () => {
     const message = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(message);
   };
+
   // context value
   const searchProjectsPack = {
     updateBootcampFilter,
     updateFinishedFilter,
     updateDeployedFilter,
+    updateOrderFilter,
     updatePageFilter,
     pageFilter,
   };
@@ -50,13 +57,13 @@ const Home = () => {
   useEffect(() => {
     const searchProjects = async () => {
       const result = await fetch(
-        `${server}/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${pageFilter}`
+        `${server}/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${orderFilter}${pageFilter}`
       );
       const data = await result.json();
       setProjectList(data);
     };
     searchProjects();
-  }, [bootcampFilter, finishedFilter, deployedFilter, pageFilter]);
+  }, [bootcampFilter, finishedFilter, deployedFilter, orderFilter, pageFilter]);
 
   return (
     <main className="home-main">

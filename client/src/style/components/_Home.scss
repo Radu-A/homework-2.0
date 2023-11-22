@@ -163,7 +163,12 @@ aside {
             p {
                 font-size: 0.85rem;
                 font-weight: 600;
+                color: inherit;
             }
+        }
+
+        div:hover {
+            cursor: pointer;
         }
     }
     .project-card-screenshot {

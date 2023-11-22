@@ -43,7 +43,22 @@ const dropCommentsTable = async () => {
   return result;
 };
 
+const dropLikesTable = async () => {
+  let client, result;
+  try {
+    client = await pool.connect();
+    result = await client.query(feedQueries.dropLikesTable);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    client.release();
+  }
+  return result;
+};
+
 const dropAllTables = async () => {
+  const resultLikes = await dropLikesTable();
   const resultComments = await dropCommentsTable();
   const resultProjects = await dropProjectsTable();
   const resultUsers = await dropUsersTable();

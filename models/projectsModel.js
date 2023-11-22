@@ -88,10 +88,8 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     }
   }
   // orderQuery
-  if (order === "date") {
-    orderQuery = " ORDER BY p.date DESC";
-  } else if (order === "curse") {
-    orderQuery = " ORDER BY u.curse";
+  if (order === "curse") {
+    orderQuery = " ORDER BY u.curse DESC";
   } else if (order === "bootcamp") {
     orderQuery = " ORDER BY u.bootcamp";
   } else {

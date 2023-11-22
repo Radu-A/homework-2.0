@@ -59,6 +59,14 @@ const feedQueries = {
             FOREIGN KEY (project_id) REFERENCES projects(project_id)
             ON DELETE CASCADE
         )`,
+  likesTable: `
+        CREATE TABLE likes (
+            user_id varchar(100),
+            project_id int,
+            FOREIGN KEY (user_id) REFERENCES users(user_id),
+            FOREIGN KEY (project_id) REFERENCES projects(project_id)
+            ON DELETE CASCADE
+        )`,
   insertUsers: `
         INSERT INTO users(
         user_id, email, photo, firstname, lastname, bootcamp, curse, github)
@@ -306,9 +314,33 @@ const feedQueries = {
             ('auth0|64de6eb7bbb0077ec394963e', 6, 'Nullam urna magna, pellentesque nec lorem at, cursus dictum ipsum. Aliquam erat volutpat. In consequat justo eu urna convallis hendrerit. Suspendisse nec venenatis tellus. Integer egestas odio mauris, et fermentum sem porta eu. Aliquam tristique nisi fermentum consectetur volutpat. Integer accumsan mauris sit amet aliquet imperdiet. Proin finibus, lacus eu sagittis vestibulum, est ante accumsan purus, eu imperdiet ex elit sit amet ante. In et nisl ut nisl lobortis ullamcorper.'),
             ('santivediap@gmail.com', 5, 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean quis ultrices orci, sit amet dignissim tellus. Fusce mauris augue, elementum in pulvinar vitae, dapibus vel magna. In vel pulvinar purus. Integer quis nisl massa. Nam bibendum laoreet ante, nec ultrices nulla molestie eu. Suspendisse vel eleifend libero. Donec at sapien ligula. Ut ut iaculis lorem. Curabitur sit amet mauris venenatis libero tempor aliquam a in nisl. Sed magna sem, vestibulum eget urna sodales, fermentum tempor ante. Pellentesque blandit lectus libero, sit amet posuere elit laoreet eu. Nam justo nisl, porttitor ut justo et, sagittis venenatis tortor. Phasellus vitae elit massa. Aliquam et magna tincidunt, maximus sem nec, egestas lorem. Phasellus ipsum felis, ultrices quis laoreet vel, convallis tempus lacus.'
             )`,
+  insertLikes: `
+        INSERT INTO likes (user_id, project_id)
+            VALUES ('github|75849528', 1),
+            ('github|75849528', 2),
+            ('github|75849528', 3),
+            ('github|75849528', 4),
+            ('github|75849528', 5),
+            ('github|75849528', 12),
+            ('github|75849528', 13),
+            ('auth0|64de6eb7bbb0077ec394963e', 3),
+            ('auth0|64de6eb7bbb0077ec394963e', 4),
+            ('auth0|64de6eb7bbb0077ec394963e', 5),
+            ('auth0|64de6eb7bbb0077ec394963e', 6),
+            ('auth0|64de6eb7bbb0077ec394963e', 7),
+            ('auth0|64de6eb7bbb0077ec394963e', 12),
+            ('auth0|64de6eb7bbb0077ec394963e', 13),
+            ('santivediap@gmail.com', 1),
+            ('santivediap@gmail.com', 2),
+            ('santivediap@gmail.com', 5),
+            ('santivediap@gmail.com', 6),
+            ('santivediap@gmail.com', 8),
+            ('santivediap@gmail.com', 12),
+            ('santivediap@gmail.com', 13)`,
   dropUsersTable: `DROP TABLE users`,
   dropProjectsTable: `DROP TABLE projects`,
   dropCommentsTable: `DROP TABLE comments`,
+  dropLikesTable: `DROP TABLE likes`,
 };
 
 module.exports = feedQueries;

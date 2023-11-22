@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { ProjectDetailsContext } from "../../../../context/projectDetailsContext";
 
 const NewCommentForm = () => {
@@ -8,6 +8,7 @@ const NewCommentForm = () => {
   const { user } = useAuth0();
   let userId;
   userId = user.sub;
+  const myRef = useRef(null);
 
   // context
   const { projectDetails, updateCommentTrigger } = useContext(
@@ -15,8 +16,10 @@ const NewCommentForm = () => {
   );
 
   // functions
+  const executeScroll = () =>
+    myRef.current.scrollIntoView({ behavior: "smooth" });
+
   const createComment = async (comment) => {
-    console.log(comment);
     try {
       const result = await fetch(`${server}/api/comments`, {
         method: "POST",
@@ -43,8 +46,22 @@ const NewCommentForm = () => {
     await updateCommentTrigger();
   };
 
+  // useEffect
+
+  useEffect(() => {
+    if (window.location.hash === "#comment") {
+      setTimeout(() => {
+        executeScroll();
+      }, 150);
+    }
+  }, []);
+
   return (
-    <form className="new-comment-form" onSubmit={handleSubmit}>
+    <form
+      className="new-comment-form"
+      id="new-comment-form"
+      onSubmit={handleSubmit}
+    >
       <textarea
         name="text"
         id="text"
@@ -52,6 +69,7 @@ const NewCommentForm = () => {
         rows="10"
         maxLength={5000}
         placeholder="Let us know what you think"
+        ref={myRef}
       ></textarea>
       <div>
         <label htmlFor="text">Comment here</label>
