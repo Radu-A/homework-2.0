@@ -5,6 +5,7 @@ require("dotenv").config();
 const usersRouter = require("./routes/usersRoutes");
 const projectsRouter = require("./routes/projectsRoutes");
 const commentsRouter = require("./routes/commentsRoutes");
+const likesRouter = require("./routes/likesRoutes");
 
 // initialize express
 const app = express();
@@ -21,3 +22,4 @@ app.use(express.json());
 app.use("/api/users", usersRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/comments", commentsRouter);
+app.use("/api/likes", likesRouter);
