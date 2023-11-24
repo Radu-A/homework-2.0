@@ -19,7 +19,6 @@ const Main = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/new" element={<NewProject />} />
         <Route path="/edit" element={<EditProject />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );
