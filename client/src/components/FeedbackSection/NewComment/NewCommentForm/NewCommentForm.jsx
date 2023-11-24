@@ -7,7 +7,9 @@ const NewCommentForm = () => {
   const server = import.meta.env.VITE_SERVER;
   const { user } = useAuth0();
   let userId;
-  userId = user.sub;
+  if (user) {
+    userId = user.sub;
+  }
   const myRef = useRef(null);
 
   // context

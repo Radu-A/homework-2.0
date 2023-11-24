@@ -4,12 +4,14 @@ import NextLink from "./NextLink/NextLink";
 import PageDiv from "./PageDiv/PageDiv";
 
 const Pagination = () => {
+  // variables
+  const server = import.meta.env.VITE_SERVER;
   const numberOfPagesRef = useRef(1);
   // const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const tryFetch = async () => {
-      const result = await fetch("http://localhost:3000/api/projects/number");
+      const result = await fetch(`${server}/api/projects/number`);
       const data = await result.json();
       console.log(data.count);
       // setNumberOfPages(data.count / 5);
@@ -27,9 +29,9 @@ const Pagination = () => {
       </article>
       <article className="pagination-article">
         <PreviousLink />
-        <PageDiv pageNumber={1}/>
-        <PageDiv pageNumber={2}/>
-        <PageDiv pageNumber={3}/>
+        <PageDiv pageNumber={1} />
+        <PageDiv pageNumber={2} />
+        <PageDiv pageNumber={3} />
         <NextLink />
       </article>
     </section>
