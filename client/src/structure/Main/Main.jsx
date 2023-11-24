@@ -6,6 +6,7 @@ import Signup from "../../views/Signup/Signup";
 import Dashboar from "../../views/Dashboar/Dashboar";
 import NewProject from "../../views/NewProject/NewProject";
 import EditProject from "../../views/EditProject/EditProject";
+import Test from "../../views/Test/Test";
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/new" element={<NewProject />} />
         <Route path="/edit" element={<EditProject />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </>
   );
