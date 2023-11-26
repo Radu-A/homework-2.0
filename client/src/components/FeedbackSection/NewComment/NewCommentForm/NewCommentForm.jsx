@@ -1,6 +1,9 @@
+// modules
+import { useContext, useEffect, useRef, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useContext, useEffect, useRef } from "react";
+// context
 import { ProjectDetailsContext } from "../../../../context/projectDetailsContext";
+import LoginDialog from "./LoginDialog/LoginDialog";
 
 const NewCommentForm = () => {
   // variables
@@ -11,6 +14,8 @@ const NewCommentForm = () => {
     userId = user.sub;
   }
   const myRef = useRef(null);
+  // states
+  const [open, setOpen] = useState(false);
 
   // context
   const { projectDetails, updateCommentTrigger } = useContext(
@@ -39,13 +44,17 @@ const NewCommentForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const comment = {
-      user_id: userId,
-      project_id: projectDetails.project_id,
-      text: event.target.text.value,
-    };
-    await createComment(comment);
-    await updateCommentTrigger();
+    if (userId) {
+      const comment = {
+        user_id: userId,
+        project_id: projectDetails.project_id,
+        text: event.target.text.value,
+      };
+      await createComment(comment);
+      await updateCommentTrigger();
+    } else {
+      setOpen(true);
+    }
   };
 
   // useEffect
@@ -69,6 +78,7 @@ const NewCommentForm = () => {
         id="text"
         cols="30"
         rows="10"
+        required
         maxLength={5000}
         placeholder="Let us know what you think"
         ref={myRef}
@@ -77,6 +87,7 @@ const NewCommentForm = () => {
         <label htmlFor="text">Comment here</label>
         <button>SEND</button>
       </div>
+      <LoginDialog open={open} setOpen={setOpen} />
     </form>
   );
 };

@@ -6,7 +6,6 @@ import Signup from "../../views/Signup/Signup";
 import Dashboar from "../../views/Dashboar/Dashboar";
 import NewProject from "../../views/NewProject/NewProject";
 import EditProject from "../../views/EditProject/EditProject";
-import Test from "../../views/Test/Test";
 
 const Main = () => {
   return (

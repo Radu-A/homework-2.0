@@ -8,6 +8,7 @@ import cardData from "../../../assets/images/card-data-science.svg";
 import cardFull from "../../../assets/images/card-full-stack.svg";
 import cardUX from "../../../assets/images/card-ux-ui.svg";
 import ProjectCardActions from "./ProjectCardActions/ProjectCardActions";
+import { useMediaQuery } from "react-responsive";
 
 const ProjectCard = ({ project }) => {
   // variables
@@ -31,6 +32,10 @@ const ProjectCard = ({ project }) => {
         break;
     }
   }
+
+  const isTablet = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
 
   // context
   const { updateProjectDetails } = useContext(ProjectDetailsContext);
@@ -70,7 +75,9 @@ const ProjectCard = ({ project }) => {
         handleClick={handleClick}
         projectId={project.project_id}
       />
-      <img src={screenshot} alt="" className="project-card-screenshot" />
+      {isTablet && (
+        <img src={screenshot} alt="" className="project-card-screenshot" />
+      )}
     </article>
   );
 };

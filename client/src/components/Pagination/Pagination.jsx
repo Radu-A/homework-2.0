@@ -13,7 +13,7 @@ const Pagination = () => {
     const tryFetch = async () => {
       const result = await fetch(`${server}/api/projects/number`);
       const data = await result.json();
-      console.log(data.count);
+      // console.log(data.count);
       // setNumberOfPages(data.count / 5);
       numberOfPagesRef.current = data.count / 5;
     };
