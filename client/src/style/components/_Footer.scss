@@ -18,6 +18,7 @@ footer {
 .license-div {
     @include flex-column;
     align-items: flex-end;
+    width: 100%;
 }
 
 .license-paragraph {
@@ -35,5 +36,13 @@ footer {
         height: 22px;
         margin-left: 3px;
         vertical-align: text-bottom;
+    }
+}
+
+@media (min-width: 700px) {
+    .license-div {
+        @include flex-column;
+        align-items: flex-end;
+        width: unset;
     }
 }

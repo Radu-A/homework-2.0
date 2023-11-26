@@ -88,53 +88,62 @@ aside {
 
 .project-card-article {
     @include flex-column;
+    gap: 0.8rem;
     margin-bottom: 1rem;
-    padding: 1rem;
+    padding: 1.2rem;
     border: 1px solid $light-gray;
     border-radius: 5px;
     box-sizing: border-box;
 
     .project-card-user-info {
         display: grid;
-        grid-template-columns: auto auto;
-        gap: 0.5rem;
-        width: 80%;
+        grid-template-columns: 5rem auto;
+        // gap: 0.5rem;
+        width: 100%;
         // border-bottom:  1px solid $light-gray;
 
         img {
             grid-column: 1;
             grid-row: 1/3;
-            width: 3rem;
+            width: 3.5rem;
+            margin: 0 auto;
             border-radius: 35px;
         }
 
         h4, p {
-            font-size: 0.8rem;
-            text-align: center;
+            font-size: 1rem;
+            text-align: start;
         }
 
         .project-card-name-div {
             grid-column: 2;
             @include flex-row;
+            justify-content: flex-start;
         }
 
         .project-card-bootcamp-div {
             grid-column: 2;
+            @include flex-row;
+            gap: 1rem;
+            justify-content: flex-start;
         }
     }
     .project-card-heading {
         grid-column: 2;
         grid-row: 1;
         @include flex-row;
-        gap: 0.5rem;
-        padding: 0 1rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
         
         h2 {
-            flex: 2;
+            // flex: 4;
+            width: 100%;
         }
 
         p {
-            font-size: 0.8rem;
+            // flex: 1;
+            font-size: 1rem;
         }
     }
     .project-card-heading:hover {
@@ -239,7 +248,7 @@ aside {
             grid-row: 1/4;
             @include flex-column;
             gap: 0.5rem;
-            border-right:  1px solid $light-gray;;
+            border-right: 1px solid $light-gray;;
             img {
                 width: 3.5rem;
                 border-radius: 35px;
@@ -248,6 +257,10 @@ aside {
             h4, p {
                 font-size: 0.8rem;
                 text-align: center;
+            }
+
+            .project-card-name-div, .project-card-bootcamp-div {
+                display: unset;
             }
         }
         .project-card-heading {
