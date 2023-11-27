@@ -23,12 +23,18 @@ body {
     }
 
     main {
+        position: relative;
         min-height: 730px;
         padding-bottom: 4rem;
         background-color: $broken-white;
+        z-index: 0;
 
         article {
             background-color: white;
         }
+    }
+
+    .main-inactive {
+        z-index: -4;
     }
 }

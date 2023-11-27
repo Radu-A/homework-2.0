@@ -2,7 +2,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import messageIcon from "../../../assets/icons/comment-blue.svg";
 import alertIcon from "../../../assets/icons/alert-blue.svg";
 
-const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
+const SessionMenu = ({
+  dropdownMenuClass,
+  setDropdownMenuClass,
+  layerDivClass,
+  setLayerDivClass,
+}) => {
   const { isAuthenticated, user } = useAuth0();
 
   const handleClick = (event) => {
@@ -11,8 +16,11 @@ const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
       setDropdownMenuClass(
         "dropdown-menu-article dropdown-menu-article-active"
       );
+      setLayerDivClass("layer-div layer-div-active");
     } else {
       setDropdownMenuClass("dropdown-menu-article");
+
+      setLayerDivClass("layer-div");
     }
   };
   return (
@@ -30,11 +38,7 @@ const SessionMenu = ({ dropdownMenuClass, setDropdownMenuClass }) => {
       <li className="avatar-item">
         {isAuthenticated && (
           <a href="" className="avatar-link" onClick={handleClick}>
-            <img
-              src={user.picture}
-              alt=""
-              className="avatar-img"
-            />
+            <img src={user.picture} alt="" className="avatar-img" />
           </a>
         )}
       </li>

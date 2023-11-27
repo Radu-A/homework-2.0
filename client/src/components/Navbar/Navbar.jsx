@@ -10,16 +10,20 @@ import LoginButton from "./LoginButton/LoginButton";
 import LogoutButton from "./LogoutButton/LogoutButton";
 
 const Navbar = () => {
+  // variables
   const isTablet = useMediaQuery({
     query: "(min-width: 700px)",
   });
   const isDesktop = useMediaQuery({
     query: "(min-width: 920px)",
   });
+  const { isAuthenticated, user } = useAuth0();
+
+  // states
   const [dropdownMenuClass, setDropdownMenuClass] = useState(
     "dropdown-menu-article"
   );
-  const { isAuthenticated, user } = useAuth0();
+  const [layerDivClass, setLayerDivClass] = useState("layer-div");
 
   return (
     <>
@@ -50,6 +54,8 @@ const Navbar = () => {
               <SessionMenu
                 dropdownMenuClass={dropdownMenuClass}
                 setDropdownMenuClass={setDropdownMenuClass}
+                layerDivClass={layerDivClass}
+                setLayerDivClass={setLayerDivClass}
               />
               {isDesktop && <LogoutButton />}
             </>
@@ -57,9 +63,13 @@ const Navbar = () => {
             <LoginButton />
           )}
         </article>
+        {!isDesktop && (
+          <DropdownMenu
+            dropdownMenuClass={dropdownMenuClass}
+            layerDivClass={layerDivClass}
+          />
+        )}
       </nav>
-
-      {!isDesktop && <DropdownMenu dropdownMenuClass={dropdownMenuClass} />}
     </>
   );
 };

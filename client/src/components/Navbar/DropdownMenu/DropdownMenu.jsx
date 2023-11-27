@@ -1,8 +1,7 @@
-import React from "react";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import { Link } from "react-router-dom";
 
-const DropdownMenu = ({ dropdownMenuClass }) => {
+const DropdownMenu = ({ dropdownMenuClass, layerDivClass }) => {
   return (
     <>
       <article className={dropdownMenuClass}>
@@ -27,7 +26,7 @@ const DropdownMenu = ({ dropdownMenuClass }) => {
           <LogoutButton />
         </div>
       </article>
-      <div className="layer-div"></div>
+      {/* <div className={layerDivClass}></div> */}
     </>
   );
 };
