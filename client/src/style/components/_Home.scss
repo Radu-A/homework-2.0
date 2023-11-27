@@ -245,6 +245,7 @@ aside {
             @include flex-column;
             gap: 0.5rem;
             width: unset;
+            height: 100%;
             border-right: 1px solid $light-gray;;
             img {
                 width: 3.5rem;
