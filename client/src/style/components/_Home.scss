@@ -98,9 +98,7 @@ aside {
     .project-card-user-info {
         display: grid;
         grid-template-columns: 5rem auto;
-        // gap: 0.5rem;
         width: 100%;
-        // border-bottom:  1px solid $light-gray;
 
         img {
             grid-column: 1;
@@ -137,12 +135,10 @@ aside {
         width: 100%;
         
         h2 {
-            // flex: 4;
             width: 100%;
         }
 
         p {
-            // flex: 1;
             font-size: 1rem;
         }
     }
@@ -237,8 +233,8 @@ aside {
         display: grid;
         grid-template-columns: 130px 400px 150px;
         grid-template-rows: 60px 110px 40px;
-        margin-bottom: 1rem;
-        padding: 0.5rem 0;
+        gap: unset;
+        padding: 1rem 0;
         border: 1px solid $light-gray;
         border-radius: 5px;
         box-sizing: border-box;
@@ -248,6 +244,7 @@ aside {
             grid-row: 1/4;
             @include flex-column;
             gap: 0.5rem;
+            width: unset;
             border-right: 1px solid $light-gray;;
             img {
                 width: 3.5rem;
@@ -266,21 +263,20 @@ aside {
         .project-card-heading {
             grid-column: 2;
             grid-row: 1;
-            @include flex-row;
             gap: 0.5rem;
+            width: unset;
             padding: 0 1rem;
             
             h2 {
                 flex: 2;
+                width: unset;
             }
     
             p {
                 font-size: 0.8rem;
             }
         }
-        .project-card-heading:hover {
-            cursor: pointer;
-        }
+        
         .project-card-description {
             grid-column: 2;
             grid-row: 2;
@@ -290,44 +286,7 @@ aside {
                 font-size: 0.85rem;
             }
         }
-        .project-card-description:hover {
-            cursor: pointer;
-        }
-        .project-card-actions {
-            grid-column: 2;
-            grid-row: 3;
-            @include flex-row;
-            justify-content: left;
-            gap: 1rem;
-            padding: 0 1rem;
-    
-            div {
-                @include flex-row;
-                gap: 0.3rem;
-    
-                img {
-                    width: 1rem;
-                }
-    
-                p {
-                    font-size: 0.85rem;
-                    font-weight: 600;
-                    color: inherit;
-                }
-            }
-    
-            div:hover {
-                cursor: pointer;
-            }
-        }
-        .project-card-screenshot {
-            grid-column: 3;
-            grid-row: 1/4;
-            height: 90%;
-            margin: 0 auto;
-        }
     }
-
 }
 
 @media (min-width: 970px) {
