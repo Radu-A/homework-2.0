@@ -2,7 +2,11 @@ const likesModel = require("../models/likesModel");
 
 const getLike = async (req, res) => {
   const user_id = req.query.user_id;
-  const project_id = req.query.user_id;
+  const project_id = req.query.project_id;
+  console.log("user_id");
+  console.log(user_id);
+  console.log("project_id");
+  console.log(project_id);
   try {
     const data = await likesModel.getLike(user_id, project_id);
     console.log(data);

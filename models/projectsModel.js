@@ -18,8 +18,6 @@ const getProjectsNumber = async () => {
 };
 
 const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
-  console.log("Before if/else");
-  console.log(bootcamp);
   // declare variables
   let client,
     data,
@@ -103,16 +101,6 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     limitQuery = "";
   }
 
-  console.log("Este es el reultado de la query");
-  console.log(
-    projectQueries.getAllProjects +
-      bootcampQuery +
-      finishedQuery +
-      deployedQuery +
-      orderQuery +
-      limitQuery
-  );
-
   try {
     // establish connection with database
     client = await pool.connect();
@@ -128,9 +116,16 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     // extract data from "rows" property of "results" object
     data = result.rows;
 
+    console.log("Este es el reultado de la query");
+    console.log(
+      projectQueries.getAllProjects +
+        bootcampQuery +
+        finishedQuery +
+        deployedQuery +
+        orderQuery +
+        limitQuery
+    );
     console.log(bootcamp, finished, deployed, order);
-    console.log("bootcampQuery:");
-    console.log(bootcampQuery);
   } catch (error) {
     console.log(error);
   } finally {
@@ -151,13 +146,14 @@ const getProjectById = async (project_id) => {
     ]);
     data = result.rows;
     console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
+    return error;
   } finally {
     // close the connection with database
     client.release();
   }
-  return data;
 };
 
 const getProjectstByUser = async (user_id) => {
