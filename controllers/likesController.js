@@ -3,13 +3,8 @@ const likesModel = require("../models/likesModel");
 const getLike = async (req, res) => {
   const user_id = req.query.user_id;
   const project_id = req.query.project_id;
-  console.log("user_id");
-  console.log(user_id);
-  console.log("project_id");
-  console.log(project_id);
   try {
     const data = await likesModel.getLike(user_id, project_id);
-    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -19,10 +14,8 @@ const getLike = async (req, res) => {
 
 const getLikesByProject = async (req, res) => {
   const project_id = req.query.project_id;
-  console.log(project_id);
   try {
     const data = await likesModel.getLikesByProject(project_id);
-    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -31,11 +24,10 @@ const getLikesByProject = async (req, res) => {
 };
 
 const createLike = async (req, res) => {
-  const user_id = req.query.user_id;
-  const project_id = req.query.user_id;
+  const user_id = req.body.user_id;
+  const project_id = req.body.project_id;
   try {
     const data = await likesModel.createLike(user_id, project_id);
-    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -47,11 +39,10 @@ const createLike = async (req, res) => {
 };
 
 const deleteLike = async (req, res) => {
-  const user_id = req.query.user_id;
-  const project_id = req.query.user_id;
+  const user_id = req.body.user_id;
+  const project_id = req.body.project_id;
   try {
     const data = await likesModel.deleteLike(user_id, project_id);
-    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     console.log(error);

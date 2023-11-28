@@ -3,6 +3,7 @@ const likesQueries = require("../queries/likesQueries");
 
 const getLike = async (user_id, project_id) => {
   let client;
+  console.log(client);
   try {
     client = await pool.connect();
     const result = await client.query(likesQueries.getLike, [
@@ -10,7 +11,11 @@ const getLike = async (user_id, project_id) => {
       project_id,
     ]);
     const [data] = result.rows;
-    return data;
+    if (data === undefined) {
+      return false;
+    } else {
+      return true;
+    }
   } catch (error) {
     console.log(error);
     return error;

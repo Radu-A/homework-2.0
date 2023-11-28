@@ -4,19 +4,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import likeIcon from "../../../../assets/icons/like-icon.svg";
 import likeIconRed from "../../../../assets/icons/like-icon-red.svg";
 import commentIcon from "../../../../assets/icons/comment-icon.svg";
+import { json } from "react-router-dom";
 // import saveIcon from "../../../../assets/icons/save-icon.svg";
 
 const ProjectCardActions = ({ handleClick, projectId }) => {
   // variables
   const server = import.meta.env.VITE_SERVER;
   const { user } = useAuth0();
-  // let userId;
-  if (user) {
-    // userId = user.sub;
-  }
 
   // states
-  const [userId, setUserId] = useState("");
+  // const [userId, setUserId] = useState("");
   const [like, setLike] = useState(false);
   const [likesNumber, setLikesNumber] = useState(null);
 
@@ -34,45 +31,93 @@ const ProjectCardActions = ({ handleClick, projectId }) => {
   };
 
   const searchLike = async () => {
+    if (user) {
+      const userId = user.sub;
+      try {
+        const result = await fetch(
+          `${server}/api/likes?user_id=${userId}&project_id=${projectId}`
+        );
+        const data = await result.json();
+        if (data === true) {
+          setLike(true);
+        } else {
+          setLike(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const createLike = async () => {
+    const userId = user.sub;
     console.log(userId);
+    console.log(projectId);
     try {
-      const result = await fetch(
-        `${server}/api/likes?user_id=${userId}&project_id=${projectId}`
-      );
+      const result = await fetch(`${server}/api/likes`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          project_id: projectId,
+        }),
+      });
       const data = await result.json();
-      // setLike(data);
-      console.log(data);
+      if (data.created === true) {
+        setLike(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteLike = async () => {
+    const userId = user.sub;
+    try {
+      const result = await fetch(`${server}/api/likes`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          project_id: projectId,
+        }),
+      });
+      const data = await result.json();
+      if (data.deleted === true) {
+        setLike(false);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   const getLikesInfo = async () => {
-    // await getLikesNumber();
-    await searchLike();
+    // await searchLike();
+    await getLikesNumber();
   };
 
-  const handleLike = () => {
-    setLike(!like);
+  const handleLike = async () => {
+    if (like === true) {
+      await deleteLike();
+      await getLikesNumber();
+    } else {
+      await createLike();
+      await getLikesNumber();
+    }
   };
 
   // life cycle
   useEffect(() => {
-    if (user) {
-      console.log(user.sub)
-      setUserId(user.sub);
-    }
-  }, []);
-
-  useEffect(() => {
-    // getLikesNumber();
-    // searchLike();
     getLikesInfo();
-  }, [userId]);
+  }, [user]);
 
   return (
-    <div className="project-card-actions" onClick={handleLike}>
-      <div className="like-div">
+    <div className="project-card-actions">
+      <div className="like-div" onClick={handleLike}>
         <p>{likesNumber}</p>
         {like ? (
           <img src={likeIconRed} alt="" />

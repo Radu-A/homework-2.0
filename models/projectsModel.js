@@ -116,16 +116,17 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     // extract data from "rows" property of "results" object
     data = result.rows;
 
-    console.log("Este es el reultado de la query");
-    console.log(
-      projectQueries.getAllProjects +
-        bootcampQuery +
-        finishedQuery +
-        deployedQuery +
-        orderQuery +
-        limitQuery
-    );
-    console.log(bootcamp, finished, deployed, order);
+    // feedback for development
+    // console.log("This is the query");
+    // console.log(
+    //   projectQueries.getAllProjects +
+    //     bootcampQuery +
+    //     finishedQuery +
+    //     deployedQuery +
+    //     orderQuery +
+    //     limitQuery
+    // );
+    // console.log(bootcamp, finished, deployed, order);
   } catch (error) {
     console.log(error);
   } finally {

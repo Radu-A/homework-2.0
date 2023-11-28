@@ -61,8 +61,8 @@ const feedQueries = {
         )`,
   likesTable: `
         CREATE TABLE likes (
-            user_id varchar(100),
-            project_id int,
+            user_id varchar(100) NOT NULL,
+            project_id int NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(user_id),
             FOREIGN KEY (project_id) REFERENCES projects(project_id)
             ON DELETE CASCADE
