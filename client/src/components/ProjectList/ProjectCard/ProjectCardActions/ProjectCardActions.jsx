@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import likeIcon from "../../../../assets/icons/like-icon.svg";
 import likeIconRed from "../../../../assets/icons/like-icon-red.svg";
 import commentIcon from "../../../../assets/icons/comment-icon.svg";
-import { json } from "react-router-dom";
 // import saveIcon from "../../../../assets/icons/save-icon.svg";
 
 const ProjectCardActions = ({ handleClick, projectId }) => {
@@ -96,7 +95,7 @@ const ProjectCardActions = ({ handleClick, projectId }) => {
   };
 
   const getLikesInfo = async () => {
-    // await searchLike();
+    await searchLike();
     await getLikesNumber();
   };
 

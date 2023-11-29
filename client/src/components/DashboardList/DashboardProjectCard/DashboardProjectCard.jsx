@@ -49,7 +49,7 @@ const DashboardProjectCard = ({ project }) => {
 
   return (
     <article className="project-card-article">
-      <div className="project-card-user-info">
+      <div className="project-card-actions">
         <button onClick={handleEdit}>
           <img src={editIcon} alt="" />
         </button>

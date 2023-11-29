@@ -13,7 +13,6 @@ const Dashboar = () => {
   // states
   const [projectList, setProjectList] = useState([]);
   // context
-  
 
   useEffect(() => {
     const server = import.meta.env.VITE_SERVER;
@@ -30,14 +29,16 @@ const Dashboar = () => {
 
   return (
     <main className="dashboard-main">
-      <DashboardHeader />
-      {projectList.length > 0 ? (
-        <DashboardList projectList={projectList} />
-      ) : (
-        <article className="empty-card-article">
-          <p>You don't have any projects yet {"\u{261D}"}</p>
-        </article>
-      )}
+      <div className="dashboard-div">
+        <DashboardHeader />
+        {projectList.length > 0 ? (
+          <DashboardList projectList={projectList} />
+        ) : (
+          <article className="empty-card-article">
+            <p>You don't have any projects yet {"\u{261D}"}</p>
+          </article>
+        )}
+      </div>
     </main>
   );
 };

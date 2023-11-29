@@ -3,7 +3,6 @@ const likesQueries = require("../queries/likesQueries");
 
 const getLike = async (user_id, project_id) => {
   let client;
-  console.log(client);
   try {
     client = await pool.connect();
     const result = await client.query(likesQueries.getLike, [
@@ -20,6 +19,7 @@ const getLike = async (user_id, project_id) => {
     console.log(error);
     return error;
   } finally {
+    // console.log('likesModel/getLike/release()')
     client.release();
   }
 };
@@ -37,6 +37,7 @@ const getLikesByProject = async (project_id) => {
     console.log(error);
     return error;
   } finally {
+    // console.log('likesModel/getLikesByProject/release()')
     client.release();
   }
 };

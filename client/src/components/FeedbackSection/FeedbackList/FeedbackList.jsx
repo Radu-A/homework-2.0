@@ -25,9 +25,9 @@ const FeedbackList = () => {
     }
   };
 
-  useEffect(() => {
-    searchComment(projectDetails.project_id);
-  }, []);
+  // useEffect(() => {
+  //   searchComment(projectDetails.project_id);
+  // }, []);
 
   useEffect(() => {
     searchComment(projectDetails.project_id);

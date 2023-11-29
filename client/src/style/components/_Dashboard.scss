@@ -1,8 +1,8 @@
 @import '../utils/mixins.scss', '../utils/variables.scss';
 
-.dashboard-main {
-    width: 682px;
+.dashboard-div {
     margin: 0 auto;
+    padding: 0 1rem;
 
     button:hover {
         cursor: pointer;
@@ -56,8 +56,17 @@
 }
 
 .dashboard-list-section {
+    margin-top: 1rem;
 
     .project-card-article {
+        padding: 1.5rem;
+
+        .project-card-actions {
+            @include flex-row;
+            width: 100%;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid $light-gray;
+        }
 
         button {
             width: 5rem;
@@ -87,6 +96,15 @@
         button:nth-child(2):hover {
             background-color: $medium-red;
         }
+
+        .project-card-heading {
+            padding-top: 1rem;
+        }
+
+        img {
+            width: 85%;
+            box-sizing: border-box;
+        }
     }
 }
 
@@ -96,5 +114,61 @@
     }
     button {
         color: $medium-blue;
+    }
+}
+
+@media (min-width: 700px) {
+    .dashboard-div {
+        width: 682px;
+    }
+
+    .dashboard-list-section {
+
+        .project-card-article {
+
+            .project-card-actions {
+                grid-column: 1;
+                grid-row: 1/4;
+                @include flex-column;
+                gap: 0.5rem;
+                width: unset;
+                height: 100%;
+                border-right: 1px solid $light-gray;
+                border-bottom: unset;
+            }
+    
+            button {
+                width: 5rem;
+                height: 3rem;
+                margin-bottom: 1rem;
+                border: 2px solid $dark-blue;
+                border-radius: 10px;
+    
+                img {
+                    width: 2rem;
+                }
+            }
+    
+            button:first-child {
+                background-color: $light-yellow;
+                transition: background-color 0.2s;
+            }
+    
+            button:first-child:hover {
+                background-color: $dark-yellow;
+            }
+    
+            button:nth-child(2) {
+                background-color: $light-red;
+            }
+    
+            button:nth-child(2):hover {
+                background-color: $medium-red;
+            }
+
+            img {
+                width: unset;
+            }
+        }
     }
 }
