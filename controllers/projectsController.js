@@ -18,6 +18,7 @@ const getAllProjects = async (req, res) => {
       req.query.bootcamp,
       req.query.finished,
       req.query.deployed,
+      req.query.keyword,
       req.query.order,
       req.query.page
     );

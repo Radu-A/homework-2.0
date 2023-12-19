@@ -41,6 +41,15 @@
             width: 85%;
             border: none;
         }
+
+        button {
+            border: none;
+            background-color: inherit;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
     }
 
     .search-form-select {

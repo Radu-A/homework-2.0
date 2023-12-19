@@ -7,7 +7,9 @@ const selectQuery = `
     ON u.user_id = p.user_id`;
 
 const projectQueries = {
-  getProjectsNumber: 'SELECT COUNT (title) FROM projects',
+  getProjectsNumber: `
+    SELECT COUNT (title)
+    FROM projects`,
   getAllProjects: selectQuery,
   getProjectById: `
     ${selectQuery}

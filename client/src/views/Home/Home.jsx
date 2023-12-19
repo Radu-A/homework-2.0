@@ -5,7 +5,6 @@ import SearchForm from "../../components/SearchForm/SearchForm";
 import Aside from "../../components/Aside/Aside";
 import ProjectList from "../../components/ProjectList/ProjectList";
 import Pagination from "../../components/Pagination/Pagination";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
   // variables
@@ -18,6 +17,7 @@ const Home = () => {
   const [bootcampFilter, setBootcampFilter] = useState("");
   const [finishedFilter, setFinishedFilter] = useState("");
   const [deployedFilter, setDeployedFilter] = useState("");
+  const [keyWordFilter, setKeyWordFilter] = useState("");
   const [orderFilter, setOrderFilter] = useState("");
   const [pageFilter, setPageFilter] = useState(`page=1`);
 
@@ -31,6 +31,10 @@ const Home = () => {
   const updateDeployedFilter = (deployed) => {
     setDeployedFilter(`deployed=${deployed}&`);
   };
+  const updateKeyWordFilter = (deployed) => {
+    console.log('updateKeyWordFilter')
+    setKeyWordFilter(`keyword=${deployed}&`);
+  };
   const updateOrderFilter = (order) => {
     setOrderFilter(`order=${order}&`);
   };
@@ -39,7 +43,7 @@ const Home = () => {
   };
 
   const talk = () => {
-    const text = "Hola, que guapo estás hoy.";
+    const text = "Achilipú";
     const message = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(message);
   };
@@ -49,6 +53,7 @@ const Home = () => {
     updateBootcampFilter,
     updateFinishedFilter,
     updateDeployedFilter,
+    updateKeyWordFilter,
     updateOrderFilter,
     updatePageFilter,
     pageFilter,
@@ -57,13 +62,13 @@ const Home = () => {
   useEffect(() => {
     const searchProjects = async () => {
       const result = await fetch(
-        `${server}/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${orderFilter}${pageFilter}`
+        `${server}/api/projects?${bootcampFilter}${finishedFilter}${deployedFilter}${keyWordFilter}${orderFilter}${pageFilter}`
       );
       const data = await result.json();
       setProjectList(data);
     };
     searchProjects();
-  }, [bootcampFilter, finishedFilter, deployedFilter, orderFilter, pageFilter]);
+  }, [bootcampFilter, finishedFilter, deployedFilter, keyWordFilter, orderFilter, pageFilter]);
 
   return (
     <main className="home-main">

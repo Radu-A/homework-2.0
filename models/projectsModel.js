@@ -17,8 +17,20 @@ const getProjectsNumber = async () => {
   return data;
 };
 
-const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
+const getAllProjects = async (
+  bootcamp,
+  finished,
+  deployed,
+  keyword,
+  order,
+  page
+) => {
   // declare variables
+  if (keyword) {
+    keyword = keyword.toLowerCase();
+  }
+  console.log("keyword");
+  console.log(keyword);
   let client,
     data,
     isBootcamp,
@@ -26,6 +38,8 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
     isFinished,
     finishedQuery,
     deployedQuery,
+    keywordQuery,
+    isDeployed,
     orderQuery,
     limitQuery;
   // bootcampQuery
@@ -71,19 +85,34 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   if (!isBootcamp && !isFinished) {
     if (deployed === "true") {
       deployedQuery = " WHERE p.site IS NOT NULL";
+      isDeployed = true;
     } else if (deployed === "false") {
       deployedQuery = " WHERE p.site IS NULL";
+      isDeployed = true;
     } else {
       deployedQuery = "";
     }
   } else {
     if (deployed === "true") {
       deployedQuery = " AND p.site IS NOT NULL";
+      isDeployed = true;
     } else if (deployed === "false") {
       deployedQuery = " AND p.site IS NULL";
+      isDeployed = true;
     } else {
       deployedQuery = "";
     }
+  }
+  // keywordQuery
+  if (!isBootcamp && !isFinished && !isDeployed && keyword) {
+    keywordQuery = ` WHERE LOWER(p.title) LIKE '%${keyword}%'
+    OR LOWER(p.description) LIKE '%${keyword}%'
+    OR LOWER(u.bootcamp) LIKE '%${keyword}%'
+    OR LOWER(p.type) LIKE '%${keyword}%'`;
+  } else if ((isBootcamp || isFinished || isDeployed) && keyword) {
+    keywordQuery = ` AND LOWER(p.title) LIKE '%${keyword}%'`;
+  } else {
+    keywordQuery = "";
   }
   // orderQuery
   if (order === "curse") {
@@ -102,6 +131,18 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
   }
 
   try {
+    // feedback for development
+    console.log("This is the query");
+    console.log(
+      projectQueries.getAllProjects +
+        bootcampQuery +
+        finishedQuery +
+        deployedQuery +
+        keywordQuery +
+        orderQuery +
+        limitQuery
+    );
+    // console.log(bootcamp, finished, deployed, order);
     // establish connection with database
     client = await pool.connect();
     // launch the query
@@ -110,23 +151,12 @@ const getAllProjects = async (bootcamp, finished, deployed, order, page) => {
         bootcampQuery +
         finishedQuery +
         deployedQuery +
+        keywordQuery +
         orderQuery +
         limitQuery
     );
     // extract data from "rows" property of "results" object
     data = result.rows;
-
-    // feedback for development
-    // console.log("This is the query");
-    // console.log(
-    //   projectQueries.getAllProjects +
-    //     bootcampQuery +
-    //     finishedQuery +
-    //     deployedQuery +
-    //     orderQuery +
-    //     limitQuery
-    // );
-    // console.log(bootcamp, finished, deployed, order);
   } catch (error) {
     console.log(error);
   } finally {
