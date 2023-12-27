@@ -15,12 +15,10 @@ A web site where the students of The Bridge can upload their projects to show wh
   - [Installation](#installation)
 - [Overview](#overview)
   - [Description](#description)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
+  - [Screenshots](#screenshots)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Useful resources](#useful-resources)
-- [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
 ## Guide
@@ -82,14 +80,14 @@ You need to install npm. To install the latest version:
 
 ### Designed with figma
 
-<div style="width:100%" class="img-div" style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;">
+<div style="width:100%" class="img-div">
    <img src="./assets/design-dashboard.jpg" alt="image">
    <img src="./assets/design-project-details.jpg" alt="image">
 </div>
 
 ### Built with
 
-- PostgreSQL and Render
+- PostgreSQL
 - Node Express
 - Semantic HTML5 markup
 - SASS custom properties
@@ -97,6 +95,9 @@ You need to install npm. To install the latest version:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Material UI](https://mui.com/) - For styles
+- [Auth0](https://auth0.com/) - Authentication service
+- [Render](https://render.com/) - Deployment and hosting service
+- [ElephantSQL](https://www.elephantsql.com/) - PostgreSQL hosting service
 
 ### Key points
 
@@ -106,8 +107,7 @@ Back-end
 - Create and deploy a PostgreSQL Data Base
 - Construct the CRUD with Node and PostgreSQL
 - Routing with Node and Express
-- Reset the value of the input after the search
-- Authentication with JWT and js-cookie
+- Search engine based on SQL queries
 
 Front-end
 
