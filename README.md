@@ -1,18 +1,4 @@
-<style>
-   .live-site {
-      margin: 0 auto;
-   }
-    .img-div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-    }
-    .img-div img {
-      width: 70%;
-    }
-</style>
+
 
 # Homework
 
@@ -96,7 +82,7 @@ You need to install npm. To install the latest version:
 
 ### Designed with figma
 
-<div style="width:100%" class="img-div">
+<div style="width:100%" class="img-div" style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;">
    <img src="./assets/design-dashboard.jpg" alt="image">
    <img src="./assets/design-project-details.jpg" alt="image">
 </div>
