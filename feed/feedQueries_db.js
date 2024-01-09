@@ -72,7 +72,7 @@ const feedQueries = {
         user_id, email, photo, firstname, lastname, bootcamp, curse, github)
         VALUES 	
             -- 1
-            ('auth0|64de6eb7bbb0077ec394963e', 'becabecks3@gmail.com',
+            ('becabecks3@gmail.com', 'becabecks3@gmail.com',
             'https://avatars.githubusercontent.com/u/101715001?v=4',
             'Rebeca', 'Arrogante', 'Full-Stack', '23-04', 'https://github.com/becabecks3'),
             -- 2
@@ -96,7 +96,7 @@ const feedQueries = {
             'https://randomuser.me/api/portraits/women/35.jpg', 
             'Debra', 'Rodriquez', 'UX/UI', '22-09', 'https://github.com/Debra'),
             -- 7
-            ('aaron.toivonen@example.com', 'aaron.toivonen@example.com',
+            ('auth0|6593f4e20890c870388dc80a', 'aaron.toivonen@example.com',
             'https://randomuser.me/api/portraits/men/70.jpg', 
             'Aaron', 'Fetcher', 'Full-Stack', '23-01', 'https://github.com/Aaron'),
             -- 8
@@ -110,7 +110,7 @@ const feedQueries = {
   insertProjects: `
         INSERT INTO public.projects(
             user_id, title, date, type, description, achievement_one, achievement_two, achievement_three, finished, pending_one, pending_two, pending_three, img_small, img_big, github, site)
-            VALUES ('auth0|64de6eb7bbb0077ec394963e', 'Gigs4You', '2023-06-25', 'Full-Stack',
+            VALUES ('becabecks3@gmail.com', 'Gigs4You', '2023-06-25', 'Full-Stack',
             'Proyecto final donde se une lo aprendido tanto en Front como en Back. Gigs4You es una apliación web para buscar eventos musicales, tanto por género como por geolocalización.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque.',
@@ -127,7 +127,7 @@ const feedQueries = {
             'https://github.com/becabecks3/Final-Project-Full-Stack',
             'https://github.com/becabecks3/Final-Project-Full-Stack'
             ),
-            ('auth0|64de6eb7bbb0077ec394963e', 'Quizz-Project', '2023-05-15', 'Front-End',
+            ('becabecks3@gmail.com', 'Quizz-Project', '2023-05-15', 'Front-End',
             'This project aims to put into practice knowledge of HTML, CSS, and JavaScript. The JavaScript part, in particular, focuses on form validation, DOM manipulation, and executing user interactions.',
             -- achievements
             'Nullam hendrerit augue mollis sapien pretium, sit amet congue enim porttitor. Ut quis commodo est, in vestibulum ex. Aenean lobortis rutrum tellus sed porta. Vivamus nec iaculis orci, sed efficitur arcu.',
@@ -237,7 +237,7 @@ const feedQueries = {
             'Maecenas et nibh ac erat sagittis luctus. Ut ultrices sagittis venenatis.', 
             null, 'https://assets.toptal.io/images?url=https%3A%2F%2Fuploads.toptal.io%2Fblog%2Fimage%2F124166%2Ftoptal-blog-image-1505220208739-0a55992fcc18eedf899a09481bfc28e6.jpg', 
             'https://github.com/Radu-A/web-personal', null),
-            ('aaron.toivonen@example.com', 'Mongoose Api', '2023-03-25', 'Back-End',
+            ('auth0|6593f4e20890c870388dc80a', 'Mongoose Api', '2023-03-25', 'Back-End',
             'Aplicación que permite al usuario realizar métodos GET y POST que aplican cambios sobre una base de datos MongoDB. Vestibulum vel risus tempus, mattis orci at, sagittis diam. Curabitur fermentum ex quam, ac pulvinar mauris vehicula eu.',
             -- achievements
             'Sed sit amet porttitor diam, id sodales ante. In quis elit arcu. Pellentesque sed efficitur neque. Vestibulum suscipit, massa et commodo porta, dolor sem tincidunt tellus, sit amet ultrices elit ipsum ut tellus.',

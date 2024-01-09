@@ -4,11 +4,13 @@ import GithubInfo from "./GithubInfo/GithubInfo";
 import ProfileForm from "./ProfileForm";
 
 const ProfileSection = () => {
+  // Data from Auth0 db
   const { user } = useAuth0();
   let userData = {};
 
   if (user) {
     const nameArray = user.name.split(' ')
+    // Object with data from Auth0
     userData = {
       user_id: user.sub,
       email: user.email,

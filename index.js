@@ -19,6 +19,22 @@ app.use(cors());
 app.use(express.json());
 
 // routes
+app.get("/", (req, res) => {
+  res.send(`
+  <html>
+    <head>
+      <title>Homework - Server</title>
+    </head>
+    <body>
+      <h1>Welcome to Homework Server</h1>
+      <ul title="Endpoints">
+        <li>/api/users</li>
+        <li>/api/projects</li>
+      </ul>
+    </body>
+  </html>
+`);
+});
 app.use("/api/users", usersRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/comments", commentsRouter);

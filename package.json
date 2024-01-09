@@ -2,12 +2,12 @@
   "name": "homework-2.0",
   "version": "2.0.0",
   "description": "portfolio-project",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "runall": "nodemon app.js && cd client/ && npm run dev"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "runall": "nodemon index.js && cd client/ && npm run dev"
   },
   "author": "Radu-A",
   "license": "ISC",

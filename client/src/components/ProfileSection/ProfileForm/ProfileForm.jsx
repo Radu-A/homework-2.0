@@ -9,8 +9,8 @@ const ProfileForm = ({ userData }) => {
   const navigate = useNavigate();
   const server = import.meta.env.VITE_SERVER;
   const client = import.meta.env.VITE_CLIENT;
-  // let selectDefaultValue = "";
 
+  // Function to search user info in ElephantSQL
   const searchUser = async () => {
     try {
       const result = await fetch(
