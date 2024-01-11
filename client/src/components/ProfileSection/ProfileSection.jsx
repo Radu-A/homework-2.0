@@ -8,7 +8,8 @@ const ProfileSection = () => {
   let userData = {};
 
   if (user) {
-    const nameArray = user.name.split(' ')
+    console.log(user.nickname)
+    const nameArray = user.name.split(" ");
     userData = {
       user_id: user.sub,
       email: user.email,
@@ -18,13 +19,13 @@ const ProfileSection = () => {
       bootcamp: "",
       curse: "",
       github: `https://github.com/${user.nickname}`,
-    }
+    };
   }
 
   return (
     <section className="profile-section">
-      <GithubInfo userData={userData}/>
-      <ProfileForm userData={userData}/>
+      <GithubInfo userData={userData} />
+      <ProfileForm userData={userData} />
     </section>
   );
 };

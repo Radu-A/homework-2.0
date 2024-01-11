@@ -70,7 +70,7 @@ const Navbar = () => {
             <>
               {isDesktop && <DesktopMenu />}
               <SessionMenu updateClasses={updateClasses} />
-              {isDesktop && <LogoutButton />}
+              {isDesktop && <LogoutButton updateClasses={updateClasses} />}
             </>
           ) : (
             <LoginButton />

@@ -10,9 +10,6 @@ A web site where the students of The Bridge can upload their projects to show wh
 
 ## Table of contents
 
-- [Guide](#guide)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
 - [Overview](#overview)
   - [Description](#description)
   - [Screenshots](#screenshots)
@@ -21,39 +18,6 @@ A web site where the students of The Bridge can upload their projects to show wh
   - [Useful resources](#useful-resources)
 - [Acknowledgments](#acknowledgments)
 
-## Guide
-
-### Prerequisites
-
-You need to install npm. To install the latest version:
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/Radu-A/homework-2.0
-   ```
-2. Install NPM packages on the root directory
-   ```sh
-   npm install
-   ```
-3. Install NPM packages on "client" directory
-   ```js
-   npm install
-   ```
-4. Run the node server on the root directory
-   ```js
-   npm start
-   ```
-5. Run react aplication on "client" directory
-   ```js
-   npm start
-   ```
 
 ## Overview
 
