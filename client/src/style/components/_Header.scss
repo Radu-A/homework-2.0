@@ -59,10 +59,10 @@ header {
                 @include flex-row;
                 gap:0.5rem;
 
-                li:first-child, li:nth-child(2) {
-                    @include flex-column;
-                    width: 1.2rem;
-                }
+                // .session-item {
+                //     @include flex-column;
+                //     width: 1.2rem;
+                // }
 
                 a {
                     @include flex-column;

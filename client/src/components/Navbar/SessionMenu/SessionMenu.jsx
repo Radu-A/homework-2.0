@@ -7,7 +7,7 @@ const SessionMenu = ({ updateClasses }) => {
 
   return (
     <ul className="session-menu-list">
-      <li className="session-item">
+      {/* <li className="session-item">
         <a href="" className="session-link">
           <img src={messageIcon} alt="" className="session-icon-img" />
         </a>
@@ -16,7 +16,7 @@ const SessionMenu = ({ updateClasses }) => {
         <a href="" className="session-link">
           <img src={alertIcon} alt="" className="session-icon-img" />
         </a>
-      </li>
+      </li> */}
       <li className="avatar-item">
         {isAuthenticated && (
           <a href="" className="avatar-link" onClick={updateClasses}>
