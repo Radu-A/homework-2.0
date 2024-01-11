@@ -1,6 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
-const LogoutButton = () => {
+const LogoutButton = ({ updateClasses }) => {
+  const navigate = useNavigate();
+
   const { logout } = useAuth0();
 
   const manageLogout = async () => {
@@ -12,8 +15,15 @@ const LogoutButton = () => {
     });
   };
 
+  const handleClick = (event) => {
+    event.preventDefault();
+    updateClasses(event);
+    manageLogout();
+    navigate("/");
+  };
+
   return (
-    <button className="log-button" onClick={manageLogout}>
+    <button className="log-button" onClick={handleClick}>
       Log Out
     </button>
   );
