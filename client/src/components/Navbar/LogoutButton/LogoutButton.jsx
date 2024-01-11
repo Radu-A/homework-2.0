@@ -17,8 +17,8 @@ const LogoutButton = ({ updateClasses }) => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    updateClasses(event);
     manageLogout();
+    updateClasses(event);
     navigate("/");
   };
 

@@ -4,14 +4,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 import likeIcon from "../../../../assets/icons/like-icon.svg";
 import likeIconRed from "../../../../assets/icons/like-icon-red.svg";
 import commentIcon from "../../../../assets/icons/comment-icon.svg";
+import LoginDialog from "../../../FeedbackSection/NewComment/NewCommentForm/LoginDialog/LoginDialog";
 // import saveIcon from "../../../../assets/icons/save-icon.svg";
 
 const ProjectCardActions = ({ handleClick, projectId }) => {
   // variables
   const server = import.meta.env.VITE_SERVER;
-  const { user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
 
   // states
+  const [open, setOpen] = useState(false);
+
   // const [userId, setUserId] = useState("");
   const [like, setLike] = useState(false);
   const [likesNumber, setLikesNumber] = useState(null);
@@ -100,12 +103,16 @@ const ProjectCardActions = ({ handleClick, projectId }) => {
   };
 
   const handleLike = async () => {
-    if (like === true) {
-      await deleteLike();
-      await getLikesNumber();
+    if (isAuthenticated) {
+      if (like === true) {
+        await deleteLike();
+        await getLikesNumber();
+      } else {
+        await createLike();
+        await getLikesNumber();
+      }
     } else {
-      await createLike();
-      await getLikesNumber();
+      setOpen(true);
     }
   };
 
@@ -133,6 +140,7 @@ const ProjectCardActions = ({ handleClick, projectId }) => {
           <img src={saveIcon} alt="" />
           <p>Save</p>
         </div> */}
+      <LoginDialog open={open} setOpen={setOpen} />
     </div>
   );
 };
